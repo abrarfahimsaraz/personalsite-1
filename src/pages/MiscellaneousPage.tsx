@@ -1,5 +1,5 @@
 import { extracurriculars, awards } from "@/lib/data";
-import { Users, Trophy } from "lucide-react";
+import { Users, Trophy, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
 
