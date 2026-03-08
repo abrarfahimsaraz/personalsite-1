@@ -180,7 +180,7 @@ export default function HomePage() {
                 <Link
                   key={paper.id}
                   to={`/research/${paper.id}`}
-                  className="group border border-border bg-card rounded-xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                  className="group border border-border bg-card rounded-2xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1">
