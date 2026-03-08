@@ -1,5 +1,5 @@
 import { extracurriculars, awards } from "@/lib/data";
-import { Users, Trophy } from "lucide-react";
+import { Users, Trophy, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
 
@@ -43,6 +43,11 @@ export default function MiscellaneousPage() {
                         <span className="font-semibold text-foreground">{item.role}</span>
                         <span className="text-muted-foreground"> — </span>
                         {item.description}
+                        {item.certificateUrl && (
+                          <a href={item.certificateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 ml-2 text-primary hover:text-primary/80 transition-colors">
+                            <ExternalLink size={12} />
+                          </a>
+                        )}
                       </motion.li>
                     ))}
                   </ul>

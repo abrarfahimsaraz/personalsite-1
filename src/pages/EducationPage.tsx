@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { education, testScores } from "@/lib/data";
-import { GraduationCap, Award } from "lucide-react";
+import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
@@ -52,6 +52,11 @@ export default function EducationPage() {
                       ))}
                     </ul>
                   )}
+                  {ed.certificateUrl && (
+                    <a href={ed.certificateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 text-xs text-primary hover:text-primary/80 transition-colors font-medium">
+                      <ExternalLink size={12} /> View Degree Certificate
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -87,11 +92,12 @@ export default function EducationPage() {
                         </div>
                       ))}
                     </div>
-                  ) : ts.certificateUrl ? (
-                    <a href={ts.certificateUrl} className="mt-3 inline-flex text-sm text-primary hover:underline">
-                      View Certificate
-                    </a>
                   ) : null}
+                  {ts.certificateUrl && (
+                    <a href={ts.certificateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 text-xs text-primary hover:text-primary/80 transition-colors font-medium">
+                      <ExternalLink size={12} /> View Certificate
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>

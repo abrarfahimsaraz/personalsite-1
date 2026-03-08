@@ -43,6 +43,7 @@ export interface Education {
   grade: string;
   thesis?: string;
   highlights?: string[];
+  certificateUrl?: string;
 }
 
 export const education: Education[] = [
@@ -51,13 +52,14 @@ export const education: Education[] = [
     institution: "Islamic University of Technology (IUT)",
     location: "Gazipur, Bangladesh",
     dates: "January 2020 – May 2024",
-    grade: "CGPA 3.44 / 4.00",
+    grade: "CGPA 3.44 / 4.00 (First Class)",
     thesis:
       "Plasmonic Coupling & Thermal Effects on Photothermal Response of Randomly Distributed Nanoparticles",
     highlights: [
       "Presented thesis at the International Conference on Centennial Celebration of Bose-Einstein Statistics",
       "Active in IEEE, competitive programming, and departmental clubs",
     ],
+    certificateUrl: "/certificates/BSC_Degree_Certificate.pdf",
   },
   {
     degree: "Higher Secondary Certificate (Science) — HSC",
@@ -86,15 +88,27 @@ export interface TestScore {
 
 export const testScores: TestScore[] = [
   {
-    name: "EFSET English Certificate",
+    name: "GRE General Test",
     year: "2024",
-    overall: "C2 Proficient",
+    overall: "310 (V150 + Q160)",
+    breakdown: [
+      { label: "Verbal Reasoning", score: "150", level: "39th Percentile" },
+      { label: "Quantitative Reasoning", score: "160", level: "53rd Percentile" },
+      { label: "Analytical Writing", score: "3.5", level: "41st Percentile" },
+    ],
+    certificateUrl: "/certificates/GRE_Result.pdf",
+  },
+  {
+    name: "EFSET English Certificate",
+    year: "2025",
+    overall: "83/100 — C2 Proficient",
     breakdown: [
       { label: "Reading", score: "80", level: "C2 Proficient" },
       { label: "Listening", score: "75", level: "C2 Proficient" },
       { label: "Writing", score: "97", level: "C2 Proficient" },
       { label: "Speaking", score: "81", level: "C2 Proficient" },
     ],
+    certificateUrl: "/certificates/EFSET_Certificate.pdf",
   },
   {
     name: "IELTS Academic",
@@ -478,10 +492,10 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   // Conference Presentations / Author Certificates
-  { title: "Optimized Approaches to Malware Detection", issuer: "IEEE CSNT 2025", year: "2025", category: "conference" },
-  { title: "Predicting Antibiotic Resistance in Gonorrhea", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
-  { title: "VisionEdge: Cataract Detection via Smartphone", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
-  { title: "Analysis of Pre-trained CNN Models in MRI-Based Brain Tumor Detection", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
+  { title: "Optimized Approaches to Malware Detection", issuer: "IEEE CSNT 2025", year: "2025", category: "conference", certificateUrl: "/certificates/CSNT_2025_Malware.pdf" },
+  { title: "Predicting Antibiotic Resistance in Gonorrhea", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_Antibiotic.pdf" },
+  { title: "VisionEdge: Cataract Detection via Smartphone", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_VisionEdge.pdf" },
+  { title: "Analysis of Pre-trained CNN Models in MRI-Based Brain Tumor Detection", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_BrainTumor.pdf" },
   { title: "Diabetic Retinopathy Diagnosis Using Hybrid EfficientNet-ResNet", issuer: "IEMTRONICS 2025, Springer Nature", year: "2025", category: "conference" },
   { title: "Bone Fracture Detection (Modified VGG19)", issuer: "16th ICCCNT 2025", year: "2025", category: "conference" },
   { title: "Maternal Risk Prediction (GA + XAI)", issuer: "16th ICCCNT 2025", year: "2025", category: "conference" },
@@ -498,7 +512,7 @@ export const certifications: Certification[] = [
   { title: "Introduction to Python OpenCV", issuer: "Simplilearn", category: "course" },
   { title: "Image Recognition Basics for Beginners", issuer: "Simplilearn", category: "course" },
   { title: "Machine Learning using Python", issuer: "LinkedIn Learning", category: "course" },
-  { title: "Google AI Essentials", issuer: "Coursera", category: "course" },
+  { title: "Google AI Essentials", issuer: "Coursera", year: "2024", category: "course", certificateUrl: "/certificates/Google_AI_Essentials.pdf" },
   { title: "Google Project Management", issuer: "Coursera", category: "course" },
   { title: "Lean Six Sigma White Belt", issuer: "CSSC", category: "course" },
   { title: "What Is Generative AI?", issuer: "Simplilearn / LinkedIn Learning", category: "course" },
@@ -530,6 +544,7 @@ export const trainings: Training[] = [
       "Observed large-scale electrical systems and power generation operations at Ghorashal Power Station.",
       "Gained hands-on exposure to generation, transmission, and large-scale energy management procedures.",
     ],
+    certificateUrl: "/certificates/BPDB_Industrial_Training.pdf",
   },
   {
     organization: "Institute of Nuclear Science and Technology",
@@ -561,7 +576,7 @@ export const trainings: Training[] = [
 // ─── Extracurricular Activities ──────────────────────────────
 export interface Activity {
   year: string;
-  items: { role: string; description: string }[];
+  items: { role: string; description: string; certificateUrl?: string }[];
 }
 
 export const extracurriculars: Activity[] = [
@@ -575,7 +590,7 @@ export const extracurriculars: Activity[] = [
   {
     year: "2023",
     items: [
-      { role: "Organizer", description: "Esonance 2023 – IUT EEE departmental fest" },
+      { role: "Organizer & Head of Gaming", description: "Esonance 2023 – IUT EEE departmental fest", certificateUrl: "/certificates/Esonance_2023.pdf" },
       { role: "Member", description: "IEEE IUT Student Branch" },
       { role: "Participant", description: "Inter-departmental programming contest" },
     ],
