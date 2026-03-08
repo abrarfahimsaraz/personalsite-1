@@ -42,19 +42,11 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-40" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[150px]" />
-
+      <section className="relative min-h-[85vh] flex items-center">
         <div className="relative mx-auto max-w-6xl px-6 py-20 w-full">
           <div className="text-center">
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8"
-            >
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
               <Sparkles size={14} className="text-primary" />
               <span>Open to graduate research opportunities</span>
             </motion.div>
