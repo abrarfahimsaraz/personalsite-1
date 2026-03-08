@@ -15,12 +15,6 @@ const skillSections = [
   { title: "Soft Skills & Languages", icon: Users, items: [...skills.softSkills.map((s) => ({ name: s })), ...skills.languages.map((l) => ({ name: `${l.name} (${l.type})` }))], type: "simple" as const },
 ];
 
-const levelColors: Record<string, string> = {
-  Advanced: "bg-primary/20 text-primary border-primary/30",
-  Intermediate: "bg-accent text-accent-foreground",
-  Basic: "bg-secondary text-secondary-foreground",
-  Learning: "bg-muted text-muted-foreground",
-};
 
 export default function AboutPage() {
   return (
