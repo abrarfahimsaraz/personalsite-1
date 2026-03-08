@@ -114,7 +114,7 @@
   }
 
   html {
-    @apply dark;
+    scroll-behavior: smooth;
   }
 
   body {
