@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, GraduationCap, Download, ArrowRight, FileText, Sparkles, User } from "lucide-react";
+import { Github, Linkedin, Mail, GraduationCap, Download, ArrowRight, FileText, User, MapPin, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, researchPapers, stats, skills } from "@/lib/data";
@@ -21,20 +21,11 @@ const allSkills = [
   ...skills.aiDomains.slice(0, 4),
 ];
 
-const featuredPapers = researchPapers.slice(0, 6);
+const featuredPapers = researchPapers.slice(0, 4);
 
-const gridSpans = [
-  "md:col-span-2 md:row-span-2",
-  "md:col-span-1 md:row-span-1",
-  "md:col-span-1 md:row-span-1",
-  "md:col-span-1 md:row-span-2",
-  "md:col-span-2 md:row-span-1",
-  "md:col-span-1 md:row-span-1",
-];
-
-function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
+function PaperCard({ paper }: { paper: ResearchPaper }) {
   return (
-    <div className={`bento-card group ${gridSpans[index % gridSpans.length]}`}>
+    <div className="bento-card group">
       <div className="flex items-center gap-2 mb-3">
         <Badge variant="outline" className={`text-xs rounded-full ${
           paper.status === "Published" ? "border-primary/40 text-primary bg-primary/10" :
@@ -43,15 +34,12 @@ function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
         }`}>{paper.status}</Badge>
         <span className="text-xs text-muted-foreground">{paper.year}</span>
       </div>
-      <h3 className={`font-semibold leading-snug mb-2 group-hover:text-primary transition-colors ${
-        index % gridSpans.length === 0 ? "text-xl" : "text-base"
-      }`}>{paper.title}</h3>
+      <h3 className="text-base font-semibold leading-snug mb-2 group-hover:text-primary transition-colors">
+        {paper.title}
+      </h3>
       <p className="text-sm text-muted-foreground mb-3">
         {paper.venue}{paper.location && `, ${paper.location}`}
       </p>
-      {index % gridSpans.length === 0 && (
-        <p className="text-sm text-foreground/60 line-clamp-3 mb-4">{paper.abstract}</p>
-      )}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {paper.tags.slice(0, 3).map((tag) => (
           <Badge key={tag} variant="secondary" className="text-xs rounded-full">{tag}</Badge>
@@ -68,71 +56,86 @@ export default function HomePage() {
   return (
     <PageTransition>
       <div className="page-container">
-        {/* Hero */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground mb-8">
-            <Sparkles size={14} className="text-primary" />
-            <span>Open to graduate research opportunities</span>
+
+        {/* ── Hero: Two-column with bio ── */}
+        <section className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-20">
+          {/* Left: Text */}
+          <div className="lg:col-span-3">
+            <Badge variant="outline" className="rounded-full mb-6 text-sm px-4 py-1.5 border-primary/30 text-primary bg-primary/5">
+              Open to graduate research opportunities
+            </Badge>
+
+            <h1 className="section-heading text-4xl sm:text-6xl lg:text-7xl mb-4">
+              {personalInfo.name.split(" ")[0]}{" "}
+              <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
+            </h1>
+
+            <p className="text-lg text-muted-foreground mb-4 flex items-center gap-2">
+              <Briefcase size={16} className="text-primary" />
+              {personalInfo.role}
+            </p>
+
+            <p className="text-base text-foreground/70 leading-relaxed mb-4 max-w-xl">
+              {personalInfo.intro}
+            </p>
+
+            <p className="text-sm text-muted-foreground mb-8 flex items-center gap-2">
+              <MapPin size={14} /> {personalInfo.location}
+            </p>
+
+            <div className="flex flex-wrap gap-3 mb-8">
+              <Button size="lg" className="rounded-xl" asChild>
+                <Link to="/research"><FileText size={18} /> View Research</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-xl" asChild>
+                <a href={personalInfo.cvUrl} download><Download size={18} /> Download CV</a>
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-xl" asChild>
+                <Link to="/about"><User size={18} /> About Me</Link>
+              </Button>
+            </div>
+
+            <div className="flex gap-3">
+              {socials.map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200"
+                ><s.icon size={20} /></a>
+              ))}
+            </div>
           </div>
 
-          <h1 className="section-heading text-5xl sm:text-7xl lg:text-8xl mb-6">
-            {personalInfo.name.split(" ")[0]}{" "}
-            <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            {personalInfo.role}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <Button size="lg" className="rounded-xl" asChild>
-              <Link to="/research"><FileText size={18} /> View Research</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-xl" asChild>
-              <a href={personalInfo.cvUrl} download><Download size={18} /> Download CV</a>
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-xl" asChild>
-              <Link to="/about"><User size={18} /> About Me</Link>
-            </Button>
-          </div>
-
-          <div className="flex justify-center gap-3">
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200"
-              ><s.icon size={20} /></a>
+          {/* Right: Stats grid */}
+          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+            {[
+              { label: "Research Papers", value: stats.papers, icon: "📄" },
+              { label: "Projects", value: stats.projects, icon: "🔬" },
+              { label: "Trainings", value: stats.trainings, icon: "🏭" },
+              { label: "Certifications", value: stats.certifications, icon: "🏆" },
+            ].map((s) => (
+              <div key={s.label} className="glass-card text-center py-6 px-4">
+                <p className="text-2xl mb-1">{s.icon}</p>
+                <p className="text-3xl font-bold text-primary">{s.value}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
+              </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Skills Marquee */}
-        <div className="border-y border-border py-2 bg-card/30 -mx-4 sm:-mx-6 mb-16">
-          <SkillsMarquee skills={allSkills} />
-          <SkillsMarquee skills={allSkills} reverse className="mt-2" />
-        </div>
+        {/* ── Skills Marquee ── */}
+        <section className="mb-20">
+          <SectionHeading title="Skills & Technologies" subtitle="Tools and domains I work with" />
+          <div className="rounded-2xl border border-border bg-card/30 py-4 overflow-hidden">
+            <SkillsMarquee skills={allSkills} />
+            <SkillsMarquee skills={allSkills} reverse className="mt-3" />
+          </div>
+        </section>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-16">
-          {[
-            { label: "Research Papers", value: stats.papers, icon: "📄" },
-            { label: "Projects", value: stats.projects, icon: "🔬" },
-            { label: "Trainings", value: stats.trainings, icon: "🏭" },
-            { label: "Certifications", value: stats.certifications, icon: "🏆" },
-          ].map((s) => (
-            <div key={s.label} className="glass-card text-center py-8 px-4">
-              <p className="text-3xl mb-2">{s.icon}</p>
-              <p className="text-4xl font-bold text-primary">{s.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Featured Research */}
-        <div>
+        {/* ── Featured Research ── */}
+        <section>
           <SectionHeading title="Featured Research" subtitle="Recent publications and ongoing work" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {featuredPapers.map((paper, index) => (
-              <PaperCard key={paper.id} paper={paper} index={index} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {featuredPapers.map((paper) => (
+              <PaperCard key={paper.id} paper={paper} />
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -140,7 +143,7 @@ export default function HomePage() {
               <Link to="/research">View All {stats.papers} Papers <ArrowRight size={16} /></Link>
             </Button>
           </div>
-        </div>
+        </section>
       </div>
     </PageTransition>
   );
