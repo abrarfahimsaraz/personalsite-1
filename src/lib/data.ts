@@ -86,15 +86,27 @@ export interface TestScore {
 
 export const testScores: TestScore[] = [
   {
-    name: "EFSET English Certificate",
+    name: "GRE General Test",
     year: "2024",
-    overall: "C2 Proficient",
+    overall: "310 (V150 + Q160)",
+    breakdown: [
+      { label: "Verbal Reasoning", score: "150", level: "39th Percentile" },
+      { label: "Quantitative Reasoning", score: "160", level: "53rd Percentile" },
+      { label: "Analytical Writing", score: "3.5", level: "41st Percentile" },
+    ],
+    certificateUrl: "/certificates/GRE_Result.pdf",
+  },
+  {
+    name: "EFSET English Certificate",
+    year: "2025",
+    overall: "83/100 — C2 Proficient",
     breakdown: [
       { label: "Reading", score: "80", level: "C2 Proficient" },
       { label: "Listening", score: "75", level: "C2 Proficient" },
       { label: "Writing", score: "97", level: "C2 Proficient" },
       { label: "Speaking", score: "81", level: "C2 Proficient" },
     ],
+    certificateUrl: "/certificates/EFSET_Certificate.pdf",
   },
   {
     name: "IELTS Academic",
