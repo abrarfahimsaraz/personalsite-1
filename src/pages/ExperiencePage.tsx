@@ -36,7 +36,7 @@ export default function ExperiencePage() {
                     {categoryIcon[e.category] || "💼"}
                   </div>
                 </div>
-                <div className="glass-card rounded-xl p-6 flex-1">
+                <div className="glass-card rounded-2xl p-6 flex-1 border border-border/60 bg-card/50">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <Badge variant="secondary" className="rounded-full text-xs">{e.category}</Badge>
                     <span className="text-xs text-muted-foreground flex items-center gap-1">

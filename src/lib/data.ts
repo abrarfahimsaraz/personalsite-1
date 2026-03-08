@@ -99,22 +99,15 @@ export const testScores: TestScore[] = [
     certificateUrl: "/certificates/GRE_Result.pdf",
   },
   {
-    name: "EFSET English Certificate",
-    year: "2025",
-    overall: "83/100 — C2 Proficient",
-    breakdown: [
-      { label: "Reading", score: "80", level: "C2 Proficient" },
-      { label: "Listening", score: "75", level: "C2 Proficient" },
-      { label: "Writing", score: "97", level: "C2 Proficient" },
-      { label: "Speaking", score: "81", level: "C2 Proficient" },
-    ],
-    certificateUrl: "/certificates/EFSET_Certificate.pdf",
-  },
-  {
     name: "IELTS Academic",
     year: "2024",
-    overall: "—",
-    breakdown: [],
+    overall: "7.5",
+    breakdown: [
+      { label: "Listening", score: "8.5" },
+      { label: "Reading", score: "7" },
+      { label: "Writing", score: "7" },
+      { label: "Speaking", score: "6.5" },
+    ],
     certificateUrl: "/certificates/IELTS_2024.pdf",
   },
   {
@@ -129,11 +122,16 @@ export const testScores: TestScore[] = [
     ],
   },
   {
-    name: "IELTS Academic",
-    year: "2020",
-    overall: "—",
-    breakdown: [],
-    certificateUrl: "/certificates/IELTS_2020.pdf",
+    name: "EFSET English Certificate",
+    year: "2025",
+    overall: "83/100 — C2 Proficient",
+    breakdown: [
+      { label: "Reading", score: "80", level: "C2 Proficient" },
+      { label: "Listening", score: "75", level: "C2 Proficient" },
+      { label: "Writing", score: "97", level: "C2 Proficient" },
+      { label: "Speaking", score: "81", level: "C2 Proficient" },
+    ],
+    certificateUrl: "/certificates/EFSET_Certificate.pdf",
   },
 ];
 

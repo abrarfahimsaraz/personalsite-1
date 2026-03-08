@@ -62,12 +62,9 @@ export default function AboutPage() {
                     <Badge
                       key={item.name}
                       variant="secondary"
-                      className={`rounded-full text-xs ${"level" in item && (item as any).level ? levelColors[(item as any).level] || "" : ""}`}
+                      className="rounded-full text-xs"
                     >
                       {item.name}
-                      {"level" in item && (item as any).level && (
-                        <span className="ml-1 opacity-70 text-[10px]">· {(item as any).level}</span>
-                      )}
                     </Badge>
                   ))}
                 </div>
