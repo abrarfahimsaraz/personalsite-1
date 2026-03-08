@@ -112,6 +112,13 @@ export const testScores: TestScore[] = [
   },
   {
     name: "IELTS Academic",
+    year: "2024",
+    overall: "—",
+    breakdown: [],
+    certificateUrl: "/certificates/IELTS_2024.pdf",
+  },
+  {
+    name: "IELTS Academic",
     year: "2021",
     overall: "7.0",
     breakdown: [
