@@ -165,25 +165,6 @@ export default function HomePage() {
           ))}
         </motion.section>
 
-        {/* ── Skills Marquee ── */}
-        <section className="mb-20">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-6 bg-primary rounded-full" />
-            <h2 className="text-2xl font-bold tracking-tight">Technical Expertise</h2>
-          </div>
-          <div className="rounded-2xl border border-border bg-card/50 p-4 space-y-1 overflow-hidden">
-            <SkillsMarquee
-              skills={[
-                ...skills.programmingLanguages.map(s => s.name),
-                ...skills.frameworksLibraries,
-              ]}
-            />
-            <SkillsMarquee
-              skills={[...skills.aiDomains, ...skills.dataSkills]}
-              reverse
-            />
-          </div>
-        </section>
 
         {/* ── Ongoing Research ── */}
         {ongoingResearch.length > 0 && (
