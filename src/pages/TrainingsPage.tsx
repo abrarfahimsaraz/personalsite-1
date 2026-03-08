@@ -9,7 +9,7 @@ export default function TrainingsPage() {
     <PageTransition>
       <div className="page-container">
         <h1 className="section-heading">
-          <span className="gradient-text">Industrial Trainings</span>
+          <span className="text-primary">Industrial Trainings</span>
         </h1>
         <p className="section-subtitle">Hands-on industry exposure and technical training</p>
 
@@ -25,7 +25,7 @@ export default function TrainingsPage() {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-serif text-lg font-semibold">{t.organization}</h3>
+                  <h3 className="text-lg font-semibold">{t.organization}</h3>
                   <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
                     {t.unit && <span className="inline-flex items-center gap-1"><Building2 size={13} />{t.unit}</span>}
                     {t.location && <span className="inline-flex items-center gap-1"><MapPin size={13} />{t.location}</span>}

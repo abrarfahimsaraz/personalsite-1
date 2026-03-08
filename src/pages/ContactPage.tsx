@@ -30,12 +30,11 @@ export default function ContactPage() {
     <PageTransition>
       <div className="page-container">
         <h1 className="section-heading">
-          <span className="gradient-text">Contact</span>
+          <span className="text-primary">Contact</span>
         </h1>
         <p className="section-subtitle">Let's connect — feel free to reach out</p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          {/* Contact Info */}
           <div className="space-y-5">
             {contactInfo.map((c, i) => (
               <motion.div
@@ -63,14 +62,13 @@ export default function ContactPage() {
             ))}
           </div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="glass-card rounded-xl p-6"
           >
-            <h2 className="font-serif text-lg font-semibold mb-5">Send a Message</h2>
+            <h2 className="text-lg font-semibold mb-5">Send a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label htmlFor="name" className="text-xs font-medium uppercase tracking-wider">Name</Label>
@@ -84,7 +82,7 @@ export default function ContactPage() {
                 <Label htmlFor="message" className="text-xs font-medium uppercase tracking-wider">Message</Label>
                 <Textarea id="message" rows={4} className="mt-1.5 rounded-lg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
               </div>
-              <Button type="submit" className="w-full rounded-xl gradient-bg border-0 shadow-lg shadow-primary/20">
+              <Button type="submit" className="w-full rounded-xl">
                 <Send size={16} /> Send Message
               </Button>
             </form>
