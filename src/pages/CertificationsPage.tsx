@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { certifications } from "@/lib/data";
-import { Award, BookOpen } from "lucide-react";
+import { Award, BookOpen, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
 
