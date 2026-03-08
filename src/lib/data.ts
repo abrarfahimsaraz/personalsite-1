@@ -478,10 +478,10 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   // Conference Presentations / Author Certificates
-  { title: "Optimized Approaches to Malware Detection", issuer: "IEEE CSNT 2025", year: "2025", category: "conference" },
-  { title: "Predicting Antibiotic Resistance in Gonorrhea", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
-  { title: "VisionEdge: Cataract Detection via Smartphone", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
-  { title: "Analysis of Pre-trained CNN Models in MRI-Based Brain Tumor Detection", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference" },
+  { title: "Optimized Approaches to Malware Detection", issuer: "IEEE CSNT 2025", year: "2025", category: "conference", certificateUrl: "/certificates/CSNT_2025_Malware.pdf" },
+  { title: "Predicting Antibiotic Resistance in Gonorrhea", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_Antibiotic.pdf" },
+  { title: "VisionEdge: Cataract Detection via Smartphone", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_VisionEdge.pdf" },
+  { title: "Analysis of Pre-trained CNN Models in MRI-Based Brain Tumor Detection", issuer: "IEEE ICCIT 2024", year: "2024", category: "conference", certificateUrl: "/certificates/ICCIT_2024_BrainTumor.pdf" },
   { title: "Diabetic Retinopathy Diagnosis Using Hybrid EfficientNet-ResNet", issuer: "IEMTRONICS 2025, Springer Nature", year: "2025", category: "conference" },
   { title: "Bone Fracture Detection (Modified VGG19)", issuer: "16th ICCCNT 2025", year: "2025", category: "conference" },
   { title: "Maternal Risk Prediction (GA + XAI)", issuer: "16th ICCCNT 2025", year: "2025", category: "conference" },
