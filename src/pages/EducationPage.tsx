@@ -82,7 +82,7 @@ export default function EducationPage() {
                   {ts.breakdown.length > 0 && (
                     <div className="grid grid-cols-2 gap-3 mt-4">
                       {ts.breakdown.map((b, j) => (
-                        <div key={j} className="rounded-lg bg-muted/50 p-3 text-center">
+                        <div key={j} className="rounded-2xl bg-muted/50 p-3 text-center">
                           <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">{b.label}</p>
                           <p className="text-2xl font-bold text-primary mt-0.5">{b.score}</p>
                           {b.level && <p className="text-[10px] text-muted-foreground mt-0.5">{b.level}</p>}

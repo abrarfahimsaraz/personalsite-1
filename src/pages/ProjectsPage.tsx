@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/data";
-import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
-  const allTags = Array.from(new Set(projects.flatMap((p) => p.tags)));
-  const [filter, setFilter] = useState<string | null>(null);
-  const filtered = filter ? projects.filter((p) => p.tags.includes(filter)) : projects;
+  const thesis = projects[0];
+  const rest = projects.slice(1);
 
   return (
     <PageTransition>
@@ -18,41 +15,44 @@ export default function ProjectsPage() {
         </h1>
         <p className="section-subtitle">Academic, personal, and engineering projects</p>
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          <button
-            onClick={() => setFilter(null)}
-            className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200",
-              filter === null ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
-            )}
+        <div className="mt-10 space-y-5">
+          {/* Thesis — full width */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-2xl p-6"
           >
-            All
-          </button>
-          {allTags.map((t) => (
-            <button
-              key={t}
-              onClick={() => setFilter(t)}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200",
-                filter === t ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
-              )}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+            <h3 className="text-lg font-semibold">{thesis.name}</h3>
+            <div className="flex flex-wrap gap-x-3 text-xs text-muted-foreground mt-1.5">
+              {thesis.role && <span className="font-medium text-primary">{thesis.role}</span>}
+              {thesis.timeframe && <span>{thesis.timeframe}</span>}
+            </div>
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {thesis.technologies.map((t) => (
+                <Badge key={t} variant="secondary" className="text-xs rounded-full">{t}</Badge>
+              ))}
+            </div>
+            <ul className="mt-4 space-y-1.5">
+              {thesis.bullets.map((b, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-foreground/75">
+                  <div className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((p) => (
+          {/* Rest — 2-col grid */}
+          <div className="grid gap-5 sm:grid-cols-2">
+            {rest.map((p, i) => (
               <motion.div
                 key={p.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                className="glass-card rounded-xl p-5"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="glass-card rounded-2xl p-5"
               >
                 <h3 className="text-base font-semibold">{p.name}</h3>
                 <div className="flex flex-wrap gap-x-3 text-xs text-muted-foreground mt-1.5">
@@ -65,8 +65,8 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 <ul className="mt-4 space-y-1.5">
-                  {p.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-foreground/75">
+                  {p.bullets.map((b, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-foreground/75">
                       <div className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
                       {b}
                     </li>
@@ -74,7 +74,7 @@ export default function ProjectsPage() {
                 </ul>
               </motion.div>
             ))}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </PageTransition>
