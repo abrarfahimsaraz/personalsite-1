@@ -3,6 +3,8 @@ import { Github, Linkedin, Mail, GraduationCap, Download, ArrowRight, FileText, 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, researchPapers, stats, skills } from "@/lib/data";
+import PageTransition from "@/components/PageTransition";
+import SectionHeading from "@/components/SectionHeading";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import type { ResearchPaper } from "@/lib/data";
 
@@ -64,53 +66,53 @@ function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
 
 export default function HomePage() {
   return (
-    <div>
-      {/* Hero */}
-      <div className="px-6 pt-24 pb-16 text-center max-w-4xl mx-auto">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground mb-8">
-          <Sparkles size={14} className="text-primary" />
-          Open to graduate research opportunities
-        </span>
+    <PageTransition>
+      <div className="page-container">
+        {/* Hero */}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground mb-8">
+            <Sparkles size={14} className="text-primary" />
+            <span>Open to graduate research opportunities</span>
+          </div>
 
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold leading-[1.1] mb-6">
-          {personalInfo.name.split(" ")[0]}{" "}
-          <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
-        </h1>
+          <h1 className="section-heading text-5xl sm:text-7xl lg:text-8xl mb-6">
+            {personalInfo.name.split(" ")[0]}{" "}
+            <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
+          </h1>
 
-        <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-          {personalInfo.role}
-        </p>
+          <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+            {personalInfo.role}
+          </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
-          <Button size="lg" className="rounded-xl" asChild>
-            <Link to="/research"><FileText size={18} /> View Research</Link>
-          </Button>
-          <Button size="lg" variant="outline" className="rounded-xl" asChild>
-            <a href={personalInfo.cvUrl} download><Download size={18} /> Download CV</a>
-          </Button>
-          <Button size="lg" variant="outline" className="rounded-xl" asChild>
-            <Link to="/about"><User size={18} /> About Me</Link>
-          </Button>
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <Button size="lg" className="rounded-xl" asChild>
+              <Link to="/research"><FileText size={18} /> View Research</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-xl" asChild>
+              <a href={personalInfo.cvUrl} download><Download size={18} /> Download CV</a>
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-xl" asChild>
+              <Link to="/about"><User size={18} /> About Me</Link>
+            </Button>
+          </div>
+
+          <div className="flex justify-center gap-3">
+            {socials.map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200"
+              ><s.icon size={20} /></a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex justify-center gap-3">
-          {socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200"
-            ><s.icon size={20} /></a>
-          ))}
+        {/* Skills Marquee */}
+        <div className="border-y border-border py-2 bg-card/30 -mx-4 sm:-mx-6 mb-16">
+          <SkillsMarquee skills={allSkills} />
+          <SkillsMarquee skills={allSkills} reverse className="mt-2" />
         </div>
-      </div>
 
-      {/* Marquee */}
-      <div className="border-y border-border py-2 bg-card/30">
-        <SkillsMarquee skills={allSkills} />
-        <SkillsMarquee skills={allSkills} reverse className="mt-2" />
-      </div>
-
-      {/* Stats */}
-      <div className="py-16 px-6 max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+        {/* Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-16">
           {[
             { label: "Research Papers", value: stats.papers, icon: "📄" },
             { label: "Projects", value: stats.projects, icon: "🔬" },
@@ -124,25 +126,22 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Featured Research */}
-      <div className="py-16 px-6 max-w-6xl mx-auto border-t border-border">
-        <div className="flex items-center justify-between mb-10">
-          <div>
-            <h2 className="text-3xl font-bold mb-2">Featured Research</h2>
-            <p className="text-muted-foreground">Recent publications and ongoing work</p>
+        {/* Featured Research */}
+        <div>
+          <SectionHeading title="Featured Research" subtitle="Recent publications and ongoing work" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featuredPapers.map((paper, index) => (
+              <PaperCard key={paper.id} paper={paper} index={index} />
+            ))}
           </div>
-          <Button variant="outline" className="rounded-xl hidden sm:flex" asChild>
-            <Link to="/research">View All <ArrowRight size={16} /></Link>
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {featuredPapers.map((paper, index) => (
-            <PaperCard key={paper.id} paper={paper} index={index} />
-          ))}
+          <div className="mt-8 text-center">
+            <Button variant="outline" className="rounded-xl" asChild>
+              <Link to="/research">View All {stats.papers} Papers <ArrowRight size={16} /></Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </PageTransition>
   );
 }
