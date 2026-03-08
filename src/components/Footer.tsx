@@ -10,9 +10,8 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-card/30">
+    <footer className="border-t border-border bg-card/30">
       <div className="mx-auto max-w-6xl px-6 py-12">
-        {/* Large social links */}
         <div className="flex flex-wrap justify-center gap-8 mb-8">
           {socials.map((s) => (
             <a
@@ -27,8 +26,6 @@ export default function Footer() {
             </a>
           ))}
         </div>
-
-        {/* Copyright */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.

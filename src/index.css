@@ -7,95 +7,65 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 10%;
-
-    --card: 0 0% 98%;
-    --card-foreground: 240 10% 10%;
-
+    --foreground: 0 0% 9%;
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
-
-    --primary: 265 83% 57%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-
-    --accent: 265 50% 95%;
-    --accent-foreground: 265 83% 45%;
-
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 160 30% 92%;
+    --accent-foreground: 160 84% 30%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 265 83% 57%;
-
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 160 84% 39%;
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
-    --sidebar-primary: 265 83% 57%;
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 0 0% 30%;
+    --sidebar-primary: 160 84% 39%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 265 50% 95%;
-    --sidebar-accent-foreground: 265 83% 45%;
-    --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 265 83% 57%;
-
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 10%;
-    --info: 199 89% 48%;
-    --info-foreground: 0 0% 100%;
-
-    --glow-primary: 265 83% 57%;
-    --glow-secondary: 160 84% 39%;
+    --sidebar-accent: 160 30% 92%;
+    --sidebar-accent-foreground: 160 84% 30%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 160 84% 39%;
   }
 
   .dark {
-    --background: 240 10% 4%;
-    --foreground: 0 0% 95%;
-
-    --card: 240 10% 8%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 265 83% 65%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
-
-    --accent: 265 40% 20%;
-    --accent-foreground: 265 83% 75%;
-
+    --background: 0 0% 4%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 93%;
+    --primary: 160 84% 45%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 160 20% 12%;
+    --accent-foreground: 160 84% 55%;
     --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive-foreground: 0 0% 93%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 160 84% 45%;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 265 83% 65%;
-
-    --sidebar-background: 240 10% 6%;
-    --sidebar-foreground: 240 5% 65%;
-    --sidebar-primary: 265 83% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 265 40% 20%;
-    --sidebar-accent-foreground: 265 83% 75%;
-    --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 265 83% 65%;
-
-    --glow-primary: 265 83% 65%;
-    --glow-secondary: 160 84% 50%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 55%;
+    --sidebar-primary: 160 84% 45%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 160 20% 12%;
+    --sidebar-accent-foreground: 160 84% 55%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 160 84% 45%;
   }
 }
 
@@ -132,25 +102,22 @@
     @apply mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20;
   }
 
-  /* Glass card with glow effect */
   .glass-card {
-    @apply rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-sm transition-all duration-500;
+    @apply rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-sm transition-all duration-300;
   }
 
   .glass-card:hover {
-    @apply shadow-xl border-primary/30;
-    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.3);
+    @apply shadow-lg border-primary/30;
   }
 
-  /* Bento card with subtle glow */
   .bento-card {
-    @apply relative rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm p-6 overflow-hidden transition-all duration-500;
+    @apply relative rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 overflow-hidden transition-all duration-300;
   }
 
   .bento-card::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-500 rounded-2xl;
-    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--primary) / 0.15), transparent 40%);
+    background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--primary) / 0.08), transparent 40%);
   }
 
   .bento-card:hover::before {
@@ -158,23 +125,17 @@
   }
 
   .bento-card:hover {
-    @apply border-primary/40;
-    box-shadow: 0 0 50px -12px hsl(var(--primary) / 0.4);
+    @apply border-primary/30;
   }
 
-  .gradient-text {
-    @apply bg-gradient-to-r from-[hsl(265,83%,65%)] via-[hsl(280,80%,70%)] to-[hsl(160,84%,50%)] bg-clip-text text-transparent;
+  .accent-text {
+    @apply text-primary;
   }
 
-  .gradient-bg {
-    @apply bg-gradient-to-br from-[hsl(265,83%,57%)] to-[hsl(280,80%,65%)];
+  .accent-bg {
+    @apply bg-primary text-primary-foreground;
   }
 
-  .accent-glow {
-    box-shadow: 0 0 60px -15px hsl(var(--primary) / 0.5);
-  }
-
-  /* Underline animation for links */
   .link-underline {
     @apply relative inline-block;
   }
@@ -188,7 +149,6 @@
     @apply scale-x-100;
   }
 
-  /* Marquee animation */
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -202,19 +162,9 @@
     animation-play-state: paused;
   }
 
-  /* Grid dot pattern */
   .grid-pattern {
-    background-image: radial-gradient(hsl(var(--muted-foreground) / 0.15) 1px, transparent 1px);
+    background-image: radial-gradient(hsl(var(--muted-foreground) / 0.1) 1px, transparent 1px);
     background-size: 30px 30px;
-  }
-
-  /* Sidebar collapsed state */
-  .sidebar-collapsed {
-    @apply w-16;
-  }
-
-  .sidebar-expanded {
-    @apply w-64;
   }
 }
 

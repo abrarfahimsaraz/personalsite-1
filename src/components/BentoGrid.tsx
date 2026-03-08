@@ -3,14 +3,13 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { ResearchPaper } from "@/lib/data";
+import type { ResearchPaper } from "@/lib/data";
 
 interface BentoGridProps {
   papers: ResearchPaper[];
   className?: string;
 }
 
-// Define grid spans for bento effect
 const gridSpans = [
   "md:col-span-2 md:row-span-2",
   "md:col-span-1 md:row-span-1",
@@ -39,19 +38,16 @@ export default function BentoGrid({ papers, className }: BentoGridProps) {
           viewport={{ once: true }}
           transition={{ delay: index * 0.1 }}
           onMouseMove={handleMouseMove}
-          className={cn(
-            "bento-card group",
-            gridSpans[index % gridSpans.length]
-          )}
+          className={cn("bento-card group", gridSpans[index % gridSpans.length])}
         >
-          {/* Status badge */}
           <div className="flex items-center gap-2 mb-3">
             <Badge
+              variant="outline"
               className={cn(
                 "text-xs rounded-full",
-                paper.status === "Published" && "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-                paper.status === "Under Review" && "bg-amber-500/20 text-amber-400 border-amber-500/30",
-                paper.status === "In Preparation" && "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                paper.status === "Published" && "border-primary/40 text-primary bg-primary/10",
+                paper.status === "Under Review" && "border-amber-500/40 text-amber-400 bg-amber-500/10",
+                paper.status === "In Preparation" && "border-blue-400/40 text-blue-400 bg-blue-400/10"
               )}
             >
               {paper.status}
@@ -59,7 +55,6 @@ export default function BentoGrid({ papers, className }: BentoGridProps) {
             <span className="text-xs text-muted-foreground">{paper.year}</span>
           </div>
 
-          {/* Title */}
           <h3 className={cn(
             "font-semibold leading-snug mb-2 group-hover:text-primary transition-colors",
             index % gridSpans.length === 0 ? "text-xl" : "text-base"
@@ -67,29 +62,25 @@ export default function BentoGrid({ papers, className }: BentoGridProps) {
             {paper.title}
           </h3>
 
-          {/* Venue */}
           <p className="text-sm text-muted-foreground mb-3">
             {paper.venue}
             {paper.location && `, ${paper.location}`}
           </p>
 
-          {/* Abstract (only on larger cards) */}
           {index % gridSpans.length === 0 && (
-            <p className="text-sm text-foreground/70 line-clamp-3 mb-4">
+            <p className="text-sm text-foreground/60 line-clamp-3 mb-4">
               {paper.abstract}
             </p>
           )}
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-1.5 mb-4">
             {paper.tags.slice(0, 3).map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs rounded-full">
+              <Badge key={tag} variant="secondary" className="text-xs rounded-full">
                 {tag}
               </Badge>
             ))}
           </div>
 
-          {/* Link */}
           <Link
             to={`/research/${paper.id}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-2.5 transition-all"
