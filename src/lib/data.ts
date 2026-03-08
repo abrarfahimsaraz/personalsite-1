@@ -43,6 +43,7 @@ export interface Education {
   grade: string;
   thesis?: string;
   highlights?: string[];
+  certificateUrl?: string;
 }
 
 export const education: Education[] = [
