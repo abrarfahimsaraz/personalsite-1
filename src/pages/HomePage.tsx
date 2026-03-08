@@ -4,9 +4,8 @@ import {
   ArrowRight, Github, GraduationCap, Mail, Linkedin,
   MapPin, Download, FileText, Briefcase, Award, FolderOpen,
 } from "lucide-react";
-import { personalInfo, researchPapers, stats, skills, experiences } from "@/lib/data";
+import { personalInfo, researchPapers, stats, experiences } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
-import SkillsMarquee from "@/components/SkillsMarquee";
 
 const socials = [
   { icon: Github, href: personalInfo.github, label: "GitHub" },
@@ -85,7 +84,7 @@ export default function HomePage() {
               {currentRoles.map((role) => (
                 <span
                   key={role.title}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card text-sm font-medium"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-border bg-card text-sm font-medium"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-primary" />
                   {role.title} — <span className="text-muted-foreground">{role.organization}</span>
@@ -166,25 +165,6 @@ export default function HomePage() {
           ))}
         </motion.section>
 
-        {/* ── Skills Marquee ── */}
-        <section className="mb-20">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-6 bg-primary rounded-full" />
-            <h2 className="text-2xl font-bold tracking-tight">Technical Expertise</h2>
-          </div>
-          <div className="rounded-2xl border border-border bg-card/50 p-4 space-y-1 overflow-hidden">
-            <SkillsMarquee
-              skills={[
-                ...skills.programmingLanguages.map(s => s.name),
-                ...skills.frameworksLibraries,
-              ]}
-            />
-            <SkillsMarquee
-              skills={[...skills.aiDomains, ...skills.dataSkills]}
-              reverse
-            />
-          </div>
-        </section>
 
         {/* ── Ongoing Research ── */}
         {ongoingResearch.length > 0 && (
@@ -200,7 +180,7 @@ export default function HomePage() {
                 <Link
                   key={paper.id}
                   to={`/research/${paper.id}`}
-                  className="group border border-border bg-card rounded-xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                  className="group border border-border bg-card rounded-2xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1">
@@ -245,7 +225,7 @@ export default function HomePage() {
               <Link
                 key={paper.id}
                 to={`/research/${paper.id}`}
-                className="group border border-border bg-card rounded-xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
+                className="group border border-border bg-card rounded-2xl p-6 hover:border-primary/50 hover:shadow-lg transition-all"
               >
                 <span className="inline-block px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full text-xs font-medium mb-3">
                   Published · {paper.year}
