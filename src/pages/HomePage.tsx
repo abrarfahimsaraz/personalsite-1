@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, GraduationCap, Download, ArrowRight, FileText, Sparkles, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { personalInfo, researchPapers, stats, skills } from "@/lib/data";
-import PageTransition from "@/components/PageTransition";
 import SkillsMarquee from "@/components/SkillsMarquee";
-import BentoGrid from "@/components/BentoGrid";
+import type { ResearchPaper } from "@/lib/data";
 
 const socials = [
   { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
@@ -22,9 +21,76 @@ const allSkills = [
 
 const featuredPapers = researchPapers.slice(0, 6);
 
+const gridSpans = [
+  "md:col-span-2 md:row-span-2",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-2",
+  "md:col-span-2 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+];
+
+function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      className={`bento-card group ${gridSpans[index % gridSpans.length]}`}
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <Badge
+          variant="outline"
+          className={`text-xs rounded-full ${
+            paper.status === "Published" ? "border-primary/40 text-primary bg-primary/10" :
+            paper.status === "Under Review" ? "border-amber-500/40 text-amber-400 bg-amber-500/10" :
+            "border-blue-400/40 text-blue-400 bg-blue-400/10"
+          }`}
+        >
+          {paper.status}
+        </Badge>
+        <span className="text-xs text-muted-foreground">{paper.year}</span>
+      </div>
+      <h3 className={`font-semibold leading-snug mb-2 group-hover:text-primary transition-colors ${
+        index % gridSpans.length === 0 ? "text-xl" : "text-base"
+      }`}>
+        {paper.title}
+      </h3>
+      <p className="text-sm text-muted-foreground mb-3">
+        {paper.venue}
+        {paper.location && `, ${paper.location}`}
+      </p>
+      {index % gridSpans.length === 0 && (
+        <p className="text-sm text-foreground/60 line-clamp-3 mb-4">
+          {paper.abstract}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {paper.tags.slice(0, 3).map((tag) => (
+          <Badge key={tag} variant="secondary" className="text-xs rounded-full">
+            {tag}
+          </Badge>
+        ))}
+      </div>
+      <Link
+        to={`/research/${paper.id}`}
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-2.5 transition-all"
+      >
+        View Details <ArrowRight size={14} />
+      </Link>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
-    <>
+    <div>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -43,42 +109,26 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center">
-        <div className="relative mx-auto max-w-6xl px-6 py-20 w-full">
+        <div className="absolute inset-0 grid-pattern opacity-40" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[400px] w-[400px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 w-full">
           <div className="text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8 animate-fade-in">
               <Sparkles size={14} className="text-primary" />
               <span>Open to graduate research opportunities</span>
-            </motion.div>
+            </div>
 
-            {/* Main heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6"
-            >
+            <h1 className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6 text-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
               {personalInfo.name.split(" ")[0]}{" "}
               <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
-            </motion.h1>
+            </h1>
 
-            {/* Role */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto"
-            >
+            <p className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
               {personalInfo.role}
-            </motion.p>
+            </p>
 
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-4 mb-10"
-            >
+            <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
                 <Link to="/research">
                   <FileText size={18} /> View Research
@@ -94,15 +144,9 @@ export default function HomePage() {
                   <User size={18} /> About Me
                 </Link>
               </Button>
-            </motion.div>
+            </div>
 
-            {/* Social links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex justify-center gap-3"
-            >
+            <div className="flex justify-center gap-3 animate-fade-in" style={{ animationDelay: "0.4s" }}>
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -115,7 +159,7 @@ export default function HomePage() {
                   <s.icon size={20} />
                 </a>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -135,25 +179,18 @@ export default function HomePage() {
               { label: "Projects", value: stats.projects, icon: "🔬" },
               { label: "Trainings", value: stats.trainings, icon: "🏭" },
               { label: "Certifications", value: stats.certifications, icon: "🏆" },
-            ].map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bento-card text-center py-8"
-              >
+            ].map((s) => (
+              <div key={s.label} className="bento-card text-center py-8">
                 <p className="text-3xl mb-2">{s.icon}</p>
                 <p className="text-4xl font-bold text-primary">{s.value}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Research - Bento Grid */}
+      {/* Featured Research */}
       <section className="py-16 border-t border-border">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between mb-10">
@@ -168,7 +205,11 @@ export default function HomePage() {
             </Button>
           </div>
 
-          <BentoGrid papers={featuredPapers} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featuredPapers.map((paper, index) => (
+              <PaperCard key={paper.id} paper={paper} index={index} />
+            ))}
+          </div>
 
           <div className="mt-8 text-center sm:hidden">
             <Button variant="outline" className="rounded-xl" asChild>
@@ -179,6 +220,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
