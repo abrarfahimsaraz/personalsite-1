@@ -52,13 +52,14 @@ export const education: Education[] = [
     institution: "Islamic University of Technology (IUT)",
     location: "Gazipur, Bangladesh",
     dates: "January 2020 – May 2024",
-    grade: "CGPA 3.44 / 4.00",
+    grade: "CGPA 3.44 / 4.00 (First Class)",
     thesis:
       "Plasmonic Coupling & Thermal Effects on Photothermal Response of Randomly Distributed Nanoparticles",
     highlights: [
       "Presented thesis at the International Conference on Centennial Celebration of Bose-Einstein Statistics",
       "Active in IEEE, competitive programming, and departmental clubs",
     ],
+    certificateUrl: "/certificates/BSC_Degree_Certificate.pdf",
   },
   {
     degree: "Higher Secondary Certificate (Science) — HSC",
