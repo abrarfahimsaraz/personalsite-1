@@ -530,6 +530,7 @@ export const trainings: Training[] = [
       "Observed large-scale electrical systems and power generation operations at Ghorashal Power Station.",
       "Gained hands-on exposure to generation, transmission, and large-scale energy management procedures.",
     ],
+    certificateUrl: "/certificates/BPDB_Industrial_Training.pdf",
   },
   {
     organization: "Institute of Nuclear Science and Technology",
