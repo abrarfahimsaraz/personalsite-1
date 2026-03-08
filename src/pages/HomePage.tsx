@@ -46,34 +46,33 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Grid pattern background */}
-        <div className="absolute inset-0 grid-pattern opacity-50" />
+        <div className="absolute inset-0 grid-pattern opacity-40" />
         
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute bottom-1/4 left-1/4 h-[300px] w-[300px] rounded-full bg-emerald-500/15 blur-[100px]" />
+        {/* Subtle glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[150px]" />
 
         <div className="relative mx-auto max-w-6xl px-6 py-20">
           <motion.div initial="hidden" animate="show" variants={stagger} className="text-center">
             {/* Badge */}
-            <motion.div variants={fade} className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/50 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
+            <motion.div variants={fade} className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
               <Sparkles size={14} className="text-primary" />
               <span>Open to graduate research opportunities</span>
             </motion.div>
 
             {/* Main heading */}
-            <motion.h1 variants={fade} className="text-6xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6">
-              <span className="gradient-text">{personalInfo.name}</span>
+            <motion.h1 variants={fade} className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6">
+              {personalInfo.name.split(" ")[0]}{" "}
+              <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
             </motion.h1>
 
             {/* Role */}
-            <motion.p variants={fade} className="text-xl text-muted-foreground font-medium sm:text-2xl mb-8 max-w-2xl mx-auto">
+            <motion.p variants={fade} className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto">
               {personalInfo.role}
             </motion.p>
 
             {/* CTA buttons */}
             <motion.div variants={fade} className="flex flex-wrap justify-center gap-4 mb-10">
-              <Button size="lg" className="rounded-xl gradient-bg border-0 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300" asChild>
+              <Button size="lg" className="rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20" asChild>
                 <Link to="/research">
                   <FileText size={18} /> View Research
                 </Link>
@@ -99,7 +98,7 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/50 bg-card/50 text-muted-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/50 text-muted-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-0.5"
                 >
                   <s.icon size={20} />
                 </a>
@@ -110,7 +109,7 @@ export default function HomePage() {
       </section>
 
       {/* Skills Marquee */}
-      <section className="border-y border-border/50 py-2 bg-card/30">
+      <section className="border-y border-border py-2 bg-card/30">
         <SkillsMarquee skills={allSkills} />
         <SkillsMarquee skills={allSkills} reverse className="mt-2" />
       </section>
@@ -134,7 +133,7 @@ export default function HomePage() {
                 className="bento-card text-center py-8"
               >
                 <p className="text-3xl mb-2">{s.icon}</p>
-                <p className="text-4xl font-bold gradient-text">{s.value}</p>
+                <p className="text-4xl font-bold text-primary">{s.value}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
               </motion.div>
             ))}
@@ -143,7 +142,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Research - Bento Grid */}
-      <section className="py-16 border-t border-border/50">
+      <section className="py-16 border-t border-border">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between mb-10">
             <div>

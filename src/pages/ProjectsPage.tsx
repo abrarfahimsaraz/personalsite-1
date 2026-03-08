@@ -14,17 +14,16 @@ export default function ProjectsPage() {
     <PageTransition>
       <div className="page-container">
         <h1 className="section-heading">
-          <span className="gradient-text">Projects</span>
+          <span className="text-primary">Projects</span>
         </h1>
         <p className="section-subtitle">Academic, personal, and engineering projects</p>
 
-        {/* Filters */}
         <div className="mt-8 flex flex-wrap gap-2">
           <button
             onClick={() => setFilter(null)}
             className={cn(
               "rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200",
-              filter === null ? "gradient-bg text-white shadow-md shadow-primary/20" : "bg-muted text-muted-foreground hover:bg-accent"
+              filter === null ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
             )}
           >
             All
@@ -35,7 +34,7 @@ export default function ProjectsPage() {
               onClick={() => setFilter(t)}
               className={cn(
                 "rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200",
-                filter === t ? "gradient-bg text-white shadow-md shadow-primary/20" : "bg-muted text-muted-foreground hover:bg-accent"
+                filter === t ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
               )}
             >
               {t}
@@ -55,7 +54,7 @@ export default function ProjectsPage() {
                 transition={{ duration: 0.25 }}
                 className="glass-card rounded-xl p-5"
               >
-                <h3 className="font-serif text-base font-semibold">{p.name}</h3>
+                <h3 className="text-base font-semibold">{p.name}</h3>
                 <div className="flex flex-wrap gap-x-3 text-xs text-muted-foreground mt-1.5">
                   {p.role && <span className="font-medium text-primary">{p.role}</span>}
                   {p.timeframe && <span>{p.timeframe}</span>}

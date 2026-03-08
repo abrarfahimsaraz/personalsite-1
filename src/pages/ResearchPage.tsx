@@ -4,14 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { researchPapers, type PaperStatus } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
-import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
 
 const statusStyle: Record<PaperStatus, string> = {
-  Published: "gradient-bg border-0 text-white",
-  Accepted: "bg-primary/80 text-primary-foreground border-0",
-  "Under Review": "border-primary/40 text-primary bg-accent",
-  "In Preparation": "border-muted-foreground/40 text-muted-foreground bg-muted",
+  Published: "bg-primary/15 text-primary border-primary/30",
+  Accepted: "bg-primary/10 text-primary border-primary/20",
+  "Under Review": "border-amber-500/30 text-amber-400 bg-amber-500/10",
+  "In Preparation": "border-muted-foreground/30 text-muted-foreground bg-muted",
 };
 
 export default function ResearchPage() {
@@ -19,7 +18,7 @@ export default function ResearchPage() {
     <PageTransition>
       <div className="page-container">
         <h1 className="section-heading">
-          <span className="gradient-text">Research</span>
+          <span className="text-primary">Research</span>
         </h1>
         <p className="section-subtitle">Conference proceedings, publications, and ongoing work</p>
 
@@ -41,10 +40,10 @@ export default function ResearchPage() {
                 <span className="text-xs text-muted-foreground">·</span>
                 <span className="text-xs text-muted-foreground">{p.venue}{p.location ? `, ${p.location}` : ""}</span>
               </div>
-              <h3 className="font-serif text-lg font-semibold leading-snug group-hover:text-primary transition-colors">
+              <h3 className="text-lg font-semibold leading-snug group-hover:text-primary transition-colors">
                 <Link to={`/research/${p.id}`}>{p.title}</Link>
               </h3>
-              <p className="mt-2 text-sm text-foreground/70 leading-relaxed">{p.abstract}</p>
+              <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{p.abstract}</p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 {p.tags.map((t) => (
                   <Badge key={t} variant="secondary" className="text-xs rounded-full">{t}</Badge>

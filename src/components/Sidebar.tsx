@@ -2,19 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Home,
-  User,
-  FileText,
-  Briefcase,
-  GraduationCap,
-  Layers,
-  Award,
-  FolderOpen,
-  Mail,
-  Menu,
-  X,
-  ChevronLeft,
-  ChevronRight,
+  Home, User, FileText, Briefcase, GraduationCap, Layers,
+  Award, FolderOpen, Mail, Menu, X, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +57,7 @@ export default function Sidebar() {
           x: isOpen ? 0 : typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0,
         }}
         className={cn(
-          "fixed top-0 left-0 z-50 h-screen bg-sidebar-background border-r border-sidebar-border",
+          "fixed top-0 left-0 z-50 h-screen border-r border-border bg-background",
           "flex flex-col py-6 transition-all duration-300",
           "lg:translate-x-0"
         )}
@@ -81,10 +70,10 @@ export default function Sidebar() {
           <X size={18} />
         </button>
 
-        {/* Logo / Name */}
+        {/* Logo */}
         <div className="px-4 mb-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-bg text-white font-bold text-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
               A
             </div>
             <AnimatePresence>
@@ -136,7 +125,7 @@ export default function Sidebar() {
           })}
         </nav>
 
-        {/* Collapse toggle (desktop only) */}
+        {/* Collapse toggle */}
         <div className="hidden lg:block px-3 mt-4">
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -145,11 +134,7 @@ export default function Sidebar() {
             {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
             <AnimatePresence>
               {!isCollapsed && (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   Collapse
                 </motion.span>
               )}

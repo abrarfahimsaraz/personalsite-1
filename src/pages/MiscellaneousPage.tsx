@@ -8,24 +8,23 @@ export default function MiscellaneousPage() {
     <PageTransition>
       <div className="page-container">
         <h1 className="section-heading">
-          <span className="gradient-text">Miscellaneous</span>
+          <span className="text-primary">Miscellaneous</span>
         </h1>
         <p className="section-subtitle">Extracurricular activities and achievements</p>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
-          {/* Left: Extracurricular */}
           <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-bg text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Users size={18} />
               </div>
-              <h2 className="font-serif text-xl font-bold">Extracurricular Activities</h2>
+              <h2 className="text-xl font-bold">Extracurricular Activities</h2>
             </div>
             <div className="space-y-8">
               {extracurriculars.map((year) => (
                 <div key={year.year}>
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="h-6 w-6 rounded-lg gradient-bg text-white flex items-center justify-center text-xs font-bold">
+                    <div className="h-6 w-6 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">
                       {year.year.slice(2)}
                     </div>
                     <h3 className="text-sm font-bold text-primary">{year.year}</h3>
@@ -56,13 +55,12 @@ export default function MiscellaneousPage() {
             </div>
           </div>
 
-          {/* Right: Awards */}
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
                 <Trophy size={18} />
               </div>
-              <h2 className="font-serif text-xl font-bold">Awards & Achievements</h2>
+              <h2 className="text-xl font-bold">Awards & Achievements</h2>
             </div>
             <div className="space-y-4">
               {awards.map((a, i) => (
@@ -76,10 +74,10 @@ export default function MiscellaneousPage() {
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">🏆</span>
-                    <h3 className="font-serif text-sm font-semibold">{a.name}</h3>
+                    <h3 className="text-sm font-semibold">{a.name}</h3>
                   </div>
                   <p className="text-xs text-muted-foreground">{a.issuer} · {a.year}</p>
-                  <p className="mt-2 text-sm text-foreground/70">{a.description}</p>
+                  <p className="mt-2 text-sm text-foreground/60">{a.description}</p>
                 </motion.div>
               ))}
             </div>
