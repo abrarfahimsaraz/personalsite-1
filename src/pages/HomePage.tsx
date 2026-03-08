@@ -31,19 +31,8 @@ const gridSpans = [
 ];
 
 function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
-    e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
-  };
-
   return (
-    <div
-      onMouseMove={handleMouseMove}
-      className={`bento-card group ${gridSpans[index % gridSpans.length]}`}
-    >
+    <div className={`bento-card group ${gridSpans[index % gridSpans.length]}`}>
       <div className="flex items-center gap-2 mb-3">
         <Badge
           variant="outline"
@@ -63,25 +52,17 @@ function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
         {paper.title}
       </h3>
       <p className="text-sm text-muted-foreground mb-3">
-        {paper.venue}
-        {paper.location && `, ${paper.location}`}
+        {paper.venue}{paper.location && `, ${paper.location}`}
       </p>
       {index % gridSpans.length === 0 && (
-        <p className="text-sm text-foreground/60 line-clamp-3 mb-4">
-          {paper.abstract}
-        </p>
+        <p className="text-sm text-foreground/60 line-clamp-3 mb-4">{paper.abstract}</p>
       )}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {paper.tags.slice(0, 3).map((tag) => (
-          <Badge key={tag} variant="secondary" className="text-xs rounded-full">
-            {tag}
-          </Badge>
+          <Badge key={tag} variant="secondary" className="text-xs rounded-full">{tag}</Badge>
         ))}
       </div>
-      <Link
-        to={`/research/${paper.id}`}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-2.5 transition-all"
-      >
+      <Link to={`/research/${paper.id}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-2.5 transition-all">
         View Details <ArrowRight size={14} />
       </Link>
     </div>
@@ -90,76 +71,55 @@ function PaperCard({ paper, index }: { paper: ResearchPaper; index: number }) {
 
 export default function HomePage() {
   return (
-    <div>
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: personalInfo.name,
-            jobTitle: personalInfo.role,
-            email: personalInfo.email,
-            url: window.location.origin,
-            sameAs: [personalInfo.github, personalInfo.linkedin, personalInfo.scholar],
-          }),
-        }}
-      />
-
+    <div className="w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center">
-        <div className="absolute inset-0 grid-pattern opacity-40" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[400px] w-[400px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
+      <section className="min-h-[85vh] flex items-center justify-center px-6 py-20">
+        <div className="max-w-6xl w-full text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
+            <Sparkles size={14} className="text-primary" />
+            <span>Open to graduate research opportunities</span>
+          </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 w-full">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8 animate-fade-in">
-              <Sparkles size={14} className="text-primary" />
-              <span>Open to graduate research opportunities</span>
-            </div>
+          <h1 className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6">
+            {personalInfo.name.split(" ")[0]}{" "}
+            <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
+          </h1>
 
-            <h1 style={{ color: "white", background: "red" }} className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6 text-foreground animate-fade-in">
-              {personalInfo.name.split(" ")[0]}{" "}
-              <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
-            </h1>
+          <p className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto">
+            {personalInfo.role}
+          </p>
 
-            <p className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              {personalInfo.role}
-            </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
+              <Link to="/research">
+                <FileText size={18} /> View Research
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-xl" asChild>
+              <a href={personalInfo.cvUrl} download>
+                <Download size={18} /> Download CV
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-xl" asChild>
+              <Link to="/about">
+                <User size={18} /> About Me
+              </Link>
+            </Button>
+          </div>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
-                <Link to="/research">
-                  <FileText size={18} /> View Research
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-xl" asChild>
-                <a href={personalInfo.cvUrl} download>
-                  <Download size={18} /> Download CV
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-xl" asChild>
-                <Link to="/about">
-                  <User size={18} /> About Me
-                </Link>
-              </Button>
-            </div>
-
-            <div className="flex justify-center gap-3 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/50 text-muted-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-0.5"
-                >
-                  <s.icon size={20} />
-                </a>
-              ))}
-            </div>
+          <div className="flex justify-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/50 text-muted-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-0.5"
+              >
+                <s.icon size={20} />
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -199,23 +159,17 @@ export default function HomePage() {
               <p className="text-muted-foreground">Recent publications and ongoing work</p>
             </div>
             <Button variant="outline" className="rounded-xl hidden sm:flex" asChild>
-              <Link to="/research">
-                View All <ArrowRight size={16} />
-              </Link>
+              <Link to="/research">View All <ArrowRight size={16} /></Link>
             </Button>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {featuredPapers.map((paper, index) => (
               <PaperCard key={paper.id} paper={paper} index={index} />
             ))}
           </div>
-
           <div className="mt-8 text-center sm:hidden">
             <Button variant="outline" className="rounded-xl" asChild>
-              <Link to="/research">
-                View All {stats.papers} Papers <ArrowRight size={16} />
-              </Link>
+              <Link to="/research">View All {stats.papers} Papers <ArrowRight size={16} /></Link>
             </Button>
           </div>
         </div>
