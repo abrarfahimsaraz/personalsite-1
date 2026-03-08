@@ -119,7 +119,7 @@ export default function HomePage() {
               <span>Open to graduate research opportunities</span>
             </div>
 
-            <h1 className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6 text-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h1 style={{ color: "white", background: "red" }} className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6 text-foreground animate-fade-in">
               {personalInfo.name.split(" ")[0]}{" "}
               <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
             </h1>
