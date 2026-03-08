@@ -7,9 +7,6 @@ import PageTransition from "@/components/PageTransition";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import BentoGrid from "@/components/BentoGrid";
 
-const fade = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } };
-const stagger = { show: { transition: { staggerChildren: 0.1 } } };
-
 const socials = [
   { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
   { icon: Github, href: personalInfo.github, label: "GitHub" },
@@ -45,34 +42,52 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-40" />
-        
-        {/* Subtle glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[150px]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-20">
-          <motion.div initial="hidden" animate="show" variants={stagger} className="text-center">
+        <div className="relative mx-auto max-w-6xl px-6 py-20 w-full">
+          <div className="text-center">
             {/* Badge */}
-            <motion.div variants={fade} className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-foreground mb-8"
+            >
               <Sparkles size={14} className="text-primary" />
               <span>Open to graduate research opportunities</span>
             </motion.div>
 
             {/* Main heading */}
-            <motion.h1 variants={fade} className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-5xl font-bold leading-[1.1] sm:text-7xl lg:text-8xl mb-6"
+            >
               {personalInfo.name.split(" ")[0]}{" "}
               <span className="text-primary">{personalInfo.name.split(" ").slice(1).join(" ")}</span>
             </motion.h1>
 
             {/* Role */}
-            <motion.p variants={fade} className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-muted-foreground font-medium sm:text-xl mb-10 max-w-2xl mx-auto"
+            >
               {personalInfo.role}
             </motion.p>
 
             {/* CTA buttons */}
-            <motion.div variants={fade} className="flex flex-wrap justify-center gap-4 mb-10">
-              <Button size="lg" className="rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20" asChild>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap justify-center gap-4 mb-10"
+            >
+              <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
                 <Link to="/research">
                   <FileText size={18} /> View Research
                 </Link>
@@ -90,7 +105,12 @@ export default function HomePage() {
             </motion.div>
 
             {/* Social links */}
-            <motion.div variants={fade} className="flex justify-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex justify-center gap-3"
+            >
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -104,7 +124,7 @@ export default function HomePage() {
                 </a>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
