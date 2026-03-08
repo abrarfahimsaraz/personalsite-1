@@ -576,7 +576,7 @@ export const trainings: Training[] = [
 // ─── Extracurricular Activities ──────────────────────────────
 export interface Activity {
   year: string;
-  items: { role: string; description: string }[];
+  items: { role: string; description: string; certificateUrl?: string }[];
 }
 
 export const extracurriculars: Activity[] = [
