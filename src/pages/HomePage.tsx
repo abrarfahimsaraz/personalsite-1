@@ -84,7 +84,7 @@ export default function HomePage() {
               {currentRoles.map((role) => (
                 <span
                   key={role.title}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card text-sm font-medium"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-border bg-card text-sm font-medium"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-primary" />
                   {role.title} — <span className="text-muted-foreground">{role.organization}</span>
