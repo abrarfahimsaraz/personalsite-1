@@ -3,6 +3,8 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { researchPapers } from "@/lib/data";
+import PageTransition from "@/components/PageTransition";
+import { motion } from "framer-motion";
 
 export default function ResearchDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -10,9 +12,9 @@ export default function ResearchDetailPage() {
 
   if (!paper) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
+      <div className="page-container text-center">
         <h1 className="text-2xl font-bold">Paper not found</h1>
-        <Button variant="outline" asChild className="mt-4">
+        <Button variant="outline" asChild className="mt-4 rounded-xl">
           <Link to="/research"><ArrowLeft size={14} /> Back to Research</Link>
         </Button>
       </div>
@@ -20,63 +22,78 @@ export default function ResearchDetailPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
-      <Link to="/research" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
-        <ArrowLeft size={14} /> All Research
-      </Link>
+    <PageTransition>
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+        <Link to="/research" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <ArrowLeft size={14} /> All Research
+        </Link>
 
-      <div className="flex flex-wrap items-center gap-2 mb-3">
-        <Badge variant={paper.status === "Published" ? "default" : "outline"}>{paper.status}</Badge>
-        <span className="text-sm text-muted-foreground">{paper.year}</span>
-      </div>
-
-      <h1 className="text-2xl font-bold leading-snug sm:text-3xl">{paper.title}</h1>
-      <p className="mt-2 text-muted-foreground">{paper.venue}{paper.location ? `, ${paper.location}` : ""}</p>
-
-      <div className="flex flex-wrap gap-1.5 mt-4">
-        {paper.tags.map((t) => (
-          <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>
-        ))}
-      </div>
-
-      {/* Sections */}
-      <section className="mt-10 space-y-8">
-        <div>
-          <h2 className="text-xl font-bold mb-3">Overview</h2>
-          <p className="text-foreground/80 leading-relaxed">{paper.abstract}</p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-bold mb-3">Methodology & Approach</h2>
-          <ul className="list-disc pl-5 space-y-1.5 text-foreground/80">
-            {paper.bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-bold mb-3">Key Findings</h2>
-          <p className="text-foreground/80 leading-relaxed">
-            The study demonstrated promising results, contributing to the body of knowledge in {paper.tags.join(", ")}.
-            Further details are available in the full publication.
-          </p>
-        </div>
-
-        {paper.doi && (
-          <div>
-            <h2 className="text-xl font-bold mb-3">Publication</h2>
-            <a
-              href={paper.doi}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              View Publication <ExternalLink size={14} />
-            </a>
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <Badge className="rounded-full gradient-bg border-0 text-white">{paper.status}</Badge>
+            <span className="text-sm text-muted-foreground">{paper.year}</span>
           </div>
-        )}
-      </section>
-    </div>
+
+          <h1 className="text-3xl font-bold leading-snug sm:text-4xl">{paper.title}</h1>
+          <p className="mt-3 text-lg text-muted-foreground">{paper.venue}{paper.location ? `, ${paper.location}` : ""}</p>
+
+          <div className="flex flex-wrap gap-2 mt-5">
+            {paper.tags.map((t) => (
+              <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Sections */}
+        <div className="mt-12 space-y-10">
+          <section className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+              <div className="h-1 w-5 rounded-full gradient-bg" />
+              Overview
+            </h2>
+            <p className="text-foreground/80 leading-relaxed">{paper.abstract}</p>
+          </section>
+
+          <section className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+              <div className="h-1 w-5 rounded-full gradient-bg" />
+              Methodology & Key Contributions
+            </h2>
+            <ul className="space-y-2">
+              {paper.bullets.map((b, i) => (
+                <li key={i} className="flex items-start gap-3 text-foreground/80">
+                  <div className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+              <div className="h-1 w-5 rounded-full gradient-bg" />
+              Key Findings
+            </h2>
+            <p className="text-foreground/80 leading-relaxed">
+              The study demonstrated promising results, contributing to the body of knowledge in {paper.tags.join(", ")}.
+              Further details are available in the full publication.
+            </p>
+          </section>
+
+          {paper.doi && (
+            <div>
+              <a
+                href={paper.doi}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium"
+              >
+                View Publication <ExternalLink size={14} />
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </PageTransition>
   );
 }
