@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { education, testScores } from "@/lib/data";
-import { GraduationCap, Award } from "lucide-react";
+import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
