@@ -24,7 +24,7 @@ const featuredPapers = researchPapers.slice(0, 6);
 
 export default function HomePage() {
   return (
-    <PageTransition>
+    <>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
