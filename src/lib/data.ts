@@ -498,7 +498,7 @@ export const certifications: Certification[] = [
   { title: "Introduction to Python OpenCV", issuer: "Simplilearn", category: "course" },
   { title: "Image Recognition Basics for Beginners", issuer: "Simplilearn", category: "course" },
   { title: "Machine Learning using Python", issuer: "LinkedIn Learning", category: "course" },
-  { title: "Google AI Essentials", issuer: "Coursera", category: "course" },
+  { title: "Google AI Essentials", issuer: "Coursera", year: "2024", category: "course", certificateUrl: "/certificates/Google_AI_Essentials.pdf" },
   { title: "Google Project Management", issuer: "Coursera", category: "course" },
   { title: "Lean Six Sigma White Belt", issuer: "CSSC", category: "course" },
   { title: "What Is Generative AI?", issuer: "Simplilearn / LinkedIn Learning", category: "course" },
