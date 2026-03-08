@@ -487,7 +487,12 @@ export const certifications: Certification[] = [
   { title: "Maternal Risk Prediction (GA + XAI)", issuer: "16th ICCCNT 2025", year: "2025", category: "conference" },
   { title: "Colorectal Cancer Detection", issuer: "7th ICAIIC 2025", year: "2025", category: "conference" },
 
-  // Course / Online Certifications (from JSON)
+  // Course / Online Certifications
+  { title: "AI+ Prompt Engineer Level 1™", issuer: "AI CERTs", year: "2025", category: "course", certificateUrl: "/certificates/AICERT_Prompt_Engineer.png" },
+  { title: "Machine Learning Workshop Using Python", issuer: "ByteToCode", year: "2025", category: "course", certificateUrl: "/certificates/ByteToCode_ML_Workshop.jpg" },
+  { title: "Mayven English Olympiad – SDG Policy Challenge", issuer: "Global Gatekeepers", year: "2023", category: "course", certificateUrl: "/certificates/Mayven_English_Olympiad.pdf" },
+  { title: "SDG Policy Challenge", issuer: "Global Gatekeepers / ICCCAD / Swedish Govt", year: "2023", category: "course", certificateUrl: "/certificates/SDG_Policy_Challenge.png" },
+  { title: "Introduction to Data Analytics", issuer: "UniAthena", category: "course", certificateUrl: "/certificates/UniAthena_Data_Analytics.pdf" },
   { title: "Introduction to Data Science", issuer: "Simplilearn", category: "course" },
   { title: "Introduction to Neural Network", issuer: "Simplilearn", category: "course" },
   { title: "Introduction to Python OpenCV", issuer: "Simplilearn", category: "course" },
