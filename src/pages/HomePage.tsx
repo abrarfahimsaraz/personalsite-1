@@ -4,9 +4,8 @@ import {
   ArrowRight, Github, GraduationCap, Mail, Linkedin,
   MapPin, Download, FileText, Briefcase, Award, FolderOpen,
 } from "lucide-react";
-import { personalInfo, researchPapers, stats, skills, experiences } from "@/lib/data";
+import { personalInfo, researchPapers, stats, experiences } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
-import SkillsMarquee from "@/components/SkillsMarquee";
 
 const socials = [
   { icon: Github, href: personalInfo.github, label: "GitHub" },
