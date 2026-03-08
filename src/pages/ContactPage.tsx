@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { personalInfo } from "@/lib/data";
-import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap, Send } from "lucide-react";
+import PageTransition from "@/components/PageTransition";
+import { motion } from "framer-motion";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: personalInfo.email, href: `mailto:${personalInfo.email}` },
@@ -26,54 +27,70 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <h1 className="text-3xl font-bold sm:text-4xl">Contact</h1>
-      <p className="mt-2 text-muted-foreground">Get in touch</p>
+    <PageTransition>
+      <div className="page-container">
+        <h1 className="section-heading">
+          <span className="gradient-text">Contact</span>
+        </h1>
+        <p className="section-subtitle">Let's connect — feel free to reach out</p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-2">
-        {/* Contact Info */}
-        <div className="space-y-4">
-          {contactInfo.map((c, i) => (
-            <div key={i} className="flex items-start gap-3">
-              <div className="rounded-md bg-accent p-2"><c.icon size={18} className="text-primary" /></div>
-              <div>
-                <p className="text-xs text-muted-foreground">{c.label}</p>
-                {c.href ? (
-                  <a href={c.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">
-                    {c.value}
-                  </a>
-                ) : (
-                  <p className="text-sm font-medium">{c.value}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+          {/* Contact Info */}
+          <div className="space-y-5">
+            {contactInfo.map((c, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="flex items-center gap-4"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary flex-shrink-0">
+                  <c.icon size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{c.label}</p>
+                  {c.href ? (
+                    <a href={c.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">
+                      {c.value}
+                    </a>
+                  ) : (
+                    <p className="text-sm font-medium">{c.value}</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Contact Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Send a Message</CardTitle>
-          </CardHeader>
-          <CardContent>
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-xl p-6"
+          >
+            <h2 className="font-serif text-lg font-semibold mb-5">Send a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+                <Label htmlFor="name" className="text-xs font-medium uppercase tracking-wider">Name</Label>
+                <Input id="name" className="mt-1.5 rounded-lg" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
               </div>
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+                <Label htmlFor="email" className="text-xs font-medium uppercase tracking-wider">Email</Label>
+                <Input id="email" type="email" className="mt-1.5 rounded-lg" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
               </div>
               <div>
-                <Label htmlFor="message">Message</Label>
-                <Textarea id="message" rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
+                <Label htmlFor="message" className="text-xs font-medium uppercase tracking-wider">Message</Label>
+                <Textarea id="message" rows={4} className="mt-1.5 rounded-lg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
               </div>
-              <Button type="submit" className="w-full">Send Message</Button>
+              <Button type="submit" className="w-full rounded-xl gradient-bg border-0 shadow-lg shadow-primary/20">
+                <Send size={16} /> Send Message
+              </Button>
             </form>
-          </CardContent>
-        </Card>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </PageTransition>
   );
 }
