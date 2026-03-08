@@ -73,10 +73,15 @@ export default function CertificationsPage() {
                   <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-muted-foreground flex-shrink-0">
                     <BookOpen size={14} />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium leading-snug">{c.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{c.issuer}{c.year ? ` · ${c.year}` : ""}</p>
-                  </div>
+                   <div className="flex-1">
+                     <p className="text-sm font-medium leading-snug">{c.title}</p>
+                     <p className="text-xs text-muted-foreground mt-0.5">{c.issuer}{c.year ? ` · ${c.year}` : ""}</p>
+                   </div>
+                   {c.certificateUrl && (
+                     <a href={c.certificateUrl} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-primary hover:text-primary/80 transition-colors" aria-label="View certificate">
+                       <ExternalLink size={14} />
+                     </a>
+                   )}
                 </motion.div>
               ))}
             </div>
