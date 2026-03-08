@@ -590,7 +590,7 @@ export const extracurriculars: Activity[] = [
   {
     year: "2023",
     items: [
-      { role: "Organizer", description: "Esonance 2023 – IUT EEE departmental fest" },
+      { role: "Organizer & Head of Gaming", description: "Esonance 2023 – IUT EEE departmental fest", certificateUrl: "/certificates/Esonance_2023.pdf" },
       { role: "Member", description: "IEEE IUT Student Branch" },
       { role: "Participant", description: "Inter-departmental programming contest" },
     ],
