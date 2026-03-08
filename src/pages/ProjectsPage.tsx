@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/data";
-import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
   const thesis = projects[0];
