@@ -14,18 +14,20 @@ const SITE_URL = "https://abrarfahim.site";
 const DEFAULT_TITLE = "Abrar Fahim — AI Researcher & Data Scientist";
 const DEFAULT_DESCRIPTION =
   "Academic portfolio of Abrar Fahim — B.Sc. EEE graduate from IUT specializing in AI, deep learning, power systems optimization, and medical imaging research.";
+const DEFAULT_IMAGE = "/abrar-fahim.png";
+const DEFAULT_IMAGE_ALT = "Abrar Fahim — AI Researcher and Data Scientist";
 
 export function SEO({
   title,
   description = DEFAULT_DESCRIPTION,
   path = "/",
   type = "website",
-  image,
-  imageAlt = "Abrar Fahim — AI Researcher & Data Scientist",
+  image = DEFAULT_IMAGE,
+  imageAlt = DEFAULT_IMAGE_ALT,
 }: SEOProps) {
   const pageTitle = title ? `${title} | Abrar Fahim` : DEFAULT_TITLE;
   const canonicalUrl = `${SITE_URL}${path}`;
-  const imageUrl = image ? `${SITE_URL}${image}` : undefined;
+  const imageUrl = `${SITE_URL}${image}`;
 
   return (
     <Helmet>
@@ -41,15 +43,17 @@ export function SEO({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="Abrar Fahim — Portfolio" />
-      {imageUrl && <meta property="og:image" content={imageUrl} />}
-      {imageUrl && <meta property="og:image:alt" content={imageAlt} />}
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content={imageAlt} />
+      <meta property="og:image:width" content="800" />
+      <meta property="og:image:height" content="1040" />
 
       {/* Twitter */}
-      <meta name="twitter:card" content={imageUrl ? "summary_large_image" : "summary"} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={description} />
-      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
-      {imageUrl && <meta name="twitter:image:alt" content={imageAlt} />}
+      <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       {/* JSON-LD Structured Data — Person schema for name ranking */}
       {path === "/" && (
@@ -61,6 +65,7 @@ export function SEO({
             givenName: "Abrar",
             familyName: "Fahim",
             url: SITE_URL,
+            image: `${SITE_URL}/abrar-fahim.png`,
             jobTitle: "AI Researcher & Data Scientist",
             description: personalInfo.synthesized,
             email: personalInfo.email,

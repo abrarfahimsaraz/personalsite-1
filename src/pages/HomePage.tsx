@@ -140,22 +140,21 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* Right — portrait placeholder (2 cols), larger, no badge */}
+            {/* Right — portrait photo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="hidden lg:flex lg:col-span-2 justify-center"
             >
-              <div className="w-80 h-[26rem] rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-36 h-36 rounded-full bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-5xl font-bold text-white/25">AF</span>
-                  </div>
-                  <p className="text-white/30 text-sm">Add your photo here</p>
-                  <p className="text-white/20 text-xs mt-1">Replace placeholder in code</p>
-                </div>
-              </div>
+              <img
+                src="/abrar-fahim.png"
+                alt="Abrar Fahim — AI Researcher and Data Scientist based in Dhaka, Bangladesh"
+                width={320}
+                height={416}
+                className="w-80 h-[26rem] rounded-2xl object-cover object-top border border-white/10"
+                loading="eager"
+              />
             </motion.div>
           </div>
         </div>
