@@ -15,13 +15,22 @@ export default function ExperiencePage() {
   return (
     <PageTransition>
       <SEO title="Experience" description="Professional experience of Abrar Fahim — roles in risk analysis, data science, project engineering, and technical writing." path="/experience" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Experience</span>
-        </h1>
-        <p className="section-subtitle">Professional, research, and media roles</p>
 
-        <div className="mt-12 relative">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Career</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Professional Experience
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Professional, research, and media roles
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="relative">
           <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border hidden sm:block" />
           <div className="space-y-8">
             {experiences.map((e, i) => (
@@ -38,7 +47,7 @@ export default function ExperiencePage() {
                     {categoryIcon[e.category] || "💼"}
                   </div>
                 </div>
-                <div className="glass-card rounded-2xl p-6 flex-1 border border-border/60 bg-card/50">
+                <div className="glass-card rounded-2xl p-6 flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <Badge variant="secondary" className="rounded-full text-xs">{e.category}</Badge>
                     <span className="text-xs text-muted-foreground flex items-center gap-1">

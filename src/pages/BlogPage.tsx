@@ -18,15 +18,22 @@ export default function BlogPage() {
         description="Articles on AI research, deep learning, power systems optimization, and engineering — by Abrar Fahim."
         path="/blog"
       />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Blog</span>
-        </h1>
-        <p className="section-subtitle">
-          Thoughts on AI research, engineering, and lessons learned
-        </p>
 
-        <div className="mt-12 space-y-6">
+      {/* Hero band */}
+      <div className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Blog</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Latest Articles
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Thoughts on AI research, engineering, and lessons learned
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="space-y-6">
           {sorted.map((post, i) => (
             <motion.article
               key={post.id}

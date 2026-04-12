@@ -11,13 +11,22 @@ export default function ProjectsPage() {
   return (
     <PageTransition>
       <SEO title="Projects" description="Academic, personal, and engineering projects by Abrar Fahim — from plasmonics simulations to AI-powered applications." path="/projects" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Projects</span>
-        </h1>
-        <p className="section-subtitle">Academic, personal, and engineering projects</p>
 
-        <div className="mt-10 space-y-5">
+      {/* Hero band */}
+      <div className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Portfolio</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Featured Projects
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Academic, personal, and engineering projects
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="space-y-5">
           {/* Thesis — full width */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}

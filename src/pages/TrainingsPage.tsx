@@ -9,13 +9,22 @@ export default function TrainingsPage() {
   return (
     <PageTransition>
       <SEO title="Trainings" description="Industrial training and hands-on technical exposure of Abrar Fahim — BPDB, BAEC, and Robi Axiata." path="/trainings" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Industrial Trainings</span>
-        </h1>
-        <p className="section-subtitle">Hands-on industry exposure and technical training</p>
 
-        <div className="mt-12 space-y-6">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Training</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Industrial Trainings
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Hands-on industry exposure and technical training
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="space-y-6">
           {trainings.map((t, i) => (
             <motion.div
               key={i}

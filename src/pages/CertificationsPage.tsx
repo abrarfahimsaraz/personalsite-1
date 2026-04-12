@@ -12,13 +12,22 @@ export default function CertificationsPage() {
   return (
     <PageTransition>
       <SEO title="Certifications" description="Conference presentations and professional certifications earned by Abrar Fahim — IEEE, Springer, Coursera, and more." path="/certifications" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Certifications</span>
-        </h1>
-        <p className="section-subtitle">Conference presentations and professional certifications</p>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Credentials</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Certifications
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Conference presentations and professional certifications
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">

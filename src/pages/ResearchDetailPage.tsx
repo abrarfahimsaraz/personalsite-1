@@ -25,32 +25,38 @@ export default function ResearchDetailPage() {
   return (
     <PageTransition>
       <SEO title={paper.title} description={paper.abstract} path={`/research/${paper.id}`} />
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-        <Link to="/research" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
-          <ArrowLeft size={14} /> All Research
-        </Link>
 
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <Badge className="rounded-full gradient-bg border-0 text-white">{paper.status}</Badge>
-            <span className="text-sm text-muted-foreground">{paper.year}</span>
-          </div>
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <Link to="/research" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
+            <ArrowLeft size={14} /> All Research
+          </Link>
 
-          <h1 className="text-3xl font-bold leading-snug sm:text-4xl">{paper.title}</h1>
-          <p className="mt-3 text-lg text-muted-foreground">{paper.venue}{paper.location ? `, ${paper.location}` : ""}</p>
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <Badge className="rounded-full bg-primary border-0 text-white">{paper.status}</Badge>
+              <span className="text-sm text-muted-foreground">{paper.year}</span>
+            </div>
 
-          <div className="flex flex-wrap gap-2 mt-5">
-            {paper.tags.map((t) => (
-              <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
-            ))}
-          </div>
-        </motion.div>
+            <h1 className="text-3xl font-bold leading-snug sm:text-4xl">{paper.title}</h1>
+            <p className="mt-3 text-lg text-muted-foreground">{paper.venue}{paper.location ? `, ${paper.location}` : ""}</p>
 
-        {/* Sections */}
-        <div className="mt-12 space-y-10">
+            <div className="flex flex-wrap gap-2 mt-5">
+              {paper.tags.map((t) => (
+                <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content */}
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="space-y-10">
           <section className="glass-card rounded-xl p-6">
             <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <div className="h-1 w-5 rounded-full gradient-bg" />
+              <div className="h-1 w-5 rounded-full bg-primary" />
               Overview
             </h2>
             <p className="text-foreground/80 leading-relaxed">{paper.abstract}</p>
@@ -58,7 +64,7 @@ export default function ResearchDetailPage() {
 
           <section className="glass-card rounded-xl p-6">
             <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <div className="h-1 w-5 rounded-full gradient-bg" />
+              <div className="h-1 w-5 rounded-full bg-primary" />
               Methodology & Key Contributions
             </h2>
             <ul className="space-y-2">
@@ -73,7 +79,7 @@ export default function ResearchDetailPage() {
 
           <section className="glass-card rounded-xl p-6">
             <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <div className="h-1 w-5 rounded-full gradient-bg" />
+              <div className="h-1 w-5 rounded-full bg-primary" />
               Key Findings
             </h2>
             <p className="text-foreground/80 leading-relaxed">

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -30,13 +29,22 @@ export default function ContactPage() {
   return (
     <PageTransition>
       <SEO title="Contact" description="Get in touch with Abrar Fahim — email, phone, GitHub, LinkedIn, and Google Scholar links." path="/contact" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Contact</span>
-        </h1>
-        <p className="section-subtitle">Let's connect — feel free to reach out</p>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Get in Touch</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Let's Connect
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Feel free to reach out for collaborations, research inquiries, or just to say hello
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-5">
             {contactInfo.map((c, i) => (
               <motion.div
@@ -47,8 +55,8 @@ export default function ContactPage() {
                 transition={{ delay: i * 0.06 }}
                 className="flex items-center gap-4"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary flex-shrink-0">
-                  <c.icon size={18} />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-primary flex-shrink-0">
+                  <c.icon size={20} />
                 </div>
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{c.label}</p>
@@ -68,7 +76,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card rounded-xl p-6"
+            className="glass-card rounded-2xl p-6"
           >
             <h2 className="text-lg font-semibold mb-5">Send a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,9 +92,9 @@ export default function ContactPage() {
                 <Label htmlFor="message" className="text-xs font-medium uppercase tracking-wider">Message</Label>
                 <Textarea id="message" rows={4} className="mt-1.5 rounded-lg" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
               </div>
-              <Button type="submit" className="w-full rounded-xl">
+              <button type="submit" className="btn-primary w-full justify-center">
                 <Send size={16} /> Send Message
-              </Button>
+              </button>
             </form>
           </motion.div>
         </div>

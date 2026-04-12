@@ -8,13 +8,22 @@ export default function MiscellaneousPage() {
   return (
     <PageTransition>
       <SEO title="Miscellaneous" description="Extracurricular activities and awards of Abrar Fahim — IEEE membership, event organization, sports, and academic achievements." path="/miscellaneous" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Miscellaneous</span>
-        </h1>
-        <p className="section-subtitle">Extracurricular activities and achievements</p>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Extras</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Activities & Achievements
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Extracurricular activities and achievements
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">

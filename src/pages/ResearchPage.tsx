@@ -18,13 +18,20 @@ export default function ResearchPage() {
   return (
     <PageTransition>
       <SEO title="Research" description="Published and ongoing research by Abrar Fahim — covering medical imaging, power systems optimization, cybersecurity, and explainable AI." path="/research" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Research</span>
-        </h1>
-        <p className="section-subtitle">Conference proceedings, publications, and ongoing work</p>
 
-        <div className="mt-12 space-y-5">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <span className="section-label">Research</span>
+          <h1 className="text-4xl font-bold mt-3 sm:text-5xl">
+            Research by Abrar Fahim
+          </h1>
+          <p className="mt-4 text-lg text-foreground/60">Conference proceedings, IEEE & Springer publications, and ongoing work</p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 max-w-5xl py-16">
+        <div className="space-y-5">
           {researchPapers.map((p, i) => (
             <motion.div
               key={p.id}
@@ -39,7 +46,7 @@ export default function ResearchPage() {
                   {p.status}
                 </Badge>
                 <span className="text-xs font-medium text-muted-foreground">{p.year}</span>
-                <span className="text-xs text-muted-foreground">·</span>
+                <span className="text-xs text-muted-foreground">&middot;</span>
                 <span className="text-xs text-muted-foreground">{p.venue}{p.location ? `, ${p.location}` : ""}</span>
               </div>
               <h3 className="text-lg font-semibold leading-snug group-hover:text-primary transition-colors">

@@ -9,13 +9,23 @@ export default function EducationPage() {
   return (
     <PageTransition>
       <SEO title="Education" description="Academic qualifications and test scores of Abrar Fahim — B.Sc. EEE from IUT, GRE, IELTS, and EFSET results." path="/education" />
-      <div className="page-container">
-        <h1 className="section-heading">
-          <span className="text-primary">Education</span>
-        </h1>
-        <p className="section-subtitle">Academic qualifications and standardized test scores</p>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <span className="section-label">Education</span>
+          <h1 className="text-4xl md:text-5xl font-bold mt-3">
+            Academic Qualifications
+          </h1>
+          <p className="text-muted-foreground mt-3 max-w-xl">
+            Academic qualifications and standardized test scores
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Degrees column */}
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
@@ -62,6 +72,7 @@ export default function EducationPage() {
             </div>
           </div>
 
+          {/* Test scores column */}
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">

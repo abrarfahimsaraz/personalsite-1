@@ -1,10 +1,8 @@
 import { Download, Code2, Database, Brain, Wrench, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, skills } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
-import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
 
 const skillSections = [
@@ -16,34 +14,42 @@ const skillSections = [
   { title: "Soft Skills & Languages", icon: Users, items: [...skills.softSkills.map((s) => ({ name: s })), ...skills.languages.map((l) => ({ name: `${l.name} (${l.type})` }))], type: "simple" as const },
 ];
 
-
 export default function AboutPage() {
   return (
     <PageTransition>
       <SEO title="About" description="Learn about Abrar Fahim — AI researcher, data scientist, and electrical engineering graduate with expertise in deep learning, power systems, and medical imaging." path="/about" />
-      <div className="page-container">
-        <div className="max-w-3xl">
-          <h1 className="section-heading">
-            About <span className="text-primary">Me</span>
+
+      {/* Hero band */}
+      <section className="bg-accent/50 pt-28 pb-12">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <span className="section-label">About Me</span>
+          <h1 className="text-4xl font-bold mt-3 sm:text-5xl">
+            About Abrar Fahim
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-foreground/80">{personalInfo.intro}</p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 max-w-5xl py-16">
+        <div className="max-w-3xl">
+          <p className="text-lg leading-relaxed text-foreground/80">{personalInfo.intro}</p>
           <p className="mt-4 text-lg leading-relaxed text-foreground/60">
             Motivated to pursue advanced studies in power engineering with modern machine learning architectures.
             I am passionate about bridging the gap between classical engineering and cutting-edge AI to solve
             real-world problems in energy, healthcare, and cybersecurity.
           </p>
           <div className="mt-8">
-            <Button size="lg" className="rounded-xl" asChild>
-              <a href={personalInfo.cvUrl} download>
-                <Download size={18} /> Download CV (PDF)
-              </a>
-            </Button>
+            <a href={personalInfo.cvUrl} download className="btn-primary inline-flex items-center gap-2">
+              <Download size={18} /> Download CV (PDF)
+            </a>
           </div>
         </div>
 
         <div className="mt-20">
-          <SectionHeading title="Technical Skills" subtitle="Tools, technologies, and domains of expertise" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <span className="section-label">Technical Skills</span>
+          <h2 className="text-2xl font-bold mt-3 sm:text-3xl">
+            Tools, Technologies & Expertise
+          </h2>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
             {skillSections.map((section, i) => (
               <motion.div
                 key={section.title}

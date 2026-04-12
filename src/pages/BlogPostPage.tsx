@@ -3,7 +3,6 @@ import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getBlogPost, getRecentPosts } from "@/lib/blog";
-import PageTransition from "@/components/PageTransition";
 import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
 
@@ -13,7 +12,7 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div className="page-container text-center">
+      <div className="page-container text-center pt-32">
         <h1 className="text-2xl font-bold">Post not found</h1>
         <Button variant="outline" asChild className="mt-4 rounded-xl">
           <Link to="/blog">
@@ -27,57 +26,63 @@ export default function BlogPostPage() {
   const related = getRecentPosts(3).filter((p) => p.id !== post.id);
 
   return (
-    <PageTransition>
+    <>
       <SEO
         title={post.title}
         description={post.excerpt}
         path={`/blog/${post.id}`}
       />
+
+      {/* Hero band */}
+      <div className="bg-accent/50 pt-28 pb-12">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <ArrowLeft size={14} /> All Posts
+          </Link>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-1">
+                <Calendar size={14} />
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Clock size={14} />
+                {post.readingTime}
+              </span>
+            </div>
+
+            <h1 className="text-3xl font-bold leading-snug sm:text-4xl mb-4">
+              {post.title}
+            </h1>
+
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="rounded-full">
+                  <Tag size={10} className="mr-1" />
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Post body */}
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
-        >
-          <ArrowLeft size={14} /> All Posts
-        </Link>
-
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1">
-              <Calendar size={14} />
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Clock size={14} />
-              {post.readingTime}
-            </span>
-          </div>
-
-          <h1 className="text-3xl font-bold leading-snug sm:text-4xl mb-4">
-            {post.title}
-          </h1>
-
-          <div className="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="rounded-full">
-                <Tag size={10} className="mr-1" />
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Post body */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
           className="prose prose-neutral dark:prose-invert max-w-none
-            prose-headings:font-semibold prose-headings:tracking-tight
+            prose-headings:font-bold prose-headings:tracking-tight
             prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
             prose-p:leading-relaxed prose-p:text-foreground/80
             prose-li:text-foreground/80
@@ -96,7 +101,7 @@ export default function BlogPostPage() {
                 <Link
                   key={r.id}
                   to={`/blog/${r.id}`}
-                  className="group glass-card rounded-xl p-5 block"
+                  className="group glass-card p-5 block"
                 >
                   <p className="text-xs text-muted-foreground mb-2">
                     {new Date(r.date).toLocaleDateString("en-US", {
@@ -114,6 +119,6 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
-    </PageTransition>
+    </>
   );
 }
