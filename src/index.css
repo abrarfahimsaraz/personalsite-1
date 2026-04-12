@@ -2,25 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @layer base {
   :root {
@@ -30,33 +12,33 @@
     --card-foreground: 0 0% 9%;
     --popover: 0 0% 89%;
     --popover-foreground: 0 0% 9%;
-    --primary: 142 71.8121% 29.2157%;
-    --primary-foreground: 151 80% 95%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 270 100% 98%;
     --secondary: 0 0% 32%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 63%;
     --muted-foreground: 0 0% 9%;
-    --accent: 166 76% 96%;
-    --accent-foreground: 173 80% 40%;
+    --accent: 270 76% 96%;
+    --accent-foreground: 262 80% 50%;
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
     --border: 0 0% 83%;
     --input: 0 0% 83%;
-    --ring: 161 93% 30%;
+    --ring: 262 83% 58%;
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 97%;
     --sidebar-foreground: 0 0% 9%;
-    --sidebar-primary: 161 93% 30%;
-    --sidebar-primary-foreground: 151 80% 95%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 270 100% 98%;
     --sidebar-accent: 0 0% 32%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 83%;
-    --sidebar-ring: 161 93% 30%;
-    --chart-1: 158 64% 51%;
-    --chart-2: 141 69% 58%;
-    --chart-3: 172 66% 50%;
-    --chart-4: 82 77% 55%;
+    --sidebar-ring: 262 83% 58%;
+    --chart-1: 262 83% 58%;
+    --chart-2: 280 69% 58%;
+    --chart-3: 250 66% 50%;
+    --chart-4: 290 77% 55%;
     --chart-5: 0 0% 45%;
     --sidebar: 0 0% 98%;
     --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
@@ -81,32 +63,32 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 25%;
     --popover-foreground: 0 0% 98%;
-    --primary: 158 64% 51%;
-    --primary-foreground: 165 91% 9%;
+    --primary: 265 89% 70%;
+    --primary-foreground: 262 91% 12%;
     --secondary: 0 0% 45%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 45%;
     --muted-foreground: 0 0% 98%;
-    --accent: 178 84% 10%;
-    --accent-foreground: 172 66% 50%;
+    --accent: 270 50% 15%;
+    --accent-foreground: 265 89% 70%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 85% 97%;
     --border: 0 0% 32%;
     --input: 0 0% 32%;
-    --ring: 158 64% 51%;
+    --ring: 265 89% 70%;
 
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 158 64% 51%;
-    --sidebar-primary-foreground: 165 91% 9%;
-    --sidebar-accent: 172 66% 50%;
-    --sidebar-accent-foreground: 178 84% 10%;
+    --sidebar-primary: 265 89% 70%;
+    --sidebar-primary-foreground: 262 91% 12%;
+    --sidebar-accent: 265 89% 70%;
+    --sidebar-accent-foreground: 270 50% 15%;
     --sidebar-border: 0 0% 32%;
-    --sidebar-ring: 158 64% 51%;
-    --chart-1: 156 71% 66%;
-    --chart-2: 141 76% 73%;
-    --chart-3: 170 76% 64%;
-    --chart-4: 81 84% 67%;
+    --sidebar-ring: 265 89% 70%;
+    --chart-1: 265 89% 70%;
+    --chart-2: 280 76% 73%;
+    --chart-3: 250 76% 64%;
+    --chart-4: 290 84% 67%;
     --chart-5: 0 0% 45%;
     --sidebar: 0 0% 14%;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);

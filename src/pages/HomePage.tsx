@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { personalInfo, researchPapers, stats, experiences } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 
 const socials = [
   { icon: Github, href: personalInfo.github, label: "GitHub" },
@@ -38,6 +39,10 @@ export default function HomePage() {
 
   return (
     <PageTransition>
+      <SEO
+        description="Abrar Fahim — AI Researcher & Data Scientist. B.Sc. EEE graduate specializing in deep learning, power systems optimization, and medical imaging."
+        path="/"
+      />
       <div className="mx-auto max-w-6xl px-6 py-12 lg:py-20">
 
         {/* ── Hero ── */}

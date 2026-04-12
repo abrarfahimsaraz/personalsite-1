@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { certifications } from "@/lib/data";
 import { Award, BookOpen, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const conferenceCerts = certifications.filter((c) => c.category === "conference");
@@ -10,6 +11,7 @@ const courseCerts = certifications.filter((c) => c.category === "course");
 export default function CertificationsPage() {
   return (
     <PageTransition>
+      <SEO title="Certifications" description="Conference presentations and professional certifications earned by Abrar Fahim — IEEE, Springer, Coursera, and more." path="/certifications" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Certifications</span>

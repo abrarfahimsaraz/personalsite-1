@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { researchPapers } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 export default function ResearchDetailPage() {
@@ -23,6 +24,7 @@ export default function ResearchDetailPage() {
 
   return (
     <PageTransition>
+      <SEO title={paper.title} description={paper.abstract} path={`/research/${paper.id}`} />
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
         <Link to="/research" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
           <ArrowLeft size={14} /> All Research

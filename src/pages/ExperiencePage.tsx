@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { experiences } from "@/lib/data";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const categoryIcon: Record<string, string> = {
@@ -13,6 +14,7 @@ const categoryIcon: Record<string, string> = {
 export default function ExperiencePage() {
   return (
     <PageTransition>
+      <SEO title="Experience" description="Professional experience of Abrar Fahim — roles in risk analysis, data science, project engineering, and technical writing." path="/experience" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Experience</span>

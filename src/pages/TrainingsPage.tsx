@@ -2,11 +2,13 @@ import { Badge } from "@/components/ui/badge";
 import { trainings } from "@/lib/data";
 import { Building2, Clock, MapPin } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 export default function TrainingsPage() {
   return (
     <PageTransition>
+      <SEO title="Trainings" description="Industrial training and hands-on technical exposure of Abrar Fahim — BPDB, BAEC, and Robi Axiata." path="/trainings" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Industrial Trainings</span>

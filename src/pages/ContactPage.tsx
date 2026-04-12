@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { personalInfo } from "@/lib/data";
 import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap, Send } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const contactInfo = [
@@ -28,6 +29,7 @@ export default function ContactPage() {
 
   return (
     <PageTransition>
+      <SEO title="Contact" description="Get in touch with Abrar Fahim — email, phone, GitHub, LinkedIn, and Google Scholar links." path="/contact" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Contact</span>

@@ -31,6 +31,7 @@ export const navLinks = [
   { label: "Trainings", path: "/trainings" },
   { label: "Certifications", path: "/certifications" },
   { label: "Miscellaneous", path: "/miscellaneous" },
+  { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
 

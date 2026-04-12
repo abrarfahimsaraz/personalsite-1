@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home, User, FileText, Briefcase, GraduationCap, Layers,
-  Award, FolderOpen, Mail, Menu, X, ChevronLeft, ChevronRight,
+  Award, FolderOpen, Mail, Menu, X, ChevronLeft, ChevronRight, PenLine,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,7 @@ const navItems = [
   { label: "Trainings", path: "/trainings", icon: FolderOpen },
   { label: "Certifications", path: "/certifications", icon: Award },
   { label: "Miscellaneous", path: "/miscellaneous", icon: Layers },
+  { label: "Blog", path: "/blog", icon: PenLine },
   { label: "Contact", path: "/contact", icon: Mail },
 ];
 

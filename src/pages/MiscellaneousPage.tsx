@@ -1,11 +1,13 @@
 import { extracurriculars, awards } from "@/lib/data";
 import { Users, Trophy, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 export default function MiscellaneousPage() {
   return (
     <PageTransition>
+      <SEO title="Miscellaneous" description="Extracurricular activities and awards of Abrar Fahim — IEEE membership, event organization, sports, and academic achievements." path="/miscellaneous" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Miscellaneous</span>

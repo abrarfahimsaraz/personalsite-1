@@ -2,11 +2,13 @@ import { Badge } from "@/components/ui/badge";
 import { education, testScores } from "@/lib/data";
 import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 export default function EducationPage() {
   return (
     <PageTransition>
+      <SEO title="Education" description="Academic qualifications and test scores of Abrar Fahim — B.Sc. EEE from IUT, GRE, IELTS, and EFSET results." path="/education" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Education</span>

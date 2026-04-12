@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
@@ -9,6 +10,7 @@ export default function ProjectsPage() {
 
   return (
     <PageTransition>
+      <SEO title="Projects" description="Academic, personal, and engineering projects by Abrar Fahim — from plasmonics simulations to AI-powered applications." path="/projects" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Projects</span>

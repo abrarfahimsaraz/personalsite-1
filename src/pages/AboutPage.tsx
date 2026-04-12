@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, skills } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
 
@@ -19,6 +20,7 @@ const skillSections = [
 export default function AboutPage() {
   return (
     <PageTransition>
+      <SEO title="About" description="Learn about Abrar Fahim — AI researcher, data scientist, and electrical engineering graduate with expertise in deep learning, power systems, and medical imaging." path="/about" />
       <div className="page-container">
         <div className="max-w-3xl">
           <h1 className="section-heading">

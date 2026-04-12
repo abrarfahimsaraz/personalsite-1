@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { researchPapers, type PaperStatus } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const statusStyle: Record<PaperStatus, string> = {
@@ -16,6 +17,7 @@ const statusStyle: Record<PaperStatus, string> = {
 export default function ResearchPage() {
   return (
     <PageTransition>
+      <SEO title="Research" description="Published and ongoing research by Abrar Fahim — covering medical imaging, power systems optimization, cybersecurity, and explainable AI." path="/research" />
       <div className="page-container">
         <h1 className="section-heading">
           <span className="text-primary">Research</span>
