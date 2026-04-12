@@ -7,7 +7,11 @@
       "Bash(npx vite:*)",
       "WebFetch(domain:dribbble.com)",
       "WebFetch(domain:cdn.dribbble.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(python -c \"import docx; print\\('python-docx available'\\)\")",
+      "Bash(python3 -c \"import docx; print\\('python-docx available'\\)\")",
+      "Bash(pip install:*)",
+      "Bash(python:*)"
     ]
   }
 }
