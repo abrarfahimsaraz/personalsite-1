@@ -1,4 +1,4 @@
-import { Download, Code2, Database, Brain, Wrench, Users } from "lucide-react";
+import { Download, Code2, Database, Brain, Wrench, Users, GraduationCap, Lightbulb, HeartHandshake, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { personalInfo, skills } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
@@ -14,14 +14,41 @@ const skillSections = [
   { title: "Soft Skills & Languages", icon: Users, items: [...skills.softSkills.map((s) => ({ name: s })), ...skills.languages.map((l) => ({ name: `${l.name} (${l.type})` }))], type: "simple" as const },
 ];
 
+const researchQualities = [
+  {
+    icon: Lightbulb,
+    title: "Self-Directed Learner",
+    text: "Independently expanded into deep learning and medical image analysis beyond coursework — pursuing novel research directions in AI for healthcare.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Research-Oriented",
+    text: "Co-authored multiple IEEE and Springer publications while maintaining strong academic performance, with A+ grades in both thesis courses.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Collaborative & Coachable",
+    text: "Known for proactively seeking feedback, maintaining continuous communication with supervisors, and delivering work ahead of schedule.",
+  },
+  {
+    icon: BookOpen,
+    title: "Mentor & Communicator",
+    text: "Mentors fellow students, has published technical articles in national media, and communicates complex research to interdisciplinary audiences.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <PageTransition>
-      <SEO title="About" description="Learn about Abrar Fahim — AI researcher, data scientist, and electrical engineering graduate with expertise in deep learning, power systems, and medical imaging." path="/about" />
+      <SEO
+        title="About"
+        description="About Abrar Fahim — AI researcher, data scientist, and B.Sc. EEE graduate from IUT with expertise in deep learning, power systems optimization, and medical imaging research."
+        path="/about"
+      />
 
       {/* Hero band */}
       <section className="bg-accent/50 pt-28 pb-12">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">About Me</span>
           <h1 className="text-4xl font-bold mt-3 sm:text-5xl">
             About Abrar Fahim
@@ -29,21 +56,73 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 max-w-5xl py-16">
-        <div className="max-w-3xl">
-          <p className="text-lg leading-relaxed text-foreground/80">{personalInfo.intro}</p>
-          <p className="mt-4 text-lg leading-relaxed text-foreground/60">
-            Motivated to pursue advanced studies in power engineering with modern machine learning architectures.
-            I am passionate about bridging the gap between classical engineering and cutting-edge AI to solve
-            real-world problems in energy, healthcare, and cybersecurity.
-          </p>
-          <div className="mt-8">
-            <a href={personalInfo.cvUrl} download className="btn-primary inline-flex items-center gap-2">
-              <Download size={18} /> Download CV (PDF)
-            </a>
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        {/* Bio + Photo */}
+        <div className="grid lg:grid-cols-3 gap-10 items-start">
+          <div className="lg:col-span-2">
+            <p className="text-lg leading-relaxed text-foreground/80">
+              {personalInfo.intro}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Abrar Fahim is driven by a commitment to bridging classical engineering and cutting-edge AI.
+              His undergraduate thesis explored plasmonic coupling and thermal effects on nanoparticles — a
+              novel direction within his research group that had never been attempted before. That same
+              willingness to pursue uncharted problems carries through his current work across medical imaging,
+              power systems, and cybersecurity.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Beyond research, Abrar Fahim actively mentors fellow students, has written for The Financial
+              Express Bangladesh, and organized national-level events at IUT. He brings the same discipline to
+              collaboration as he does to independent work — consistently seeking constructive feedback and
+              delivering results well ahead of deadlines.
+            </p>
+            <div className="mt-8">
+              <a href={personalInfo.cvUrl} download className="btn-primary">
+                <Download size={18} /> Download CV (PDF)
+              </a>
+            </div>
+          </div>
+
+          {/* Photo */}
+          <div className="hidden lg:block">
+            <img
+              src="/abrar-fahim.png"
+              alt="Abrar Fahim — AI Researcher and Data Scientist"
+              className="w-full rounded-2xl object-cover object-top aspect-[3/4] border border-border"
+              loading="lazy"
+            />
           </div>
         </div>
 
+        {/* Research Qualities */}
+        <div className="mt-20">
+          <span className="section-label">Research Profile</span>
+          <h2 className="text-2xl font-bold mt-3 sm:text-3xl">
+            What Defines Abrar Fahim's Approach
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-5 mt-8">
+            {researchQualities.map((q, i) => (
+              <motion.div
+                key={q.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="glass-card rounded-xl p-5"
+              >
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <q.icon size={18} />
+                  </div>
+                  <h3 className="text-sm font-bold">{q.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{q.text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Skills */}
         <div className="mt-20">
           <span className="section-label">Technical Skills</span>
           <h2 className="text-2xl font-bold mt-3 sm:text-3xl">
