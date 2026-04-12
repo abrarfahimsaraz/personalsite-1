@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { researchPapers } from "@/lib/data";
@@ -89,8 +89,8 @@ export default function ResearchDetailPage() {
             </p>
           </section>
 
-          {paper.doi && (
-            <div>
+          <div className="flex flex-wrap gap-4">
+            {paper.doi && (
               <a
                 href={paper.doi}
                 target="_blank"
@@ -99,8 +99,18 @@ export default function ResearchDetailPage() {
               >
                 View Publication <ExternalLink size={14} />
               </a>
-            </div>
-          )}
+            )}
+            {paper.github && (
+              <a
+                href={paper.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium"
+              >
+                <Github size={14} /> View Code on GitHub
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </PageTransition>

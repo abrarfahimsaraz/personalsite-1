@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { getBlogPost, getRecentPosts } from "@/lib/blog";
 import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
+import SafeHtml from "@/components/SafeHtml";
 
 export default function BlogPostPage() {
   const { id } = useParams<{ id: string }>();
@@ -83,16 +84,19 @@ export default function BlogPostPage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="prose prose-neutral dark:prose-invert max-w-none
-            prose-headings:font-bold prose-headings:tracking-tight
-            prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
-            prose-p:leading-relaxed prose-p:text-foreground/80
-            prose-li:text-foreground/80
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-foreground prose-strong:font-semibold
-            prose-ul:my-4 prose-ol:my-4"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        >
+          <SafeHtml
+            html={post.content}
+            className="prose prose-neutral dark:prose-invert max-w-none
+              prose-headings:font-bold prose-headings:tracking-tight
+              prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
+              prose-p:leading-relaxed prose-p:text-foreground/80
+              prose-li:text-foreground/80
+              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              prose-strong:text-foreground prose-strong:font-semibold
+              prose-ul:my-4 prose-ol:my-4"
+          />
+        </motion.div>
 
         {/* Related posts */}
         {related.length > 0 && (

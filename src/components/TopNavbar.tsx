@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -24,6 +25,21 @@ export default function TopNavbar() {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
+  // Close mobile menu on any route change — the bulletproof catch-all
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [mobileOpen]);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -40,6 +56,7 @@ export default function TopNavbar() {
   const mutedColor = !scrolled && isHome ? "text-white/60" : "text-muted-foreground";
 
   return (
+    <>
     <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", navBg)}>
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-14">
         {/* Logo — left */}
@@ -61,6 +78,7 @@ export default function TopNavbar() {
               <Link
                 key={item.path}
                 to={item.path}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "px-2.5 py-1.5 rounded-md text-xs font-medium transition-all duration-200",
                   isActive
@@ -73,6 +91,15 @@ export default function TopNavbar() {
             );
           })}
         </nav>
+
+        {/* Theme toggle */}
+        <ThemeToggle
+          className={cn(
+            !scrolled && isHome
+              ? "text-white/60 hover:text-white hover:bg-white/10"
+              : "text-muted-foreground hover:text-foreground hover:bg-accent"
+          )}
+        />
 
         {/* Mobile toggle */}
         <button
@@ -109,6 +136,7 @@ export default function TopNavbar() {
                   key={item.path}
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "block px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                     isActive
@@ -124,5 +152,15 @@ export default function TopNavbar() {
         )}
       </AnimatePresence>
     </header>
+
+    {/* Backdrop — catches outside taps to close the mobile menu */}
+    {mobileOpen && (
+      <div
+        className="xl:hidden fixed inset-0 z-40"
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+    )}
+    </>
   );
 }

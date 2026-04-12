@@ -13,27 +13,13 @@ export const personalInfo = {
   nationality: "Bangladeshi",
   github: "https://github.com/abrarfahimsaraz",
   linkedin: "https://linkedin.com/in/abrarfahimsaraz",
-  scholar: "https://scholar.google.com/citations?user=abrarfahim",
+  scholar: "https://scholar.google.com/citations?user=9bB_FXAAAAAJ&hl=en",
   cvUrl: "/CV.pdf",
   intro:
     "Electrical Engineering graduate with a strong foundation in power systems, energy modeling, and optimization. Experienced in deep learning, power systems optimization and several machine learning projects using MATLAB and Python. Current research interests include AC optimal power flow, and smart grid operation along with computer vision.",
   synthesized:
     "Abrar Fahim is a B.Sc. EEE graduate from Islamic University of Technology (CGPA 3.44/4.00) with strong expertise in machine learning, deep learning, and data analytics applied across power systems, healthcare, and cybersecurity. He currently works concurrently as Executive, Risk & Operational Analyst at NEXT Ventures — leading the FNmarkets brokerage launch and trading backend — and as a remote Data Scientist at Synnax Laboratory for financial forecasting. He has co-authored multiple IEEE and Springer conference publications.",
 };
-
-export const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Research", path: "/research" },
-  { label: "Experience", path: "/experience" },
-  { label: "Education", path: "/education" },
-  { label: "Projects", path: "/projects" },
-  { label: "Trainings", path: "/trainings" },
-  { label: "Certifications", path: "/certifications" },
-  { label: "Miscellaneous", path: "/miscellaneous" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
-];
 
 // ─── Education ───────────────────────────────────────────────
 export interface Education {
@@ -65,7 +51,7 @@ export const education: Education[] = [
   {
     degree: "Higher Secondary Certificate (Science) — HSC",
     institution: "Chittagong College",
-    location: "Dhaka, Bangladesh",
+    location: "Chattogram, Bangladesh",
     dates: "June 2017 – June 2019",
     grade: "GPA 5.00 / 5.00",
   },
@@ -151,6 +137,7 @@ export interface ResearchPaper {
   abstract: string;
   bullets: string[];
   doi?: string;
+  github?: string;
 }
 
 export const researchPapers: ResearchPaper[] = [
@@ -265,6 +252,7 @@ export const researchPapers: ResearchPaper[] = [
     location: "Cox's Bazar, Bangladesh",
     status: "Published",
     tags: ["Medical Imaging", "Deep Learning", "CNN"],
+    github: "https://github.com/abrarfahimsaraz/BrainMRI",
     abstract: "Comparative analysis of InceptionV3, ResNet-50, VGG-16, MobileNetV2, and DenseNet121 for binary and multi-class MRI brain tumor classification.",
     bullets: [
       "Compared five pre-trained CNN architectures",
@@ -325,6 +313,7 @@ export const researchPapers: ResearchPaper[] = [
     location: "Cox's Bazar, Bangladesh",
     status: "Published",
     tags: ["Medical Imaging", "Edge AI", "Mobile"],
+    github: "https://github.com/abrarfahimsaraz/VisionEdge",
     abstract: "MobileNetV2-based smartphone app for real-time cataract detection with 99.11% accuracy, optimized for Edge Intelligence.",
     bullets: [
       "MobileNetV2-based real-time cataract detection",
@@ -411,6 +400,7 @@ export interface Project {
   role?: string;
   bullets: string[];
   tags: string[];
+  github?: string;
 }
 
 export const projects: Project[] = [
@@ -442,6 +432,7 @@ export const projects: Project[] = [
     name: "SecureQRGen: Double Layer Encrypted QR Code Generator",
     technologies: ["Python", "PyQt5"],
     tags: ["Security", "Desktop App"],
+    github: "https://github.com/abrarfahimsaraz/SecureQRGen",
     bullets: [
       "Developed a Python-based QR code generator using base64 encryption and decryption.",
       "Used PyQt5 for building a user-friendly GUI for scanning and transmitting.",
@@ -452,6 +443,7 @@ export const projects: Project[] = [
     name: "AI Sudoku Solver Using Constraint Satisfaction",
     technologies: ["Python", "PyQt5"],
     tags: ["AI", "Desktop App"],
+    github: "https://github.com/abrarfahimsaraz/AISudokuSolver",
     bullets: [
       "Developed a Sudoku solver using constraint satisfaction with a PyQt5-based interface for real-time interaction.",
     ],

@@ -19,6 +19,8 @@
     <meta property="og:site_name" content="Abrar Fahim" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://abrarfahim.site/abrar-fahim.png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="1040" />
     <meta property="og:image:alt" content="Abrar Fahim — AI Researcher and Data Scientist" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -44,7 +46,7 @@
       "sameAs": [
         "https://github.com/abrarfahimsaraz",
         "https://linkedin.com/in/abrarfahimsaraz",
-        "https://scholar.google.com/citations?user=abrarfahim"
+        "https://scholar.google.com/citations?user=9bB_FXAAAAAJ&hl=en"
       ],
       "knowsAbout": ["Artificial Intelligence", "Deep Learning", "Medical Image Analysis", "Power Systems Optimization", "Machine Learning", "Data Science"]
     }
@@ -52,11 +54,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" />
 
   </head>
 
   <body>
     <noscript>Abrar Fahim — AI Researcher and Data Scientist. Please enable JavaScript to view this portfolio.</noscript>
+    <script>
+      // Apply saved theme before first paint to prevent flash
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

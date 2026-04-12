@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/data";
+import { Github } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -52,6 +53,11 @@ export default function ProjectsPage() {
                 </li>
               ))}
             </ul>
+            {thesis.github && (
+              <a href={thesis.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                <Github size={14} /> View on GitHub
+              </a>
+            )}
           </motion.div>
 
           {/* Rest — 2-col grid */}
@@ -83,6 +89,11 @@ export default function ProjectsPage() {
                     </li>
                   ))}
                 </ul>
+                {p.github && (
+                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                    <Github size={14} /> View on GitHub
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>

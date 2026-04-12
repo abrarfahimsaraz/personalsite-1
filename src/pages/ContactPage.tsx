@@ -22,8 +22,9 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form submitted:", form);
-    setForm({ name: "", email: "", message: "" });
+    const subject = encodeURIComponent(`Message from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.location.href = `mailto:abrarfahim8@iut-dhaka.edu?subject=${subject}&body=${body}`;
   };
 
   return (

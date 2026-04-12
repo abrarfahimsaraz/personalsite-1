@@ -160,7 +160,7 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-6 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; 2026 {personalInfo.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Designed by {personalInfo.name}
