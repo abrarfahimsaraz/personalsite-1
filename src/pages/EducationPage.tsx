@@ -15,7 +15,7 @@ export default function EducationPage() {
         <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">Education</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Academic Qualifications
+            Abrar Fahim's Education
           </h1>
           <p className="text-muted-foreground mt-3 max-w-xl">
             Academic qualifications and standardized test scores

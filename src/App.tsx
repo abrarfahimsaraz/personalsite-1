@@ -58,8 +58,8 @@ const App = () => (
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:id" element={<BlogPostPage />} />
-              </Route>
               <Route path="*" element={<NotFound />} />
+              </Route>
             </Routes>
           </Suspense>
         </BrowserRouter>

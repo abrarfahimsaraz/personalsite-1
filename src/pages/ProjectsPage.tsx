@@ -13,7 +13,7 @@ export default function ProjectsPage() {
       <SEO title="Projects" description="Academic, personal, and engineering projects by Abrar Fahim — from plasmonics simulations to AI-powered applications." path="/projects" />
 
       {/* Hero band */}
-      <div className="bg-accent/50 pt-28 pb-12">
+      <section className="bg-accent/50 pt-28 pb-12">
         <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">Portfolio</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
@@ -23,7 +23,7 @@ export default function ProjectsPage() {
             Academic, personal, and engineering projects
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-5">
@@ -34,7 +34,7 @@ export default function ProjectsPage() {
             viewport={{ once: true }}
             className="glass-card rounded-2xl p-6"
           >
-            <h3 className="text-lg font-semibold">{thesis.name}</h3>
+            <h2 className="text-lg font-semibold">{thesis.name}</h2>
             <div className="flex flex-wrap gap-x-3 text-xs text-muted-foreground mt-1.5">
               {thesis.role && <span className="font-medium text-primary">{thesis.role}</span>}
               {thesis.timeframe && <span>{thesis.timeframe}</span>}
@@ -65,7 +65,7 @@ export default function ProjectsPage() {
                 transition={{ delay: i * 0.05 }}
                 className="glass-card rounded-2xl p-5"
               >
-                <h3 className="text-base font-semibold">{p.name}</h3>
+                <h2 className="text-base font-semibold">{p.name}</h2>
                 <div className="flex flex-wrap gap-x-3 text-xs text-muted-foreground mt-1.5">
                   {p.role && <span className="font-medium text-primary">{p.role}</span>}
                   {p.timeframe && <span>{p.timeframe}</span>}

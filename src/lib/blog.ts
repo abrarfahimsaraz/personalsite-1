@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-20",
     tags: ["Personal", "AI", "Research"],
     excerpt:
-      "It started with brainstorming ideas for a national newspaper column. Then I stumbled on Neuralink — and everything changed.",
+      "Abrar Fahim shares how brainstorming ideas for a national newspaper column led him to stumble on Neuralink — and how everything changed.",
     readingTime: "5 min read",
     content: `
 <p>People often ask me how I ended up in AI research with an Electrical Engineering degree. The honest answer is: it started with writing for a newspaper.</p>
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-28",
     tags: ["Deep Learning", "Medical Imaging", "Research"],
     excerpt:
-      "From brain tumors to colorectal cancer — practical lessons from building CNN-based diagnostic frameworks across five different clinical domains.",
+      "Abrar Fahim's practical lessons from building CNN-based diagnostic frameworks across five clinical domains — from brain tumors to colorectal cancer.",
     readingTime: "7 min read",
     content: `
 <p>Over the past two years, I've worked on medical image classification across five distinct clinical domains: brain tumor detection, colorectal cancer diagnostics, bone fracture identification, cataract screening, and diabetic retinopathy diagnosis. Each project taught me something different. Here's what I wish I'd known when I started.</p>
@@ -89,7 +89,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-01-15",
     tags: ["Power Systems", "Machine Learning", "Optimization"],
     excerpt:
-      "What truly remains indispensable even after AI transforms everything? The answer is simpler than you think: power.",
+      "Abrar Fahim explores why power systems remain indispensable even after AI transforms everything — and how ML can optimize them.",
     readingTime: "6 min read",
     content: `
 <p>Everyone's talking about AI. And for good reason — it's reshaping industries, automating workflows, and enabling things that seemed impossible a decade ago. But here's a question I keep coming back to: <em>What truly remains indispensable even after AI advances all over the world?</em></p>
@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-12-05",
     tags: ["Personal", "Career", "Technical Writing"],
     excerpt:
-      "How my time as a technical writer at The Financial Express Bangladesh shaped the way I think about research communication and interdisciplinary thinking.",
+      "Abrar Fahim reflects on how his time as a technical writer at The Financial Express Bangladesh shaped the way he thinks about research communication and interdisciplinary thinking.",
     readingTime: "5 min read",
     content: `
 <p>Before I ever trained a neural network, I was writing about technology for a national newspaper. During my time at The Financial Express Bangladesh, I wrote biweekly articles for the Sci-Tech section — researching topics, generating keywords, and pitching ideas aligned with editorial themes.</p>
@@ -153,7 +153,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-11-10",
     tags: ["AI", "Healthcare", "Bangladesh"],
     excerpt:
-      "Why my long-term goal isn't just publishing papers — it's bringing AI-driven solutions back to Bangladesh and underserved communities.",
+      "Abrar Fahim on why his long-term goal isn't just publishing papers — it's bringing AI-driven solutions back to Bangladesh and underserved communities.",
     readingTime: "6 min read",
     content: `
 <p>When I think about where I want to be in ten years, the picture is clear: leading a research lab in Bangladesh, creating AI-driven solutions for underserved communities. Not in the abstract, not as a bullet point on a grant application — but as the actual daily work.</p>

@@ -44,7 +44,7 @@ export default function TopNavbar() {
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-14">
         {/* Logo — left */}
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-          <img src="/newlogo.ico" alt="Logo" className="h-8 w-8 rounded-lg object-contain" />
+          <img src="/newlogo.ico" alt="Abrar Fahim" className="h-8 w-8 rounded-lg object-contain" />
           <span className={cn("font-bold text-base hidden sm:inline transition-colors", textColor)}>
             Abrar Fahim
           </span>

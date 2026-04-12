@@ -49,9 +49,9 @@ export default function ResearchPage() {
                 <span className="text-xs text-muted-foreground">&middot;</span>
                 <span className="text-xs text-muted-foreground">{p.venue}{p.location ? `, ${p.location}` : ""}</span>
               </div>
-              <h3 className="text-lg font-semibold leading-snug group-hover:text-primary transition-colors">
+              <h2 className="text-lg font-semibold leading-snug group-hover:text-primary transition-colors">
                 <Link to={`/research/${p.id}`}>{p.title}</Link>
-              </h3>
+              </h2>
               <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{p.abstract}</p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 {p.tags.map((t) => (

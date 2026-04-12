@@ -47,6 +47,7 @@ export default function ResearchDetailPage() {
                 <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
               ))}
             </div>
+            <p className="mt-3 text-sm text-muted-foreground">By Abrar Fahim</p>
           </motion.div>
         </div>
       </section>

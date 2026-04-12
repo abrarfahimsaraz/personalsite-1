@@ -20,7 +20,7 @@ export default function BlogPage() {
       />
 
       {/* Hero band */}
-      <div className="bg-accent/50 pt-28 pb-12">
+      <section className="bg-accent/50 pt-28 pb-12">
         <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">Blog</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
@@ -30,7 +30,7 @@ export default function BlogPage() {
             Thoughts on AI research, engineering, and lessons learned
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-6">

@@ -18,7 +18,7 @@ export default function CertificationsPage() {
         <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">Credentials</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Certifications
+            Certifications & Credentials
           </h1>
           <p className="text-muted-foreground mt-3 max-w-xl">
             Conference presentations and professional certifications

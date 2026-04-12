@@ -21,7 +21,7 @@ export default function ExperiencePage() {
         <div className="max-w-5xl mx-auto px-6">
           <span className="section-label">Career</span>
           <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Professional Experience
+            Abrar Fahim's Experience
           </h1>
           <p className="text-muted-foreground mt-3 max-w-xl">
             Professional, research, and media roles
@@ -54,7 +54,7 @@ export default function ExperiencePage() {
                       <Calendar size={12} /> {e.dates}
                     </span>
                   </div>
-                  <h3 className="text-lg font-semibold">{e.title}</h3>
+                  <h2 className="text-lg font-semibold">{e.title}</h2>
                   <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1.5">
                     <span className="inline-flex items-center gap-1"><Briefcase size={13} />{e.organization}</span>
                     <span className="inline-flex items-center gap-1"><MapPin size={13} />{e.location}</span>

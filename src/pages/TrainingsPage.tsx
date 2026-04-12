@@ -36,7 +36,7 @@ export default function TrainingsPage() {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-lg font-semibold">{t.organization}</h3>
+                  <h2 className="text-lg font-semibold">{t.organization}</h2>
                   <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
                     {t.unit && <span className="inline-flex items-center gap-1"><Building2 size={13} />{t.unit}</span>}
                     {t.location && <span className="inline-flex items-center gap-1"><MapPin size={13} />{t.location}</span>}

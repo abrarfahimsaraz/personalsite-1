@@ -22,6 +22,8 @@ const resources = [
   { label: "Education", path: "/education" },
   { label: "Certifications", path: "/certifications" },
   { label: "Trainings", path: "/trainings" },
+  { label: "Miscellaneous", path: "/miscellaneous" },
+  { label: "Contact", path: "/contact" },
 ];
 
 const connect = [
@@ -52,10 +54,10 @@ export default function Footer() {
     <footer className="border-t border-border bg-card/50">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-12 flex items-center gap-3">
-          <img src="/newlogo.ico" alt="Logo" className="h-9 w-9" />
+          <img src="/newlogo.ico" alt="Abrar Fahim" className="h-9 w-9" />
           <div>
             <span className="text-xl font-bold text-foreground">
-              Abrar<span className="text-primary">.</span>
+              Abrar Fahim<span className="text-primary">.</span>
             </span>
             <p className="text-sm text-muted-foreground">
               {personalInfo.role}

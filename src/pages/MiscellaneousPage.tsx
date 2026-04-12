@@ -17,7 +17,7 @@ export default function MiscellaneousPage() {
             Activities & Achievements
           </h1>
           <p className="text-muted-foreground mt-3 max-w-xl">
-            Extracurricular activities and achievements
+            Abrar Fahim's extracurricular involvement, awards, and community contributions
           </p>
         </div>
       </section>

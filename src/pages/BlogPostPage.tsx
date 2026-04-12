@@ -13,6 +13,7 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <div className="page-container text-center pt-32">
+        <SEO title="Post Not Found" description="The blog post you are looking for does not exist on Abrar Fahim's portfolio." path="/blog" noindex />
         <h1 className="text-2xl font-bold">Post not found</h1>
         <Button variant="outline" asChild className="mt-4 rounded-xl">
           <Link to="/blog">
@@ -31,10 +32,11 @@ export default function BlogPostPage() {
         title={post.title}
         description={post.excerpt}
         path={`/blog/${post.id}`}
+        type="article"
       />
 
       {/* Hero band */}
-      <div className="bg-accent/50 pt-28 pb-12">
+      <section className="bg-accent/50 pt-28 pb-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Link
             to="/blog"
@@ -73,7 +75,7 @@ export default function BlogPostPage() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Post body */}
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
