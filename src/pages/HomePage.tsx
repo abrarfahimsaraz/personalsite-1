@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { personalInfo, researchPapers, stats, experiences, skills } from "@/lib/data";
 import { SEO } from "@/components/SEO";
+import { OptimizedPortrait } from "@/components/OptimizedPortrait";
 
 const socials = [
   { icon: Github, href: personalInfo.github, label: "GitHub" },
@@ -147,13 +148,14 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="hidden lg:flex lg:col-span-2 justify-center"
             >
-              <img
-                src="/abrar-fahim.png"
+              <OptimizedPortrait
                 alt="Abrar Fahim — AI Researcher and Data Scientist based in Dhaka, Bangladesh"
                 width={320}
-                height={416}
-                className="w-80 h-[26rem] rounded-2xl object-cover object-top border border-white/10"
+                height={426}
+                sizes="(min-width: 1024px) 320px, 100vw"
+                className="w-80 h-auto rounded-2xl object-cover object-top border border-white/10"
                 loading="eager"
+                fetchPriority="high"
               />
             </motion.div>
           </div>

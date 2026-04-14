@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { personalInfo, skills } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import { OptimizedPortrait } from "@/components/OptimizedPortrait";
 import { motion } from "framer-motion";
 
 const skillSections = [
@@ -85,10 +86,12 @@ export default function AboutPage() {
 
           {/* Photo */}
           <div className="hidden lg:block">
-            <img
-              src="/abrar-fahim.png"
+            <OptimizedPortrait
               alt="Abrar Fahim — AI Researcher and Data Scientist"
-              className="w-full rounded-2xl object-cover object-top aspect-[3/4] border border-border"
+              width={480}
+              height={640}
+              sizes="(min-width: 1024px) 480px, 100vw"
+              className="w-full h-auto rounded-2xl object-cover object-top aspect-[3/4] border border-border"
               loading="lazy"
             />
           </div>

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "./components/Analytics";
 
 // Lazy-loaded pages for code splitting
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -34,6 +35,7 @@ const App = () => (
     <TooltipProvider>
       <BrowserRouter>
           <ScrollToTop />
+          <Analytics />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route element={<Layout />}>

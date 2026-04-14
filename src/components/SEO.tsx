@@ -15,7 +15,7 @@ const SITE_URL = "https://abrarfahim.site";
 const DEFAULT_TITLE = "Abrar Fahim — AI Researcher & Data Scientist";
 const DEFAULT_DESCRIPTION =
   "Academic portfolio of Abrar Fahim — B.Sc. EEE graduate from IUT specializing in AI, deep learning, power systems optimization, and medical imaging research.";
-const DEFAULT_IMAGE = "/abrar-fahim.png";
+const DEFAULT_IMAGE = "/abrar-fahim-800.jpg";
 const DEFAULT_IMAGE_ALT = "Abrar Fahim — AI Researcher and Data Scientist";
 
 export function SEO({
@@ -69,7 +69,7 @@ export function SEO({
             givenName: "Abrar",
             familyName: "Fahim",
             url: SITE_URL,
-            image: `${SITE_URL}/abrar-fahim.png`,
+            image: `${SITE_URL}/abrar-fahim-800.jpg`,
             jobTitle: "AI Researcher & Data Scientist",
             description: personalInfo.synthesized,
             email: personalInfo.email,
