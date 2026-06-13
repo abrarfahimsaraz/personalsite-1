@@ -1,14 +1,15 @@
 import { Badge } from "@/components/ui/badge";
 import { experiences } from "@/lib/data";
-import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { Briefcase, MapPin, Calendar, Building2, Microscope, Newspaper } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
-const categoryIcon: Record<string, string> = {
-  Industry: "🏢",
-  Research: "🔬",
-  Media: "📰",
+const categoryIcon: Record<string, typeof Briefcase> = {
+  Industry: Building2,
+  Research: Microscope,
+  Media: Newspaper,
 };
 
 export default function ExperiencePage() {
@@ -16,18 +17,11 @@ export default function ExperiencePage() {
     <PageTransition>
       <SEO title="Experience" description="Professional experience of Abrar Fahim — roles in risk analysis, data science, project engineering, and technical writing." path="/experience" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Career</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Abrar Fahim's Experience
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Professional, research, and media roles
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Career"
+        title="Abrar Fahim's Experience"
+        subtitle="Professional, research, and media roles across industry and academia."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="relative">
@@ -43,8 +37,11 @@ export default function ExperiencePage() {
                 className="flex gap-5"
               >
                 <div className="hidden sm:flex flex-col items-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground text-lg flex-shrink-0">
-                    {categoryIcon[e.category] || "💼"}
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[hsl(var(--grad-2))] text-primary-foreground flex-shrink-0 shadow-glow-sm">
+                    {(() => {
+                      const Icon = categoryIcon[e.category] || Briefcase;
+                      return <Icon size={18} />;
+                    })()}
                   </div>
                 </div>
                 <div className="glass-card rounded-2xl p-6 flex-1">

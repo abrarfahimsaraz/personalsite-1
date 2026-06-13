@@ -1,166 +1,279 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
-const navItems = [
-  { label: "Home", path: "/" },
+const primaryItems = [
   { label: "About", path: "/about" },
   { label: "Research", path: "/research" },
   { label: "Experience", path: "/experience" },
-  { label: "Education", path: "/education" },
   { label: "Projects", path: "/projects" },
+  { label: "Blog", path: "/blog" },
+];
+
+const moreItems = [
+  { label: "Education", path: "/education" },
   { label: "Trainings", path: "/trainings" },
   { label: "Certifications", path: "/certifications" },
   { label: "Miscellaneous", path: "/miscellaneous" },
-  { label: "Blog", path: "/blog" },
+];
+
+const allItems = [
+  { label: "Home", path: "/" },
+  ...primaryItems,
+  ...moreItems,
   { label: "Contact", path: "/contact" },
 ];
 
 export default function TopNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const onHero = isHome && !scrolled;
+  const moreRef = useRef<HTMLDivElement>(null);
 
-  // Close mobile menu on any route change — the bulletproof catch-all
+  const isActive = (path: string) =>
+    path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
+  const moreGroupActive = moreItems.some((i) => location.pathname.startsWith(i.path));
+
+  // Close menus on route change
   useEffect(() => {
     setMobileOpen(false);
+    setMoreOpen(false);
   }, [location.pathname]);
 
-  // Close on Escape key
+  // Close on Escape
   useEffect(() => {
-    if (!mobileOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setMoreOpen(false);
+      }
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [mobileOpen]);
+  }, []);
+
+  // Close "More" on outside click
+  useEffect(() => {
+    if (!moreOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [moreOpen]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navBg = scrolled
-    ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm"
+  const headerBg = scrolled
+    ? "bg-background/75 backdrop-blur-xl border-b border-border/70 shadow-sm"
     : isHome
-      ? "bg-transparent"
-      : "bg-background/90 backdrop-blur-xl border-b border-border";
+      ? "bg-transparent border-b border-transparent"
+      : "bg-background/75 backdrop-blur-xl border-b border-border/70";
 
-  const textColor = !scrolled && isHome ? "text-white" : "text-foreground";
-  const mutedColor = !scrolled && isHome ? "text-white/60" : "text-muted-foreground";
+  const linkBase = onHero
+    ? "text-white/70 hover:text-white"
+    : "text-muted-foreground hover:text-foreground";
+  const linkActive = onHero ? "text-white" : "text-primary";
 
   return (
     <>
-    <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", navBg)}>
-      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-14">
-        {/* Logo — left */}
-        <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-          <img src="/newlogo.ico" alt="Abrar Fahim" className="h-8 w-8 rounded-lg object-contain" />
-          <span className={cn("font-bold text-base hidden sm:inline transition-colors", textColor)}>
-            Abrar Fahim
-          </span>
-        </Link>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          headerBg,
+        )}
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-6">
+          {/* Logo */}
+          <Link to="/" className="group flex flex-shrink-0 items-center gap-2.5">
+            <img
+              src="/newlogo.ico"
+              alt="Abrar Fahim"
+              className="h-8 w-8 rounded-lg object-contain ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105"
+            />
+            <span
+              className={cn(
+                "hidden font-display text-base font-bold tracking-tight transition-colors sm:inline",
+                onHero ? "text-white" : "text-foreground",
+              )}
+            >
+              Abrar Fahim
+            </span>
+          </Link>
 
-        {/* Desktop nav — pushed right */}
-        <nav className="hidden xl:flex items-center gap-0.5 ml-auto">
-          {navItems.map((item) => {
-            const isActive =
-              item.path === "/"
-                ? location.pathname === "/"
-                : location.pathname.startsWith(item.path);
-            return (
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 lg:flex">
+            {primaryItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={isActive(item.path) ? "page" : undefined}
                 className={cn(
-                  "px-2.5 py-1.5 rounded-md text-xs font-medium transition-all duration-200",
-                  isActive
-                    ? cn("text-primary", !scrolled && isHome && "bg-white/10 text-white")
-                    : cn(mutedColor, "hover:text-primary", !scrolled && isHome && "hover:text-white")
+                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  isActive(item.path) ? linkActive : linkBase,
                 )}
               >
+                {isActive(item.path) && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className={cn(
+                      "absolute inset-0 -z-10 rounded-full",
+                      onHero ? "bg-white/10" : "bg-accent",
+                    )}
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
                 {item.label}
               </Link>
-            );
-          })}
-        </nav>
+            ))}
 
-        {/* Theme toggle */}
-        <ThemeToggle
-          className={cn(
-            !scrolled && isHome
-              ? "text-white/60 hover:text-white hover:bg-white/10"
-              : "text-muted-foreground hover:text-foreground hover:bg-accent"
-          )}
-        />
+            {/* More dropdown */}
+            <div className="relative" ref={moreRef}>
+              <button
+                onClick={() => setMoreOpen((v) => !v)}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                className={cn(
+                  "relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  moreGroupActive ? linkActive : linkBase,
+                )}
+              >
+                More
+                <ChevronDown
+                  className={cn("h-3.5 w-3.5 transition-transform duration-200", moreOpen && "rotate-180")}
+                />
+              </button>
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                    transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-full mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-border bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
+                  >
+                    {moreItems.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        className={cn(
+                          "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                          isActive(item.path)
+                            ? "bg-accent text-primary"
+                            : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </nav>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className={cn(
-            "xl:hidden flex items-center justify-center h-9 w-9 rounded-lg transition-colors",
-            !scrolled && isHome
-              ? "text-white hover:bg-white/10"
-              : "text-foreground border border-border hover:bg-card"
-          )}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
-      </div>
+          {/* Right actions */}
+          <div className="flex items-center gap-1.5">
+            <ThemeToggle
+              className={cn(
+                onHero
+                  ? "text-white/70 hover:bg-white/10 hover:text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground",
+              )}
+            />
 
-      {/* Mobile dropdown */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="xl:hidden overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-3 space-y-0.5"
-          >
-            {navItems.map((item) => {
-              const isActive =
-                item.path === "/"
-                  ? location.pathname === "/"
-                  : location.pathname.startsWith(item.path);
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMobileOpen(false)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "block px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                  )}
+            <Link
+              to="/contact"
+              className={cn(
+                "hidden rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 lg:inline-flex",
+                onHero
+                  ? "bg-white text-slate-900 hover:bg-white/90"
+                  : "bg-primary text-primary-foreground shadow-glow-sm hover:-translate-y-0.5 hover:shadow-glow",
+              )}
+            >
+              Contact
+            </Link>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              className={cn(
+                "flex h-10 w-10 items-center justify-center rounded-lg transition-colors lg:hidden",
+                onHero
+                  ? "text-white hover:bg-white/10"
+                  : "text-foreground hover:bg-accent",
+              )}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={mobileOpen ? "x" : "menu"}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
                 >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </header>
+                  {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                </motion.span>
+              </AnimatePresence>
+            </button>
+          </div>
+        </div>
 
-    {/* Backdrop — catches outside taps to close the mobile menu */}
-    {mobileOpen && (
-      <div
-        className="xl:hidden fixed inset-0 z-40"
-        onClick={() => setMobileOpen(false)}
-        aria-hidden="true"
-      />
-    )}
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl lg:hidden"
+            >
+              <div className="space-y-0.5 px-4 py-4">
+                {allItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={isActive(item.path) ? "page" : undefined}
+                    className={cn(
+                      "block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                      isActive(item.path)
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Backdrop to catch outside taps */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 lg:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
     </>
   );
 }

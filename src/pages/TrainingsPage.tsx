@@ -3,6 +3,7 @@ import { trainings } from "@/lib/data";
 import { Building2, Clock, MapPin } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
 export default function TrainingsPage() {
@@ -10,18 +11,11 @@ export default function TrainingsPage() {
     <PageTransition>
       <SEO title="Trainings" description="Industrial training and hands-on technical exposure of Abrar Fahim — BPDB, BAEC, and Robi Axiata." path="/trainings" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Training</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Industrial Trainings
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Hands-on industry exposure and technical training
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Training"
+        title="Industrial Trainings"
+        subtitle="Hands-on industry exposure and technical training."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="space-y-6">

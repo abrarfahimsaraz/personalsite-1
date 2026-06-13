@@ -2,6 +2,7 @@ import { extracurriculars, awards } from "@/lib/data";
 import { Users, Trophy, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
 export default function MiscellaneousPage() {
@@ -9,18 +10,11 @@ export default function MiscellaneousPage() {
     <PageTransition>
       <SEO title="Miscellaneous" description="Extracurricular activities and awards of Abrar Fahim — IEEE membership, event organization, sports, and academic achievements." path="/miscellaneous" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Extras</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Activities & Achievements
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Abrar Fahim's extracurricular involvement, awards, and community contributions
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Extras"
+        title="Activities & Achievements"
+        subtitle="Extracurricular involvement, awards, and community contributions."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-2">
@@ -84,7 +78,7 @@ export default function MiscellaneousPage() {
                   className="glass-card rounded-xl p-5"
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-lg">🏆</span>
+                    <Trophy size={16} className="flex-shrink-0 text-primary" />
                     <h3 className="text-sm font-semibold">{a.name}</h3>
                   </div>
                   <p className="text-xs text-muted-foreground">{a.issuer} · {a.year}</p>

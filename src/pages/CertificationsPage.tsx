@@ -3,6 +3,7 @@ import { certifications } from "@/lib/data";
 import { Award, BookOpen, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
 const conferenceCerts = certifications.filter((c) => c.category === "conference");
@@ -13,18 +14,11 @@ export default function CertificationsPage() {
     <PageTransition>
       <SEO title="Certifications" description="Conference presentations and professional certifications earned by Abrar Fahim — IEEE, Springer, Coursera, and more." path="/certifications" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Credentials</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Certifications & Credentials
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Conference presentations and professional certifications
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Credentials"
+        title="Certifications & Credentials"
+        subtitle="Conference presentations and professional certifications."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-2">

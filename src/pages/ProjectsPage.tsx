@@ -3,6 +3,7 @@ import { projects } from "@/lib/data";
 import { Github } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
@@ -13,18 +14,11 @@ export default function ProjectsPage() {
     <PageTransition>
       <SEO title="Projects" description="Academic, personal, and engineering projects by Abrar Fahim — from plasmonics simulations to AI-powered applications." path="/projects" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Portfolio</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Featured Projects
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Academic, personal, and engineering projects
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Portfolio"
+        title="Featured Projects"
+        subtitle="Academic, personal, and engineering projects — from plasmonics simulations to AI-powered applications."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-5">

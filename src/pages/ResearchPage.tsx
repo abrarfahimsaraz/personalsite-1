@@ -1,65 +1,100 @@
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { researchPapers, type PaperStatus } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
+import PageHero from "@/components/PageHero";
 import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const statusStyle: Record<PaperStatus, string> = {
   Published: "bg-primary/15 text-primary border-primary/30",
-  Accepted: "bg-primary/10 text-primary border-primary/20",
-  "Under Review": "border-amber-500/30 text-amber-400 bg-amber-500/10",
+  Accepted: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
+  "Under Review": "border-amber-500/30 text-amber-500 bg-amber-500/10",
   "In Preparation": "border-muted-foreground/30 text-muted-foreground bg-muted",
 };
 
+type Filter = "All" | PaperStatus;
+
 export default function ResearchPage() {
+  const [filter, setFilter] = useState<Filter>("All");
+
+  const filters = useMemo(() => {
+    const order: Filter[] = ["All", "Published", "Accepted", "Under Review", "In Preparation"];
+    return order
+      .map((f) => ({
+        label: f,
+        count: f === "All" ? researchPapers.length : researchPapers.filter((p) => p.status === f).length,
+      }))
+      .filter((f) => f.count > 0);
+  }, []);
+
+  const papers = filter === "All" ? researchPapers : researchPapers.filter((p) => p.status === filter);
+
   return (
     <PageTransition>
       <SEO title="Research" description="Published and ongoing research by Abrar Fahim — covering medical imaging, power systems optimization, cybersecurity, and explainable AI." path="/research" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <span className="section-label">Research</span>
-          <h1 className="text-4xl font-bold mt-3 sm:text-5xl">
-            Research by Abrar Fahim
-          </h1>
-          <p className="mt-4 text-lg text-foreground/60">Conference proceedings, IEEE & Springer publications, and ongoing work</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Research"
+        title="Research by Abrar Fahim"
+        subtitle="Conference proceedings, IEEE & Springer publications, and ongoing work across AI, healthcare, power systems, and cybersecurity."
+      />
 
-      <div className="container mx-auto px-4 max-w-5xl py-16">
+      <div className="mx-auto max-w-5xl px-6 py-14 lg:py-16">
+        {/* Filter bar */}
+        <div className="mb-8 flex flex-wrap gap-2">
+          {filters.map((f) => (
+            <button
+              key={f.label}
+              onClick={() => setFilter(f.label)}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-all duration-200",
+                filter === f.label
+                  ? "border-primary bg-primary text-primary-foreground shadow-glow-sm"
+                  : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
+              )}
+            >
+              {f.label}
+              <span className={cn("text-xs", filter === f.label ? "text-primary-foreground/70" : "text-muted-foreground/60")}>
+                {f.count}
+              </span>
+            </button>
+          ))}
+        </div>
+
         <div className="space-y-5">
-          {researchPapers.map((p, i) => (
+          {papers.map((p, i) => (
             <motion.div
               key={p.id}
+              layout
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="glass-card rounded-xl p-6 group"
+              transition={{ delay: Math.min(i * 0.04, 0.3), duration: 0.4 }}
+              className="group glass-card p-6"
             >
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <Badge className={cn("rounded-full text-xs", statusStyle[p.status])}>
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <Badge className={cn("rounded-full border text-xs", statusStyle[p.status])}>
                   {p.status}
                 </Badge>
                 <span className="text-xs font-medium text-muted-foreground">{p.year}</span>
-                <span className="text-xs text-muted-foreground">&middot;</span>
+                <span className="text-xs text-muted-foreground/50">·</span>
                 <span className="text-xs text-muted-foreground">{p.venue}{p.location ? `, ${p.location}` : ""}</span>
               </div>
-              <h2 className="text-lg font-semibold leading-snug group-hover:text-primary transition-colors">
+              <h2 className="font-display text-lg font-bold leading-snug transition-colors group-hover:text-primary sm:text-xl">
                 <Link to={`/research/${p.id}`}>{p.title}</Link>
               </h2>
-              <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{p.abstract}</p>
-              <div className="mt-3 flex flex-wrap items-center gap-2">
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{p.abstract}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
                 {p.tags.map((t) => (
-                  <Badge key={t} variant="secondary" className="text-xs rounded-full">{t}</Badge>
+                  <Badge key={t} variant="secondary" className="rounded-full text-xs font-medium">{t}</Badge>
                 ))}
                 <Link
                   to={`/research/${p.id}`}
-                  className="ml-auto inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
+                  className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all hover:gap-2"
                 >
                   View <ArrowRight size={14} />
                 </Link>

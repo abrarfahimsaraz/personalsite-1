@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { personalInfo, skills } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { OptimizedPortrait } from "@/components/OptimizedPortrait";
 import { motion } from "framer-motion";
 
@@ -47,15 +48,11 @@ export default function AboutPage() {
         path="/about"
       />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">About Me</span>
-          <h1 className="text-4xl font-bold mt-3 sm:text-5xl">
-            About Abrar Fahim
-          </h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About Me"
+        title="About Abrar Fahim"
+        subtitle="AI researcher and data scientist bridging classical engineering with modern deep learning."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         {/* Bio + Photo */}

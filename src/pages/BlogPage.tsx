@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { blogPosts } from "@/lib/blog";
 import PageTransition from "@/components/PageTransition";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
 
@@ -19,18 +20,11 @@ export default function BlogPage() {
         path="/blog"
       />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Blog</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Latest Articles
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Thoughts on AI research, engineering, and lessons learned
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Blog"
+        title="Latest Articles"
+        subtitle="Thoughts on AI research, engineering, and lessons learned along the way."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-6">

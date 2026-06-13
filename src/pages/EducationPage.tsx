@@ -3,6 +3,7 @@ import { education, testScores } from "@/lib/data";
 import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
+import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 
 export default function EducationPage() {
@@ -10,18 +11,11 @@ export default function EducationPage() {
     <PageTransition>
       <SEO title="Education" description="Academic qualifications and test scores of Abrar Fahim — B.Sc. EEE from IUT, GRE, IELTS, and EFSET results." path="/education" />
 
-      {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
-        <div className="max-w-5xl mx-auto px-6">
-          <span className="section-label">Education</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3">
-            Abrar Fahim's Education
-          </h1>
-          <p className="text-muted-foreground mt-3 max-w-xl">
-            Academic qualifications and standardized test scores
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Education"
+        title="Abrar Fahim's Education"
+        subtitle="Academic qualifications and standardized test scores."
+      />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-2">
