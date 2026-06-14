@@ -4,7 +4,6 @@ import { Github } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
   const thesis = projects[0];
@@ -23,10 +22,8 @@ export default function ProjectsPage() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-5">
           {/* Thesis — full width */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
+            data-reveal
             className="glass-card rounded-2xl p-6"
           >
             <h2 className="text-lg font-semibold">{thesis.name}</h2>
@@ -52,17 +49,13 @@ export default function ProjectsPage() {
                 <Github size={14} /> View on GitHub
               </a>
             )}
-          </motion.div>
+          </div>
 
           {/* Rest — 2-col grid */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            {rest.map((p, i) => (
-              <motion.div
+          <div data-stagger className="grid gap-5 sm:grid-cols-2">
+            {rest.map((p) => (
+              <div
                 key={p.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
                 className="glass-card rounded-2xl p-5"
               >
                 <h2 className="text-base font-semibold">{p.name}</h2>
@@ -88,7 +81,7 @@ export default function ProjectsPage() {
                     <Github size={14} /> View on GitHub
                   </a>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -4,7 +4,6 @@ import { Award, BookOpen, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 const conferenceCerts = certifications.filter((c) => c.category === "conference");
 const courseCerts = certifications.filter((c) => c.category === "course");
@@ -29,14 +28,10 @@ export default function CertificationsPage() {
               </div>
               <h2 className="text-xl font-bold">Conference Presentations</h2>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3" data-stagger>
               {conferenceCerts.map((c, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
                   className="glass-card rounded-xl p-4 flex items-start gap-3"
                 >
                   <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-primary flex-shrink-0">
@@ -51,7 +46,7 @@ export default function CertificationsPage() {
                       <ExternalLink size={14} />
                     </a>
                   )}
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -63,14 +58,10 @@ export default function CertificationsPage() {
               </div>
               <h2 className="text-xl font-bold">Courses & Programs</h2>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3" data-stagger>
               {courseCerts.map((c, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: 12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
                   className="glass-card rounded-xl p-4 flex items-start gap-3"
                 >
                   <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-muted-foreground flex-shrink-0">
@@ -85,7 +76,7 @@ export default function CertificationsPage() {
                       <ExternalLink size={14} />
                     </a>
                   )}
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

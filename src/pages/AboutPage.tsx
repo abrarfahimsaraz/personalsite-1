@@ -5,7 +5,6 @@ import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
 import { OptimizedPortrait } from "@/components/OptimizedPortrait";
-import { motion } from "framer-motion";
 
 const skillSections = [
   { title: "Programming Languages", icon: Code2, items: skills.programmingLanguages, type: "leveled" as const },
@@ -100,14 +99,10 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mt-3 sm:text-3xl">
             What Defines Abrar Fahim's Approach
           </h2>
-          <div className="grid sm:grid-cols-2 gap-5 mt-8">
+          <div className="grid sm:grid-cols-2 gap-5 mt-8" data-stagger>
             {researchQualities.map((q, i) => (
-              <motion.div
+              <div
                 key={q.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="glass-card rounded-xl p-5"
               >
                 <div className="flex items-center gap-2.5 mb-3">
@@ -117,7 +112,7 @@ export default function AboutPage() {
                   <h3 className="text-sm font-bold">{q.title}</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{q.text}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -128,14 +123,10 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mt-3 sm:text-3xl">
             Tools, Technologies & Expertise
           </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10" data-stagger>
             {skillSections.map((section, i) => (
-              <motion.div
+              <div
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="glass-card rounded-xl p-5"
               >
                 <div className="flex items-center gap-2.5 mb-4">
@@ -155,7 +146,7 @@ export default function AboutPage() {
                     </Badge>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

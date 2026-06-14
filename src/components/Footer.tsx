@@ -36,7 +36,7 @@ const connect = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-card/40">
+    <footer className="relative overflow-hidden border-t border-border/60 bg-card/50 backdrop-blur-2xl">
       {/* Top gradient hairline */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       <div className="pointer-events-none absolute -bottom-40 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />

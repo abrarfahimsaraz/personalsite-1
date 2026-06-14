@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
@@ -12,8 +11,8 @@ interface PageHeroProps {
 }
 
 /**
- * Shared page header band. Replaces the copy-pasted `bg-accent/50 pt-28` blocks
- * with a single textured, theme-aware hero (subtle grid + gradient glow).
+ * Shared page header. Transparent over the ambient backdrop, with soft glows.
+ * Entrance handled by GSAP via [data-hero-item] (see ScrollReveal).
  */
 export default function PageHero({
   eyebrow,
@@ -24,16 +23,9 @@ export default function PageHero({
   className,
 }: PageHeroProps) {
   return (
-    <section
-      className={cn(
-        "relative overflow-hidden border-b border-border/60 bg-accent/40",
-        className,
-      )}
-    >
-      {/* Texture + glow */}
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-50 mask-fade-edges" />
-      <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[hsl(var(--grad-2)/0.08)] blur-3xl" />
+    <section className={cn("relative overflow-hidden", className)}>
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-28 left-1/4 h-64 w-64 rounded-full bg-[hsl(var(--grad-2)/0.12)] blur-3xl" />
 
       <div
         className={cn(
@@ -41,31 +33,33 @@ export default function PageHero({
           align === "center" && "text-center",
         )}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        {eyebrow && (
+          <span data-hero-item className={cn("section-label", align === "center" && "justify-center")}>
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          data-hero-item
+          className="text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl"
         >
-          {eyebrow && (
-            <span className={cn("section-label", align === "center" && "justify-center")}>
-              {eyebrow}
-            </span>
-          )}
-          <h1 className="text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
-            {title}
-          </h1>
-          {subtitle && (
-            <p
-              className={cn(
-                "mt-4 text-pretty text-lg leading-relaxed text-muted-foreground",
-                align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl",
-              )}
-            >
-              {subtitle}
-            </p>
-          )}
-          {children && <div className="mt-7">{children}</div>}
-        </motion.div>
+          {title}
+        </h1>
+        {subtitle && (
+          <p
+            data-hero-item
+            className={cn(
+              "mt-4 text-pretty text-lg leading-relaxed text-muted-foreground",
+              align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl",
+            )}
+          >
+            {subtitle}
+          </p>
+        )}
+        {children && (
+          <div data-hero-item className="mt-7">
+            {children}
+          </div>
+        )}
       </div>
     </section>
   );

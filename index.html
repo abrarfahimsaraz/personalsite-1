@@ -67,6 +67,10 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
     </noscript>
 
+    <!-- GSAP + ScrollTrigger (scroll-reveal + entrance animations) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <!-- Preload the LCP hero portrait (AVIF primary, WebP fallback handled by <picture>) -->
     <link
       rel="preload"
@@ -86,6 +90,12 @@
       if (localStorage.getItem("theme") === "light") {
         document.documentElement.classList.remove("dark");
       }
+      // Pre-hide reveal targets only when motion is allowed; GSAP fades them in.
+      try {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.documentElement.classList.add("gsap-enabled");
+        }
+      } catch (e) {}
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

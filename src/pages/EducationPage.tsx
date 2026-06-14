@@ -4,7 +4,6 @@ import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 export default function EducationPage() {
   return (
@@ -27,14 +26,10 @@ export default function EducationPage() {
               </div>
               <h2 className="text-xl font-bold">Academic Qualifications</h2>
             </div>
-            <div className="space-y-5">
+            <div className="space-y-5" data-stagger>
               {education.map((ed, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
                   className="glass-card rounded-xl p-5"
                 >
                   <h3 className="text-base font-semibold">{ed.degree}</h3>
@@ -61,7 +56,7 @@ export default function EducationPage() {
                       <ExternalLink size={12} /> View Degree Certificate
                     </a>
                   )}
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -74,14 +69,10 @@ export default function EducationPage() {
               </div>
               <h2 className="text-xl font-bold">Test Scores</h2>
             </div>
-            <div className="space-y-5">
+            <div className="space-y-5" data-stagger>
               {testScores.map((ts, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
                   className="glass-card rounded-xl p-5"
                 >
                   <h3 className="text-base font-semibold">{ts.name}</h3>
@@ -102,7 +93,7 @@ export default function EducationPage() {
                       <ExternalLink size={12} /> View Certificate
                     </a>
                   )}
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

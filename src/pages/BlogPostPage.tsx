@@ -3,7 +3,6 @@ import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getBlogPost, getRecentPosts } from "@/lib/blog";
-import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
 import SafeHtml from "@/components/SafeHtml";
 
@@ -37,7 +36,7 @@ export default function BlogPostPage() {
       />
 
       {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
+      <section className="relative overflow-hidden pt-28 pb-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Link
             to="/blog"
@@ -46,7 +45,7 @@ export default function BlogPostPage() {
             <ArrowLeft size={14} /> All Posts
           </Link>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+          <div>
             <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1">
                 <Calendar size={14} />
@@ -62,7 +61,7 @@ export default function BlogPostPage() {
               </span>
             </div>
 
-            <h1 className="text-3xl font-bold leading-snug sm:text-4xl mb-4">
+            <h1 data-hero-item className="text-3xl font-bold leading-snug sm:text-4xl mb-4">
               {post.title}
             </h1>
 
@@ -74,17 +73,13 @@ export default function BlogPostPage() {
                 </Badge>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Post body */}
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-        >
+        <div data-reveal>
           <SafeHtml
             html={post.content}
             className="prose prose-neutral dark:prose-invert max-w-none
@@ -96,7 +91,7 @@ export default function BlogPostPage() {
               prose-strong:text-foreground prose-strong:font-semibold
               prose-ul:my-4 prose-ol:my-4"
           />
-        </motion.div>
+        </div>
 
         {/* Related posts */}
         {related.length > 0 && (

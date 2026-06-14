@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import PageTransition from "@/components/PageTransition";
 import PageHero from "@/components/PageHero";
 import { SEO } from "@/components/SEO";
-import { motion } from "framer-motion";
 
 const statusStyle: Record<PaperStatus, string> = {
   Published: "bg-primary/15 text-primary border-primary/30",
@@ -65,15 +64,10 @@ export default function ResearchPage() {
           ))}
         </div>
 
-        <div className="space-y-5">
-          {papers.map((p, i) => (
-            <motion.div
+        <div className="space-y-5" data-stagger>
+          {papers.map((p) => (
+            <div
               key={p.id}
-              layout
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: Math.min(i * 0.04, 0.3), duration: 0.4 }}
               className="group glass-card p-6"
             >
               <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -99,7 +93,7 @@ export default function ResearchPage() {
                   View <ArrowRight size={14} />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

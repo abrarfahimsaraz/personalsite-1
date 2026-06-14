@@ -7,7 +7,6 @@ import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap, Send, Check, Arro
 import PageTransition from "@/components/PageTransition";
 import PageHero from "@/components/PageHero";
 import { SEO } from "@/components/SEO";
-import { motion } from "framer-motion";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: personalInfo.email, href: `mailto:${personalInfo.email}` },
@@ -43,16 +42,12 @@ export default function ContactPage() {
       <div className="mx-auto max-w-5xl px-6 py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Contact channels */}
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2" data-stagger>
             {contactInfo.map((c, i) => {
               const Wrapper = c.href ? "a" : "div";
               return (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
                 >
                   <Wrapper
                     {...(c.href ? { href: c.href, target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -71,16 +66,14 @@ export default function ContactPage() {
                       <ArrowUpRight size={15} className="ml-auto flex-shrink-0 text-muted-foreground/50 transition-colors group-hover:text-primary" />
                     )}
                   </Wrapper>
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
           {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
+            data-reveal
             className="surface p-6 sm:p-8"
           >
             <h2 className="font-display text-xl font-bold">Send a Message</h2>
@@ -113,7 +106,7 @@ export default function ContactPage() {
                 <Send size={16} /> Send Message
               </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </PageTransition>

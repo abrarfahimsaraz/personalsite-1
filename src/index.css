@@ -316,3 +316,153 @@
     animation: fade-in 0.6s ease-out both;
   }
 }
+
+/* ═══════════════════ Glassmorphism + ambient + GSAP reveal + 3D ═══════════════════ */
+@layer base {
+  :root {
+    /* Frosted-glass surface (light theme) */
+    --glass: 255 255 255;
+    --glass-op: 0.60;
+    --glass-strong-op: 0.78;
+    --glass-brd: 255 255 255;
+    --glass-brd-op: 0.55;
+    /* Solid backdrop painted behind the fixed ambient layer */
+    --backdrop: 232 238 250;
+  }
+
+  .dark {
+    --glass: 20 21 34;
+    --glass-op: 0.42;
+    --glass-strong-op: 0.60;
+    --glass-brd: 255 255 255;
+    --glass-brd-op: 0.10;
+    --backdrop: 8 6 22;
+  }
+
+  /* Let the fixed ambient background show through the page */
+  html {
+    background-color: rgb(var(--backdrop));
+  }
+  body {
+    background-color: transparent;
+  }
+
+  /* Pre-hide reveal targets so GSAP can fade them in without a flash.
+     Gated by .gsap-enabled (set in index.html only when motion is allowed). */
+  .gsap-enabled [data-reveal],
+  .gsap-enabled [data-stagger] > *,
+  .gsap-enabled [data-hero-item] {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+}
+
+@layer components {
+  /* Base frosted-glass surface */
+  .glass {
+    background-color: rgb(var(--glass) / var(--glass-op));
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+    box-shadow: 0 10px 30px -14px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+  .glass-strong {
+    background-color: rgb(var(--glass) / var(--glass-strong-op));
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+    box-shadow: 0 16px 44px -16px rgb(0 0 0 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  }
+
+  /* Frosted glass card with hover lift (overrides earlier solid definition) */
+  .glass-card {
+    border-radius: 1rem;
+    background-color: rgb(var(--glass) / var(--glass-op));
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+    box-shadow: 0 10px 30px -14px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.06);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, border-color 0.35s;
+  }
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.40);
+    box-shadow: 0 24px 50px -18px rgb(0 0 0 / 0.6), 0 0 0 1px hsl(var(--primary) / 0.15), inset 0 1px 0 rgb(255 255 255 / 0.10);
+  }
+
+  .service-card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: rgb(var(--glass) / var(--glass-op));
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+    box-shadow: 0 10px 30px -14px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.06);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, border-color 0.35s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: hsl(var(--primary) / 0.40);
+    box-shadow: 0 26px 56px -18px rgb(0 0 0 / 0.6), 0 0 0 1px hsl(var(--primary) / 0.15), inset 0 1px 0 rgb(255 255 255 / 0.10);
+  }
+
+  .surface {
+    border-radius: 1rem;
+    background-color: rgb(var(--glass) / var(--glass-strong-op));
+    -webkit-backdrop-filter: blur(20px) saturate(155%);
+    backdrop-filter: blur(20px) saturate(155%);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+    box-shadow: 0 16px 44px -18px rgb(0 0 0 / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.07);
+  }
+
+  /* Glass navigation bar */
+  .glass-nav {
+    background-color: rgb(var(--glass) / 0.55);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+  }
+
+  /* Pills / chips → subtle glass */
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-muted-foreground;
+    background-color: rgb(var(--glass) / var(--glass-op));
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-200;
+    background-color: rgb(var(--glass) / var(--glass-op));
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(var(--glass-brd) / var(--glass-brd-op));
+  }
+  .chip:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.40);
+    color: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  /* 3D tilt — JS sets --rx / --ry on pointer move (subtle, ≤6deg) */
+  .tilt {
+    transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease-out;
+  }
+  .tilt-pop {
+    transform: translateZ(38px);
+  }
+
+  /* Slow ambient drift for background blobs */
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(2%, -3%) scale(1.05); }
+    66% { transform: translate(-2%, 2%) scale(0.97); }
+  }
+  .animate-drift {
+    animation: drift 22s ease-in-out infinite;
+  }
+}

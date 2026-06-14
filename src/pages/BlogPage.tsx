@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { blogPosts } from "@/lib/blog";
 import PageTransition from "@/components/PageTransition";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
 
 export default function BlogPage() {
@@ -27,14 +26,10 @@ export default function BlogPage() {
       />
 
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="space-y-6">
+        <div className="space-y-6" data-stagger>
           {sorted.map((post, i) => (
-            <motion.article
+            <article
               key={post.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
             >
               <Link
                 to={`/blog/${post.id}`}
@@ -79,7 +74,7 @@ export default function BlogPage() {
                   </span>
                 </div>
               </Link>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

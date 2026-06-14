@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { researchPapers } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
-import { motion } from "framer-motion";
 
 export default function ResearchDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -27,13 +26,13 @@ export default function ResearchDetailPage() {
       <SEO title={paper.title} description={paper.abstract} path={`/research/${paper.id}`} />
 
       {/* Hero band */}
-      <section className="bg-accent/50 pt-28 pb-12">
+      <section className="relative overflow-hidden pt-28 pb-12">
         <div className="max-w-4xl mx-auto px-6">
           <Link to="/research" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
             <ArrowLeft size={14} /> All Research
           </Link>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+          <div data-hero-item>
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <Badge className="rounded-full bg-primary border-0 text-white">{paper.status}</Badge>
               <span className="text-sm text-muted-foreground">{paper.year}</span>
@@ -48,7 +47,7 @@ export default function ResearchDetailPage() {
               ))}
             </div>
             <p className="mt-3 text-sm text-muted-foreground">By Abrar Fahim</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

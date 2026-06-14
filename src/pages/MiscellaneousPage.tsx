@@ -3,7 +3,6 @@ import { Users, Trophy, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 export default function MiscellaneousPage() {
   return (
@@ -34,14 +33,10 @@ export default function MiscellaneousPage() {
                     </div>
                     <h3 className="text-sm font-bold text-primary">{year.year}</h3>
                   </div>
-                  <ul className="space-y-2.5 pl-8">
+                  <ul className="space-y-2.5 pl-8" data-stagger>
                     {year.items.map((item, i) => (
-                      <motion.li
+                      <li
                         key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.05 }}
                         className="text-sm text-foreground/80"
                       >
                         <span className="font-semibold text-foreground">{item.role}</span>
@@ -52,7 +47,7 @@ export default function MiscellaneousPage() {
                             <ExternalLink size={12} />
                           </a>
                         )}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -67,14 +62,10 @@ export default function MiscellaneousPage() {
               </div>
               <h2 className="text-xl font-bold">Awards & Achievements</h2>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4" data-stagger>
               {awards.map((a, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
                   className="glass-card rounded-xl p-5"
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -83,7 +74,7 @@ export default function MiscellaneousPage() {
                   </div>
                   <p className="text-xs text-muted-foreground">{a.issuer} · {a.year}</p>
                   <p className="mt-2 text-sm text-foreground/60">{a.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

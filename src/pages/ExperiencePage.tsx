@@ -4,7 +4,6 @@ import { Briefcase, MapPin, Calendar, Building2, Microscope, Newspaper } from "l
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 const categoryIcon: Record<string, typeof Briefcase> = {
   Industry: Building2,
@@ -26,14 +25,10 @@ export default function ExperiencePage() {
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="relative">
           <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border hidden sm:block" />
-          <div className="space-y-8">
+          <div className="space-y-8" data-stagger>
             {experiences.map((e, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className="flex gap-5"
               >
                 <div className="hidden sm:flex flex-col items-center">
@@ -65,7 +60,7 @@ export default function ExperiencePage() {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

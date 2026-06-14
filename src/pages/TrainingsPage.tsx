@@ -4,7 +4,6 @@ import { Building2, Clock, MapPin } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 import PageHero from "@/components/PageHero";
-import { motion } from "framer-motion";
 
 export default function TrainingsPage() {
   return (
@@ -18,14 +17,10 @@ export default function TrainingsPage() {
       />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="space-y-6">
+        <div className="space-y-6" data-stagger>
           {trainings.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
               className="glass-card rounded-xl p-6"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
@@ -64,7 +59,7 @@ export default function TrainingsPage() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
