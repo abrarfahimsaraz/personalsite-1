@@ -34,7 +34,28 @@ export default function ResearchPage() {
 
   return (
     <PageTransition>
-      <SEO title="Research" description="Published and ongoing research by Abrar Fahim — covering medical imaging, power systems optimization, cybersecurity, and explainable AI." path="/research" />
+      <SEO
+        title="Research"
+        description="Published and ongoing research by Abrar Fahim — covering medical imaging, power systems optimization, cybersecurity, and explainable AI."
+        path="/research"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Research by Abrar Fahim",
+            url: "https://abrarfahim.site/research",
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: researchPapers.map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://abrarfahim.site/research/${p.id}`,
+                name: p.title,
+              })),
+            },
+          },
+        ]}
+      />
 
       <PageHero
         eyebrow="Research"

@@ -61,7 +61,7 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        description="Abrar Fahim — AI Researcher & Data Scientist. B.Sc. EEE graduate from IUT specializing in renewable energy, optimal power flow, smart grids, and applied machine learning research."
+        description="Abrar Fahim — AI Researcher & Data Scientist. B.Sc. EEE graduate from IUT working on renewable energy, optimal power flow, and applied machine learning."
         path="/"
       />
 

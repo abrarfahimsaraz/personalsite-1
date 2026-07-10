@@ -13,6 +13,7 @@ export default function ResearchDetailPage() {
   if (!paper) {
     return (
       <div className="page-container text-center">
+        <SEO title="Paper Not Found" description="The research paper you are looking for does not exist on Abrar Fahim's portfolio." path="/research" noindex />
         <h1 className="text-2xl font-bold">Paper not found</h1>
         <Button variant="outline" asChild className="mt-4 rounded-xl">
           <Link to="/research"><ArrowLeft size={14} /> Back to Research</Link>
@@ -35,18 +36,30 @@ export default function ResearchDetailPage() {
             name: paper.title,
             abstract: paper.abstract,
             inLanguage: "en",
-            datePublished: String(paper.year),
+            ...(paper.status === "Published" || paper.status === "Accepted" ? { datePublished: String(paper.year) } : {}),
             keywords: paper.tags.join(", "),
-            author: {
-              "@type": "Person",
-              name: "Abrar Fahim",
-              url: "https://abrarfahim.site",
-              sameAs: personalInfo.scholar,
-            },
+            author: paper.authors
+              ? paper.authors.split(",").map((n) => ({ "@type": "Person", name: n.trim() }))
+              : {
+                  "@id": "https://abrarfahim.site/#person",
+                  "@type": "Person",
+                  name: "Abrar Fahim",
+                  url: "https://abrarfahim.site",
+                  sameAs: personalInfo.scholar,
+                },
             isPartOf: { "@type": "PublicationVolume", name: paper.venue },
             publisher: { "@type": "Organization", name: paper.venue },
             mainEntityOfPage: `https://abrarfahim.site/research/${paper.id}`,
             ...(paper.doi ? { url: paper.doi, sameAs: paper.doi } : {}),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://abrarfahim.site/" },
+              { "@type": "ListItem", position: 2, name: "Research", item: "https://abrarfahim.site/research" },
+              { "@type": "ListItem", position: 3, name: paper.title, item: `https://abrarfahim.site/research/${paper.id}` },
+            ],
           },
         ]}
       />

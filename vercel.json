@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/((?!.*\\.(?:xml|txt|ico|png|jpg|jpeg|gif|svg|webp|pdf|css|js|json|woff|woff2|ttf|eot)$).*)",

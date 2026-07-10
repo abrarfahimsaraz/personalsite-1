@@ -20,15 +20,15 @@ export default function CertificationsPage() {
       />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
+        <div className="grid items-stretch gap-12 lg:grid-cols-2">
+          <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Award size={18} />
               </div>
               <h2 className="text-xl font-bold">Conference Presentations</h2>
             </div>
-            <div className="space-y-3" data-stagger>
+            <div className="flex flex-1 flex-col justify-between gap-3" data-stagger>
               {conferenceCerts.map((c, i) => (
                 <div
                   key={i}
@@ -51,14 +51,14 @@ export default function CertificationsPage() {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
                 <BookOpen size={18} />
               </div>
               <h2 className="text-xl font-bold">Courses & Programs</h2>
             </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2" data-stagger>
+            <div className="grid flex-1 grid-cols-1 content-between gap-3 sm:grid-cols-2" data-stagger>
               {courseCerts.map((c, i) => (
                 <div
                   key={i}

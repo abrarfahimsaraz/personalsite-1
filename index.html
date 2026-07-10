@@ -12,6 +12,7 @@
     <meta name="keywords" content="Abrar Fahim, AI researcher, data scientist, deep learning, power systems, medical imaging, IUT, Bangladesh" />
     <!-- Canonical, OG and Twitter tags are managed per-route via document.head in src/components/SEO.tsx. -->
     <!-- Static defaults below are kept for non-JS scrapers (Facebook/LinkedIn) that fetch the initial HTML. -->
+    <link rel="canonical" href="https://abrarfahim.site/" />
 
     <meta property="og:title" content="Abrar Fahim — AI Researcher & Data Scientist" />
     <meta property="og:description" content="Academic portfolio of Abrar Fahim showcasing research in AI, power systems, and medical imaging." />
@@ -35,6 +36,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://abrarfahim.site/#person",
       "name": "Abrar Fahim",
       "givenName": "Abrar",
       "familyName": "Fahim",
@@ -77,7 +79,8 @@
       as="image"
       href="/landing-320.avif"
       type="image/avif"
-      imagesrcset="/landing-240.avif 240w, /landing-320.avif 320w, /landing-480.avif 480w, /landing-640.avif 640w"
+      media="(min-width: 1024px)"
+      imagesrcset="/landing-240.avif 240w, /landing-320.avif 320w, /landing-480.avif 480w, /landing-640.avif 640w, /landing-800.avif 800w, /landing-960.avif 960w"
       imagesizes="(min-width: 1024px) 320px, 100vw"
       fetchpriority="high"
     />

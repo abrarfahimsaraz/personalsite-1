@@ -8,6 +8,10 @@ interface SEOProps {
   image?: string;
   imageAlt?: string;
   noindex?: boolean;
+  /** ISO-8601 publish date for Article JSON-LD (e.g. "2026-03-20"). */
+  datePublished?: string;
+  /** ISO-8601 last-modified date for Article JSON-LD; falls back to datePublished. */
+  dateModified?: string;
   /** Extra JSON-LD objects to emit for this route (e.g. ScholarlyArticle on paper pages). */
   jsonLd?: Record<string, unknown>[];
 }
@@ -70,6 +74,8 @@ export function SEO({
   image = DEFAULT_IMAGE,
   imageAlt = DEFAULT_IMAGE_ALT,
   noindex = false,
+  datePublished,
+  dateModified,
   jsonLd,
 }: SEOProps) {
   const pageTitle = title ? `${title} | Abrar Fahim` : DEFAULT_TITLE;
@@ -89,7 +95,7 @@ export function SEO({
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:type", type);
     upsertMeta("property", "og:url", canonicalUrl);
-    upsertMeta("property", "og:site_name", "Abrar Fahim — Portfolio");
+    upsertMeta("property", "og:site_name", "Abrar Fahim");
     upsertMeta("property", "og:locale", "en_US");
     upsertMeta("property", "og:image", imageUrl);
     upsertMeta("property", "og:image:alt", imageAlt);
@@ -111,7 +117,7 @@ export function SEO({
         name: "Abrar Fahim",
         url: SITE_URL,
         description: DEFAULT_DESCRIPTION,
-        author: { "@type": "Person", name: "Abrar Fahim" },
+        author: { "@id": "https://abrarfahim.site/#person", "@type": "Person", name: "Abrar Fahim" },
       });
       // Person entity is provided by the static index.html <head> (no-JS baseline).
     } else if (type === "article") {
@@ -122,8 +128,11 @@ export function SEO({
         description,
         url: canonicalUrl,
         image: imageUrl,
-        author: { "@type": "Person", name: "Abrar Fahim", url: SITE_URL },
-        publisher: { "@type": "Person", name: "Abrar Fahim" },
+        mainEntityOfPage: canonicalUrl,
+        ...(datePublished ? { datePublished } : {}),
+        ...(dateModified ? { dateModified } : datePublished ? { dateModified: datePublished } : {}),
+        author: { "@id": "https://abrarfahim.site/#person", "@type": "Person", name: "Abrar Fahim", url: SITE_URL },
+        publisher: { "@id": "https://abrarfahim.site/#person", "@type": "Person", name: "Abrar Fahim" },
       });
     } else {
       blocks.push({
@@ -133,14 +142,14 @@ export function SEO({
         description,
         url: canonicalUrl,
         isPartOf: { "@type": "WebSite", name: "Abrar Fahim", url: SITE_URL },
-        about: { "@type": "Person", name: "Abrar Fahim" },
+        about: { "@id": "https://abrarfahim.site/#person", "@type": "Person", name: "Abrar Fahim" },
       });
     }
 
     if (jsonLd) blocks.push(...jsonLd);
 
     setJsonLd(blocks);
-  }, [pageTitle, description, canonicalUrl, imageUrl, imageAlt, type, path, noindex, title, jsonLd]);
+  }, [pageTitle, description, canonicalUrl, imageUrl, imageAlt, type, path, noindex, title, datePublished, dateModified, jsonLd]);
 
   return null;
 }

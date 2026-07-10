@@ -33,6 +33,18 @@ export default function BlogPostPage() {
         description={post.excerpt}
         path={`/blog/${post.id}`}
         type="article"
+        datePublished={post.date}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://abrarfahim.site/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://abrarfahim.site/blog" },
+              { "@type": "ListItem", position: 3, name: post.title, item: `https://abrarfahim.site/blog/${post.id}` },
+            ],
+          },
+        ]}
       />
 
       {/* Hero band */}

@@ -488,16 +488,13 @@ export const certifications: Certification[] = [
   { title: "Mayven English Olympiad – SDG Policy Challenge", issuer: "Global Gatekeepers", year: "2023", category: "course", certificateUrl: "/certificates/Mayven_English_Olympiad.pdf" },
   { title: "SDG Policy Challenge", issuer: "Global Gatekeepers / ICCCAD / Swedish Govt", year: "2023", category: "course", certificateUrl: "/certificates/SDG_Policy_Challenge.png" },
   { title: "Introduction to Data Analytics", issuer: "UniAthena", category: "course", certificateUrl: "/certificates/UniAthena_Data_Analytics.pdf" },
-  { title: "Introduction to Data Science", issuer: "Simplilearn", category: "course", certificateUrl: "/certificates/Intro_Data_Science_Simplilearn.pdf" },
   { title: "Introduction to Neural Network", issuer: "Simplilearn", category: "course", certificateUrl: "/certificates/Intro_Neural_Network_Simplilearn.pdf" },
-  { title: "Introduction to Python OpenCV", issuer: "Simplilearn", category: "course", certificateUrl: "/certificates/Intro_Python_OpenCV_Simplilearn.pdf" },
   { title: "Image Recognition Basics for Beginners", issuer: "Simplilearn", category: "course", certificateUrl: "/certificates/Image_Recognition_Basics_Simplilearn.pdf" },
   { title: "Neural Network 101: Image Recognition Using ML", issuer: "Simplilearn", category: "course", certificateUrl: "/certificates/Neural_Network_101_Simplilearn.pdf" },
   { title: "Machine Learning using Python", issuer: "LinkedIn Learning", category: "course" },
   { title: "Google AI Essentials", issuer: "Coursera", year: "2024", category: "course", certificateUrl: "/certificates/Google_AI_Essentials.pdf" },
   { title: "Google Project Management", issuer: "Coursera", category: "course" },
   { title: "Lean Six Sigma White Belt", issuer: "CSSC", category: "course", certificateUrl: "/certificates/Lean_Six_Sigma_White_Belt.pdf" },
-  { title: "What Is Generative AI?", issuer: "LinkedIn Learning", category: "course", certificateUrl: "/certificates/LinkedIn_Learning_Generative_AI.pdf" },
 ];
 
 // ─── Trainings ───────────────────────────────────────────────

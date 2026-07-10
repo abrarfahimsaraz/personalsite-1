@@ -17,6 +17,23 @@ export default function BlogPage() {
         title="Blog"
         description="Articles on AI research, deep learning, power systems optimization, and engineering — by Abrar Fahim."
         path="/blog"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Blog by Abrar Fahim",
+            url: "https://abrarfahim.site/blog",
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: sorted.map((post, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://abrarfahim.site/blog/${post.id}`,
+                name: post.title,
+              })),
+            },
+          },
+        ]}
       />
 
       <PageHero

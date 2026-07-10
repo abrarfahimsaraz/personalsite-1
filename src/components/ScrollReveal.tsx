@@ -51,8 +51,8 @@ export default function ScrollReveal() {
       const gsap = window.gsap;
       const ScrollTrigger = window.ScrollTrigger;
       if (!gsap || !ScrollTrigger) {
-        if (tries++ > 60) {
-          revealAll(); // ~3s and still no CDN → just show everything
+        if (tries++ > 20) {
+          revealAll(); // ~1s and still no CDN → just show everything
           return;
         }
         timer = window.setTimeout(run, 50);

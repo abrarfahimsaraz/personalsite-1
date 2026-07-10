@@ -89,6 +89,7 @@ export default function AboutPage() {
               sizes="(min-width: 1024px) 480px, 100vw"
               className="w-full h-auto rounded-2xl object-cover object-top aspect-[3/4] border border-border"
               loading="lazy"
+              basename="landing"
             />
           </div>
         </div>

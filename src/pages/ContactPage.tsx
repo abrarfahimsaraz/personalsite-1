@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { personalInfo } from "@/lib/data";
-import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap, Send, Check, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, GraduationCap, Send, Check } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import PageHero from "@/components/PageHero";
 import { SEO } from "@/components/SEO";
@@ -39,9 +39,10 @@ export default function ContactPage() {
         subtitle="Open to collaborations, research inquiries, or just a friendly hello — reach out through any channel below."
       />
 
+      {/* Contact channels get ~10% more width than an even split; the form shrinks to match. */}
       <div className="mx-auto max-w-5xl px-6 py-14 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* Contact channels — home-style glass cards, stacked icon/title over value */}
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Contact channels — home-style glass cards, center + middle aligned */}
           <div className="grid gap-4 sm:grid-cols-2" data-stagger>
             {contactInfo.map((c, i) => {
               const Wrapper = c.href ? "a" : "div";
@@ -49,17 +50,12 @@ export default function ContactPage() {
                 <Wrapper
                   key={i}
                   {...(c.href ? { href: c.href, target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="glass-card group flex h-full flex-col gap-3 p-5"
+                  className="glass-card group flex h-full flex-col items-center justify-center gap-2.5 p-6 text-center"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-[hsl(var(--grad-2)/0.15)] text-primary">
-                      <c.icon size={19} />
-                    </span>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.label}</p>
-                    {c.href && (
-                      <ArrowUpRight size={15} className="ml-auto flex-shrink-0 text-muted-foreground/50 transition-colors group-hover:text-primary" />
-                    )}
-                  </div>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-[hsl(var(--grad-2)/0.15)] text-primary">
+                    <c.icon size={20} />
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.label}</p>
                   <p className="break-words text-sm font-medium leading-snug text-foreground/90 transition-colors group-hover:text-primary">
                     {c.value}
                   </p>
@@ -80,7 +76,7 @@ export default function ContactPage() {
               <div
                 role="status"
                 aria-live="polite"
-                className="mt-5 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-500"
+                className="mt-5 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-700 dark:text-emerald-400"
               >
                 <Check size={16} /> Your email client should now be open — thanks for reaching out!
               </div>
