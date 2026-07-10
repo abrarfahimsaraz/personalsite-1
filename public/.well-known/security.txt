@@ -1,0 +1,7 @@
+# Security contact for abrarfahim.site — RFC 9116
+# https://securitytxt.org/
+
+Contact: mailto:abrarfahim8@iut-dhaka.edu
+Expires: 2027-07-11T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://abrarfahim.site/.well-known/security.txt

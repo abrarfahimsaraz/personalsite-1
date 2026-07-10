@@ -57,13 +57,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Non-blocking font load: fetched as print, then swapped to all on load. JS-less fallback below. -->
+    <!-- Non-blocking font load. Swapped preload->stylesheet by the CSP-hashed bootstrap
+         script below (no inline onload attribute, so a strict CSP needs no unsafe-hashes). -->
     <!-- Inter (body) + Space Grotesk (display) — premium modern product-grade pairing -->
     <link
+      id="font-css"
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
@@ -99,6 +100,18 @@
           document.documentElement.classList.add("gsap-enabled");
         }
       } catch (e) {}
+      // Non-blocking font swap (moved off the link's inline onload for a strict CSP).
+      // The preload already started the fetch; flipping rel->stylesheet after the
+      // initial parse applies it without blocking first paint. A setTimeout fallback
+      // guarantees the swap even in backgrounded tabs (where rAF is throttled).
+      (function () {
+        var l = document.getElementById("font-css");
+        if (!l || l.rel === "stylesheet") return;
+        var swap = function () { if (l.rel !== "stylesheet") l.rel = "stylesheet"; };
+        l.addEventListener("load", swap, { once: true });
+        window.addEventListener("load", swap, { once: true });
+        setTimeout(swap, 0);
+      })();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

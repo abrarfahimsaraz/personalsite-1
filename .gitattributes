@@ -1,0 +1,9 @@
+# Force LF for index.html so the inline-script SHA-256 hashes pinned in the
+# Content-Security-Policy (vercel.json) stay stable across OS/git checkouts.
+# Browsers normalize CRLF->LF before hashing inline scripts, so the CSP hash
+# must always be computed over LF content; keeping the source LF makes the
+# build output deterministic.
+index.html text eol=lf
+
+# Normalize line endings for text sources by default.
+* text=auto
