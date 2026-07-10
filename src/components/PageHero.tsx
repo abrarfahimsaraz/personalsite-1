@@ -29,7 +29,7 @@ export default function PageHero({
 
       <div
         className={cn(
-          "relative mx-auto max-w-5xl px-6 pb-14 pt-28 lg:pb-16 lg:pt-32",
+          "relative mx-auto max-w-5xl px-6 pb-0 pt-28 lg:pb-0 lg:pt-32",
           align === "center" && "text-center",
         )}
       >

@@ -58,7 +58,7 @@ export default function CertificationsPage() {
               </div>
               <h2 className="text-xl font-bold">Courses & Programs</h2>
             </div>
-            <div className="space-y-3" data-stagger>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2" data-stagger>
               {courseCerts.map((c, i) => (
                 <div
                   key={i}

@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { researchPapers } from "@/lib/data";
+import { researchPapers, personalInfo } from "@/lib/data";
 import PageTransition from "@/components/PageTransition";
 import { SEO } from "@/components/SEO";
 
@@ -23,7 +23,33 @@ export default function ResearchDetailPage() {
 
   return (
     <PageTransition>
-      <SEO title={paper.title} description={paper.abstract} path={`/research/${paper.id}`} />
+      <SEO
+        title={paper.title}
+        description={paper.abstract}
+        path={`/research/${paper.id}`}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ScholarlyArticle",
+            headline: paper.title,
+            name: paper.title,
+            abstract: paper.abstract,
+            inLanguage: "en",
+            datePublished: String(paper.year),
+            keywords: paper.tags.join(", "),
+            author: {
+              "@type": "Person",
+              name: "Abrar Fahim",
+              url: "https://abrarfahim.site",
+              sameAs: personalInfo.scholar,
+            },
+            isPartOf: { "@type": "PublicationVolume", name: paper.venue },
+            publisher: { "@type": "Organization", name: paper.venue },
+            mainEntityOfPage: `https://abrarfahim.site/research/${paper.id}`,
+            ...(paper.doi ? { url: paper.doi, sameAs: paper.doi } : {}),
+          },
+        ]}
+      />
 
       {/* Hero band */}
       <section className="relative overflow-hidden pt-28 pb-12">
@@ -46,7 +72,7 @@ export default function ResearchDetailPage() {
                 <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
               ))}
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">By Abrar Fahim</p>
+            <p className="mt-3 text-sm text-foreground/70">{paper.authors ?? "Abrar Fahim"}</p>
           </div>
         </div>
       </section>
@@ -78,14 +104,44 @@ export default function ResearchDetailPage() {
           </section>
 
           <section className="glass-card rounded-xl p-6">
-            <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <div className="h-1 w-5 rounded-full bg-primary" />
-              Key Findings
+              Publication Details
             </h2>
-            <p className="text-foreground/80 leading-relaxed">
-              The study demonstrated promising results, contributing to the body of knowledge in {paper.tags.join(", ")}.
-              Further details are available in the full publication.
-            </p>
+            <dl className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+              {paper.authors && (
+                <div className="sm:col-span-2">
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Authors</dt>
+                  <dd className="mt-1 text-sm text-foreground/85">{paper.authors}</dd>
+                </div>
+              )}
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Venue</dt>
+                <dd className="mt-1 text-sm text-foreground/85">{paper.venue}</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Year</dt>
+                <dd className="mt-1 text-sm text-foreground/85">{paper.year}</dd>
+              </div>
+              {paper.location && (
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Location</dt>
+                  <dd className="mt-1 text-sm text-foreground/85">{paper.location}</dd>
+                </div>
+              )}
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Status</dt>
+                <dd className="mt-1 text-sm text-foreground/85">{paper.status}</dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Research Topics</dt>
+                <dd className="mt-2 flex flex-wrap gap-2">
+                  {paper.tags.map((t) => (
+                    <Badge key={t} variant="secondary" className="rounded-md border border-border/60 px-2.5 py-1 text-xs font-medium">{t}</Badge>
+                  ))}
+                </dd>
+              </div>
+            </dl>
           </section>
 
           <div className="flex flex-wrap gap-4">

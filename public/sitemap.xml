@@ -3,25 +3,25 @@
   <!-- Main pages -->
   <url>
     <loc>https://abrarfahim.site/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://abrarfahim.site/about</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://abrarfahim.site/research</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://abrarfahim.site/experience</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -63,16 +63,16 @@
   </url>
   <url>
     <loc>https://abrarfahim.site/contact</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Research paper detail pages -->
-  <url><loc>https://abrarfahim.site/research/opf-comparative</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://abrarfahim.site/research/solar-street-lighting</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://abrarfahim.site/research/sdn-intrusion</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://abrarfahim.site/research/anemia-prediction</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://abrarfahim.site/research/hybrid-mppt</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://abrarfahim.site/research/opf-comparative</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://abrarfahim.site/research/solar-street-lighting</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://abrarfahim.site/research/anemia-prediction</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://abrarfahim.site/research/colorectal-cancer</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://abrarfahim.site/research/malware-detection</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://abrarfahim.site/research/bone-fracture</loc><lastmod>2026-04-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>

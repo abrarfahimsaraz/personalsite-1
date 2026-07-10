@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    /* Neutrals — cool near-white */
-    --background: 220 24% 98%;
-    --foreground: 224 32% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 32% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 32% 12%;
+    /* Neutrals — medium lavender ground */
+    --background: 252 46% 93%;
+    --foreground: 250 40% 12%;
+    --card: 260 45% 99%;
+    --card-foreground: 250 40% 12%;
+    --popover: 260 45% 99%;
+    --popover-foreground: 250 40% 12%;
 
-    /* Brand — refined indigo */
-    --primary: 233 72% 56%;
+    /* Brand — enriched indigo → violet */
+    --primary: 244 78% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 225 16% 94%;
-    --secondary-foreground: 224 30% 22%;
-    --muted: 220 16% 94%;
-    --muted-foreground: 224 11% 40%;
-    --accent: 226 32% 96%;
-    --accent-foreground: 233 72% 50%;
+    --secondary: 252 34% 91%;
+    --secondary-foreground: 250 36% 24%;
+    --muted: 250 26% 91%;
+    --muted-foreground: 248 18% 40%;
+    --accent: 256 46% 95%;
+    --accent-foreground: 244 78% 52%;
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 98%;
-    --border: 222 18% 90%;
-    --input: 222 18% 90%;
-    --ring: 233 72% 56%;
+    --border: 250 30% 87%;
+    --input: 250 30% 87%;
+    --ring: 244 78% 58%;
     --radius: 0.85rem;
-    --shadow-color: 224 45% 22%;
+    --shadow-color: 250 52% 30%;
 
-    /* Gradient accent stops */
-    --grad-1: 233 72% 56%; /* indigo */
-    --grad-2: 265 78% 62%; /* violet */
-    --grad-3: 199 89% 52%; /* sky */
+    /* Gradient accent stops — richer jewel-toned indigo→violet→azure */
+    --grad-1: 244 80% 58%; /* indigo */
+    --grad-2: 272 82% 63%; /* violet */
+    --grad-3: 210 92% 45%; /* azure (darkened for AA contrast on light) */
 
     /* Hero band (intentionally dark in both themes) */
     --hero-from: 232 38% 9%;
     --hero-to: 236 30% 15%;
 
-    --sidebar-background: 220 24% 98%;
-    --sidebar-foreground: 224 32% 12%;
-    --sidebar-primary: 233 72% 56%;
+    --sidebar-background: 252 46% 93%;
+    --sidebar-foreground: 250 40% 12%;
+    --sidebar-primary: 244 78% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 225 16% 94%;
-    --sidebar-accent-foreground: 224 30% 22%;
-    --sidebar-border: 222 18% 90%;
-    --sidebar-ring: 233 72% 56%;
+    --sidebar-accent: 252 34% 91%;
+    --sidebar-accent-foreground: 250 36% 24%;
+    --sidebar-border: 250 30% 87%;
+    --sidebar-ring: 244 78% 58%;
   }
 
   .dark {
@@ -327,7 +327,7 @@
     --glass-brd: 255 255 255;
     --glass-brd-op: 0.55;
     /* Solid backdrop painted behind the fixed ambient layer */
-    --backdrop: 232 238 250;
+    --backdrop: 231 227 245;
   }
 
   .dark {

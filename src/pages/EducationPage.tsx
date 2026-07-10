@@ -17,16 +17,16 @@ export default function EducationPage() {
       />
 
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid items-stretch gap-12 lg:grid-cols-2">
           {/* Degrees column */}
-          <div>
+          <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <GraduationCap size={18} />
               </div>
               <h2 className="text-xl font-bold">Academic Qualifications</h2>
             </div>
-            <div className="space-y-5" data-stagger>
+            <div className="flex flex-1 flex-col justify-between gap-5" data-stagger>
               {education.map((ed, i) => (
                 <div
                   key={i}
@@ -62,14 +62,14 @@ export default function EducationPage() {
           </div>
 
           {/* Test scores column */}
-          <div>
+          <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
                 <Award size={18} />
               </div>
               <h2 className="text-xl font-bold">Test Scores</h2>
             </div>
-            <div className="space-y-5" data-stagger>
+            <div className="flex flex-1 flex-col justify-between gap-5" data-stagger>
               {testScores.map((ts, i) => (
                 <div
                   key={i}

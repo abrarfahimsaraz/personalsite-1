@@ -1,5 +1,4 @@
-import { Helmet } from "react-helmet-async";
-import { personalInfo } from "@/lib/data";
+import { useEffect } from "react";
 
 interface SEOProps {
   title?: string;
@@ -9,6 +8,8 @@ interface SEOProps {
   image?: string;
   imageAlt?: string;
   noindex?: boolean;
+  /** Extra JSON-LD objects to emit for this route (e.g. ScholarlyArticle on paper pages). */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const SITE_URL = "https://abrarfahim.site";
@@ -18,6 +19,49 @@ const DEFAULT_DESCRIPTION =
 const DEFAULT_IMAGE = "/abrar-fahim-800.jpg";
 const DEFAULT_IMAGE_ALT = "Abrar Fahim — AI Researcher and Data Scientist";
 
+/** Create or update a <meta> tag by name/property. */
+function upsertMeta(attr: "name" | "property", key: string, content: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", content);
+}
+
+/** Create or update a <link> tag by rel. */
+function upsertLink(rel: string, href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", rel);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
+/** Replace all route-managed JSON-LD blocks with the given objects. */
+function setJsonLd(objects: Record<string, unknown>[]) {
+  document.head.querySelectorAll("script[data-seo-jsonld]").forEach((s) => s.remove());
+  for (const obj of objects) {
+    const s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.setAttribute("data-seo-jsonld", "");
+    s.textContent = JSON.stringify(obj);
+    document.head.appendChild(s);
+  }
+}
+
+/**
+ * Imperative document-head manager for per-route SEO.
+ *
+ * Replaces react-helmet-async (which failed to inject anything in this app,
+ * even in the production build). Updates title, description, canonical, robots,
+ * Open Graph, Twitter, and JSON-LD structured data on every route change so the
+ * site is correctly indexed and machine/AI-readable. The static tags in
+ * index.html remain the no-JS baseline for social scrapers.
+ */
 export function SEO({
   title,
   description = DEFAULT_DESCRIPTION,
@@ -26,131 +70,77 @@ export function SEO({
   image = DEFAULT_IMAGE,
   imageAlt = DEFAULT_IMAGE_ALT,
   noindex = false,
+  jsonLd,
 }: SEOProps) {
   const pageTitle = title ? `${title} | Abrar Fahim` : DEFAULT_TITLE;
   const canonicalUrl = `${SITE_URL}${path}`;
   const imageUrl = `${SITE_URL}${image}`;
 
-  return (
-    <Helmet>
-      <title>{pageTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="author" content="Abrar Fahim" />
-      <meta name="keywords" content="Abrar Fahim, AI researcher, data scientist, deep learning, power systems, medical imaging, IUT, Bangladesh" />
-      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
-      <link rel="canonical" href={canonicalUrl} />
+  useEffect(() => {
+    document.title = pageTitle;
 
-      {/* Open Graph */}
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content={type} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:site_name" content="Abrar Fahim — Portfolio" />
-      <meta property="og:locale" content="en_US" />
-      <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content={imageAlt} />
-      <meta property="og:image:width" content="800" />
-      <meta property="og:image:height" content="1040" />
+    upsertMeta("name", "description", description);
+    upsertMeta("name", "author", "Abrar Fahim");
+    upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
+    upsertLink("canonical", canonicalUrl);
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={pageTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={imageUrl} />
-      <meta name="twitter:image:alt" content={imageAlt} />
+    // Open Graph
+    upsertMeta("property", "og:title", pageTitle);
+    upsertMeta("property", "og:description", description);
+    upsertMeta("property", "og:type", type);
+    upsertMeta("property", "og:url", canonicalUrl);
+    upsertMeta("property", "og:site_name", "Abrar Fahim — Portfolio");
+    upsertMeta("property", "og:locale", "en_US");
+    upsertMeta("property", "og:image", imageUrl);
+    upsertMeta("property", "og:image:alt", imageAlt);
 
-      {/* JSON-LD: Person schema (homepage only) */}
-      {path === "/" && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Abrar Fahim",
-            givenName: "Abrar",
-            familyName: "Fahim",
-            url: SITE_URL,
-            image: `${SITE_URL}/abrar-fahim-800.jpg`,
-            jobTitle: "AI Researcher & Data Scientist",
-            description: personalInfo.synthesized,
-            email: personalInfo.email,
-            telephone: personalInfo.phone,
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Dhaka",
-              addressCountry: "BD",
-            },
-            alumniOf: {
-              "@type": "CollegeOrUniversity",
-              name: "Islamic University of Technology",
-            },
-            sameAs: [
-              personalInfo.github,
-              personalInfo.linkedin,
-              personalInfo.scholar,
-            ],
-            knowsAbout: [
-              "Artificial Intelligence",
-              "Deep Learning",
-              "Medical Image Analysis",
-              "Power Systems Optimization",
-              "Machine Learning",
-              "Data Science",
-            ],
-          })}
-        </script>
-      )}
+    // Twitter
+    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:title", pageTitle);
+    upsertMeta("name", "twitter:description", description);
+    upsertMeta("name", "twitter:image", imageUrl);
+    upsertMeta("name", "twitter:image:alt", imageAlt);
 
-      {/* JSON-LD: WebSite schema (homepage only) */}
-      {path === "/" && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "Abrar Fahim",
-            url: SITE_URL,
-            description: DEFAULT_DESCRIPTION,
-            author: { "@type": "Person", name: "Abrar Fahim" },
-          })}
-        </script>
-      )}
+    // Structured data (index.html already carries a static Person for the no-JS baseline)
+    const blocks: Record<string, unknown>[] = [];
 
-      {/* JSON-LD: Article schema (blog posts) */}
-      {type === "article" && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: title,
-            description: description,
-            url: canonicalUrl,
-            image: imageUrl,
-            author: {
-              "@type": "Person",
-              name: "Abrar Fahim",
-              url: SITE_URL,
-            },
-            publisher: {
-              "@type": "Person",
-              name: "Abrar Fahim",
-            },
-          })}
-        </script>
-      )}
+    if (path === "/") {
+      blocks.push({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Abrar Fahim",
+        url: SITE_URL,
+        description: DEFAULT_DESCRIPTION,
+        author: { "@type": "Person", name: "Abrar Fahim" },
+      });
+      // Person entity is provided by the static index.html <head> (no-JS baseline).
+    } else if (type === "article") {
+      blocks.push({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        url: canonicalUrl,
+        image: imageUrl,
+        author: { "@type": "Person", name: "Abrar Fahim", url: SITE_URL },
+        publisher: { "@type": "Person", name: "Abrar Fahim" },
+      });
+    } else {
+      blocks.push({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: pageTitle,
+        description,
+        url: canonicalUrl,
+        isPartOf: { "@type": "WebSite", name: "Abrar Fahim", url: SITE_URL },
+        about: { "@type": "Person", name: "Abrar Fahim" },
+      });
+    }
 
-      {/* JSON-LD: WebPage schema (subpages, not homepage or articles) */}
-      {path !== "/" && type !== "article" && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: pageTitle,
-            description: description,
-            url: canonicalUrl,
-            isPartOf: { "@type": "WebSite", name: "Abrar Fahim", url: SITE_URL },
-            about: { "@type": "Person", name: "Abrar Fahim" },
-          })}
-        </script>
-      )}
-    </Helmet>
-  );
+    if (jsonLd) blocks.push(...jsonLd);
+
+    setJsonLd(blocks);
+  }, [pageTitle, description, canonicalUrl, imageUrl, imageAlt, type, path, noindex, title, jsonLd]);
+
+  return null;
 }

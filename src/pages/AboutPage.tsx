@@ -57,17 +57,17 @@ export default function AboutPage() {
         {/* Bio + Photo */}
         <div className="grid lg:grid-cols-3 gap-10 items-start">
           <div className="lg:col-span-2">
-            <p className="text-lg leading-relaxed text-foreground/80">
+            <p className="text-base leading-relaxed text-foreground">
               {personalInfo.intro}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base leading-relaxed text-foreground">
               Abrar Fahim is driven by a commitment to bridging classical engineering and cutting-edge AI.
               His undergraduate thesis explored plasmonic coupling and thermal effects on nanoparticles — a
               novel direction within his research group that had never been attempted before. That same
               willingness to pursue uncharted problems carries through his current work across medical imaging,
               power systems, and cybersecurity.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base leading-relaxed text-foreground">
               Beyond research, Abrar Fahim actively mentors fellow students, has written for The Financial
               Express Bangladesh, and organized national-level events at IUT. He brings the same discipline to
               collaboration as he does to independent work — consistently seeking constructive feedback and
@@ -135,12 +135,12 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-sm font-semibold">{section.title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {section.items.map((item) => (
                     <Badge
                       key={item.name}
                       variant="secondary"
-                      className="rounded-full text-xs"
+                      className="rounded-md border border-border/60 px-2.5 py-1 text-xs font-medium text-foreground/80"
                     >
                       {item.name}
                     </Badge>

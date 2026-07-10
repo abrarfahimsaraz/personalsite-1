@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils";
 export default function ThemeToggle({ className }: { className?: string }) {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") !== "light";
+      return localStorage.getItem("theme") === "dark";
     }
-    return true;
+    return false;
   });
 
   useEffect(() => {

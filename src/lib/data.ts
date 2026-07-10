@@ -18,7 +18,7 @@ export const personalInfo = {
   intro:
     "Electrical Engineering graduate with a strong foundation in power systems, energy modeling, and optimization. Experienced in deep learning, power systems optimization and several machine learning projects using MATLAB and Python. Current research interests include AC optimal power flow, and smart grid operation along with computer vision.",
   synthesized:
-    "Abrar Fahim is a B.Sc. EEE graduate from Islamic University of Technology (CGPA 3.44/4.00) with strong expertise in machine learning, deep learning, and data analytics applied across power systems, healthcare, and cybersecurity. He currently works concurrently as Executive, Risk & Operational Analyst at NEXT Ventures — leading the FNmarkets brokerage launch and trading backend — and as a remote Data Scientist at Synnax Laboratory for financial forecasting. He has co-authored multiple IEEE and Springer conference publications.",
+    "Abrar Fahim is a B.Sc. EEE graduate from Islamic University of Technology (CGPA 3.44/4.00) with strong expertise in machine learning, deep learning, and data analytics applied across power systems, healthcare, and cybersecurity. He currently works concurrently as Executive, Risk & Operational Analyst at NEXT Ventures — leading the FNmarkets brokerage launch and trading backend — and previously as a remote Data Scientist at Synnax Laboratory for financial forecasting. He has co-authored numerous IEEE and Springer conference publications.",
 };
 
 // ─── Education ───────────────────────────────────────────────
@@ -97,29 +97,6 @@ export const testScores: TestScore[] = [
     ],
     certificateUrl: "/certificates/IELTS_2024.pdf",
   },
-  {
-    name: "IELTS Academic",
-    year: "2021",
-    overall: "7.0",
-    breakdown: [
-      { label: "Listening", score: "8" },
-      { label: "Reading", score: "7.5" },
-      { label: "Writing", score: "6" },
-      { label: "Speaking", score: "7" },
-    ],
-  },
-  {
-    name: "EFSET English Certificate",
-    year: "2025",
-    overall: "83/100 — C2 Proficient",
-    breakdown: [
-      { label: "Reading", score: "80", level: "C2 Proficient" },
-      { label: "Listening", score: "75", level: "C2 Proficient" },
-      { label: "Writing", score: "97", level: "C2 Proficient" },
-      { label: "Speaking", score: "81", level: "C2 Proficient" },
-    ],
-    certificateUrl: "/certificates/EFSET_Certificate.pdf",
-  },
 ];
 
 // ─── Research Papers ─────────────────────────────────────────
@@ -142,12 +119,29 @@ export interface ResearchPaper {
 
 export const researchPapers: ResearchPaper[] = [
   {
+    id: "hybrid-mppt",
+    title: "Hybrid MPPT System with Dynamic Model Switching for Optimizing PV Efficiency Under Low Irradiance: A Case Study from Patenga, Chattogram, Bangladesh",
+    venue: "2nd IEEE Intl. Conf. on Quantum Photonics & AI 2026",
+    year: 2026,
+    location: "Bangladesh",
+    authors: "M. S. Rahman, R. Rayhan, A. Fahim, S. M. S. M. Shemon, A. R. Ghosh, S. Siddika",
+    status: "Published",
+    tags: ["Renewable Energy", "Power Systems", "Solar PV"],
+    abstract: "A hybrid Maximum Power Point Tracking (MPPT) system with dynamic model switching that optimizes photovoltaic efficiency under low-irradiance conditions, validated on solar-irradiance data from Patenga, Chattogram, Bangladesh.",
+    bullets: [
+      "Dynamic model switching across MPPT strategies for varying irradiance",
+      "Improved PV energy harvest under low-light conditions",
+      "Validated on real irradiance data from Patenga, Chattogram",
+    ],
+    doi: "https://ieeexplore.ieee.org/document/11502183",
+  },
+  {
     id: "opf-comparative",
     title: "Comparative Analysis of Classical, Machine Learning, Deep Learning, and Metaheuristic Approaches for Optimal Power Flow",
     venue: "2nd IEEE ICEESI 2026",
     year: 2026,
     location: "India",
-    status: "Under Review",
+    status: "In Preparation",
     tags: ["Power Systems", "Machine Learning", "Optimization"],
     abstract: "Conducted a unified comparative study of AC optimal power flow solved using classical OPF, Random Forest, DNN, and Particle Swarm Optimization on IEEE test systems.",
     bullets: [
@@ -162,7 +156,7 @@ export const researchPapers: ResearchPaper[] = [
     venue: "IEEE IPRECON 2026",
     year: 2026,
     location: "Kerala, India",
-    status: "Under Review",
+    status: "In Preparation",
     tags: ["Sustainable Energy", "IoT", "Smart Systems"],
     abstract: "Designed a solar-powered smart street lighting control system with automated energy management to reduce power consumption and support sustainable infrastructure in Bangladesh.",
     bullets: [
@@ -172,32 +166,21 @@ export const researchPapers: ResearchPaper[] = [
     ],
   },
   {
-    id: "sdn-intrusion",
-    title: "Enhancing Intrusion Detection in SDNs Using Hybrid Feature Selection and XGBoost",
-    venue: "Pending Submission",
-    year: 2026,
-    status: "In Preparation",
-    tags: ["Cybersecurity", "Machine Learning", "SDN"],
-    abstract: "Hybrid intrusion detection using XGBoost and CFS + RF-RFE feature selection on NSL-KDD dataset, achieving 99.97% accuracy.",
-    bullets: [
-      "Used CFS + RF-RFE hybrid feature selection",
-      "Achieved 99.97% accuracy on NSL-KDD",
-      "Targeted SDN security applications",
-    ],
-  },
-  {
     id: "anemia-prediction",
-    title: "Transparent and Accurate Anemia Prediction Through GA-Selected Features and Grid-Search Enhanced Decision Trees",
-    venue: "Pending Submission",
+    title: "Addressing Trust and Efficiency in Pediatric Anemia Diagnosis Using Interpretable Decision Trees",
+    venue: "15th IEEE CSNT 2026",
     year: 2026,
-    status: "In Preparation",
-    tags: ["Healthcare AI", "Explainable AI"],
-    abstract: "Interpretable anemia prediction model using GA-based feature selection with clinical transparency and explainability.",
+    location: "India",
+    authors: "S. Banik, A. Fahim, M. S. Uddin, B. Biswas, H. H. Joti, S. E. S. Khan, M. S. H. Sumon",
+    status: "Published",
+    tags: ["Healthcare AI", "Explainable AI", "Decision Trees"],
+    abstract: "An interpretable decision-tree framework for pediatric anemia diagnosis that prioritizes clinical trust and computational efficiency, delivering transparent predictions suitable for low-resource clinical settings.",
     bullets: [
-      "GA-based feature selection for clinical interpretability",
-      "Grid-search optimized Decision Tree classifier",
-      "Balanced accuracy with explainability",
+      "Interpretable decision-tree models for pediatric anemia diagnosis",
+      "Balances diagnostic accuracy with clinical transparency",
+      "Efficient and deployable in low-resource settings",
     ],
+    doi: "https://ieeexplore.ieee.org/document/11545730",
   },
   {
     id: "colorectal-cancer",
@@ -356,7 +339,7 @@ export const experiences: Experience[] = [
     organization: "Synnax Laboratory",
     department: "Credit Intelligence Division",
     location: "Remote (Dhaka, Bangladesh)",
-    dates: "May 2025 – Present",
+    dates: "May 2025 – June 2026",
     category: "Research",
     bullets: [
       "Developed end-to-end machine learning SDK and pipelines for multi-target financial forecasting, including data preprocessing, feature engineering, and model ensembling.",

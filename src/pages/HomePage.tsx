@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import {
   ArrowRight, Github, GraduationCap, Mail, Linkedin,
-  MapPin, Download, FileText, Briefcase, Award, FolderOpen,
-  Brain, Shield, Zap, HeartPulse, Sparkles,
+  MapPin, Download, Briefcase, Award, FolderOpen, FileText,
+  Sun, Zap, Network, Battery, Sparkles, FlaskConical,
 } from "lucide-react";
 import { personalInfo, researchPapers, stats, experiences, skills } from "@/lib/data";
 import { SEO } from "@/components/SEO";
@@ -15,28 +15,31 @@ const socials = [
   { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
 ];
 
-const featuredPapers = researchPapers.filter((p) => p.status === "Published").slice(0, 4);
+const publishedPapers = researchPapers.filter((p) => p.status === "Published");
+// Featured leads with energy/newest work (Hybrid MPPT sits first in the data array)
+const featuredPapers = publishedPapers.slice(0, 4);
+const ongoingPapers = researchPapers.filter((p) => p.status === "In Preparation");
 
 const researchAreas = [
   {
-    icon: HeartPulse,
-    title: "Medical Imaging",
-    description: "CNN-based frameworks for colorectal cancer detection, bone fracture identification, diabetic retinopathy diagnosis, and cataract screening.",
+    icon: Sun,
+    title: "Renewable Energy",
+    description: "Solar PV modeling and hybrid MPPT control to maximize energy harvest under real-world, low-irradiance conditions.",
   },
   {
     icon: Zap,
-    title: "Power Systems",
-    description: "AC optimal power flow optimization using machine learning, deep neural networks, and particle swarm optimization on IEEE test systems.",
+    title: "Optimal Power Flow",
+    description: "AC optimal power flow solved with classical, machine-learning, deep-learning, and metaheuristic methods on IEEE test systems.",
   },
   {
-    icon: Shield,
-    title: "Cybersecurity",
-    description: "Intrusion detection in software-defined networks and malware classification using hybrid feature selection and ensemble methods.",
+    icon: Network,
+    title: "Smart Grids",
+    description: "Intelligent grid operation, monitoring, and control for reliable, efficient, and sustainable energy distribution.",
   },
   {
-    icon: Brain,
-    title: "Explainable AI",
-    description: "LIME and Grad-CAM based interpretability for clinical decision support, maternal risk prediction, and anemia classification.",
+    icon: Battery,
+    title: "Fuel Cells",
+    description: "Clean electrochemical energy conversion and storage as part of a resilient, low-carbon power mix.",
   },
 ];
 
@@ -58,7 +61,7 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        description="Abrar Fahim — AI Researcher & Data Scientist. B.Sc. EEE graduate from IUT specializing in deep learning, power systems optimization, and medical imaging research."
+        description="Abrar Fahim — AI Researcher & Data Scientist. B.Sc. EEE graduate from IUT specializing in renewable energy, optimal power flow, smart grids, and applied machine learning research."
         path="/"
       />
 
@@ -89,13 +92,13 @@ export default function HomePage() {
                 data-hero-item
                 className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
               >
-                Abrar Fahim
+                <span className="text-gradient">Abrar Fahim</span>
               </h1>
-              <p data-hero-item className="mt-4 text-xl font-medium text-muted-foreground sm:text-2xl">
-                <span className="text-gradient">AI Researcher</span> &amp; Data Scientist
+              <p data-hero-item className="mt-4 text-xl font-semibold text-foreground/90 sm:text-2xl">
+                AI Researcher &amp; Data Scientist
               </p>
 
-              <p data-hero-item className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p data-hero-item className="mt-6 max-w-xl text-base leading-relaxed text-foreground/90">
                 {personalInfo.synthesized}
               </p>
 
@@ -104,9 +107,9 @@ export default function HomePage() {
                   {currentRoles.map((role) => (
                     <span
                       key={role.title}
-                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/60 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur"
+                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/70 px-3 py-1.5 text-xs font-medium text-foreground/90 backdrop-blur"
                     >
-                      <Briefcase className="h-3.5 w-3.5 text-primary/70" />
+                      <Briefcase className="h-3.5 w-3.5 text-primary" />
                       {role.title} — {role.organization}
                     </span>
                   ))}
@@ -141,7 +144,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right — portrait with 3D tilt */}
+            {/* Right — portrait with 3D tilt + rotating research spotlight */}
             <div data-hero-item className="hidden justify-center lg:col-span-2 lg:flex">
               <div data-tilt className="tilt relative">
                 <div className="absolute -inset-5 rounded-[2.25rem] bg-[linear-gradient(135deg,hsl(var(--grad-1)/0.5),hsl(var(--grad-2)/0.5),hsl(var(--grad-3)/0.5))] opacity-50 blur-3xl" />
@@ -154,16 +157,8 @@ export default function HomePage() {
                     className="h-auto w-80 rounded-[1.6rem] border border-white/10 object-cover object-top"
                     loading="eager"
                     fetchPriority="high"
+                    basename="landing"
                   />
-                </div>
-                <div className="tilt-pop glass absolute -left-6 bottom-8 flex items-center gap-3 rounded-2xl px-4 py-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15">
-                    <FileText className="h-4 w-4 text-primary" />
-                  </div>
-                  <div className="leading-tight">
-                    <p className="font-display text-lg font-bold">{stats.papers}</p>
-                    <p className="text-[11px] text-muted-foreground">Publications</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -184,44 +179,56 @@ export default function HomePage() {
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-[hsl(var(--grad-2)/0.15)]">
                   <s.icon className="h-5 w-5 text-primary" />
                 </span>
-                <span className="font-display text-3xl font-bold text-gradient">{s.value}</span>
-                <span className="text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">{s.label}</span>
+                <span className="font-display text-3xl font-bold text-gradient sm:text-4xl">{s.value}</span>
+                <span className="text-xs font-semibold text-foreground/80 transition-colors group-hover:text-foreground">{s.label}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════ RESEARCH AREAS ═══════════════════ */}
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <div data-reveal className="mx-auto mb-14 max-w-2xl text-center">
-            <span className="section-label justify-center">Research Focus</span>
-            <h2 className="section-heading">Where I focus my research</h2>
-            <p className="section-subtitle">
-              Active work across AI, engineering, healthcare, and cybersecurity.
-            </p>
-          </div>
-
-          <div data-stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {researchAreas.map((area) => (
-              <div key={area.title} data-tilt className="service-card tilt group">
-                <div className="tilt-pop mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-[hsl(var(--grad-2)/0.15)] transition-transform duration-300 group-hover:scale-105">
-                  <area.icon className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="mb-2 font-display text-lg font-bold">{area.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{area.description}</p>
+      {/* ═══════════════════ ONGOING RESEARCH WORKS ═══════════════════ */}
+      {ongoingPapers.length > 0 && (
+        <section className="py-20 lg:py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <div data-reveal className="mb-12 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <span className="section-label"><FlaskConical className="h-3.5 w-3.5" /> In Progress</span>
+                <h2 className="section-heading">Ongoing Research Works</h2>
+                <p className="section-subtitle max-w-xl">
+                  Active projects currently in preparation across energy and power systems.
+                </p>
               </div>
-            ))}
-          </div>
+              <Link
+                to="/research"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-2.5"
+              >
+                All research <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
-          <div data-reveal className="mt-10 text-center">
-            <Link to="/research" className="btn-outline">
-              View All Papers <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div data-stagger className="grid gap-5 md:grid-cols-2">
+              {ongoingPapers.map((paper) => (
+                <Link key={paper.id} to={`/research/${paper.id}`} className="group glass-card flex h-full flex-col p-6">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    <span className="inline-block rounded-full border border-muted-foreground/30 bg-muted px-2.5 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                      {paper.status}
+                    </span>
+                    <span className="text-[11px] font-medium text-muted-foreground">{paper.venue} · {paper.year}</span>
+                  </div>
+                  <h3 className="mb-2 font-display text-base font-bold leading-snug transition-colors group-hover:text-primary">
+                    {paper.title}
+                  </h3>
+                  <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{paper.abstract}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all group-hover:gap-2 group-hover:opacity-100">
+                    View details <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ═══════════════════ FEATURED PUBLICATIONS ═══════════════════ */}
       <section className="border-y border-border/40 py-20 lg:py-28">
@@ -260,6 +267,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══════════════════ RESEARCH FOCUS ═══════════════════ */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div data-reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <span className="section-label justify-center">Research Focus</span>
+            <h2 className="section-heading">Where I focus my research</h2>
+            <p className="section-subtitle">
+              Currently centered on renewable energy, optimal power flow, smart grids, and fuel cells.
+            </p>
+          </div>
+
+          <div data-stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {researchAreas.map((area) => (
+              <div key={area.title} data-tilt className="service-card tilt group">
+                <div className="tilt-pop mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-[hsl(var(--grad-2)/0.15)] transition-transform duration-300 group-hover:scale-105">
+                  <area.icon className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="mb-2 font-display text-lg font-bold">{area.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{area.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div data-reveal className="mt-10 text-center">
+            <Link to="/research" className="btn-outline">
+              View All Papers <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════ SKILLS ═══════════════════ */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-6">
@@ -289,7 +327,7 @@ export default function HomePage() {
             </span>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Interested in Collaboration?</h2>
             <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-              I'm always open to discussing research opportunities, joint publications, or academic projects in AI, power systems, and medical imaging.
+              I'm always open to discussing research opportunities, joint publications, or academic projects in renewable energy, power systems, and applied AI.
             </p>
             <Link to="/contact" className="btn-primary mt-8">
               Get in Touch <ArrowRight className="h-4 w-4" />

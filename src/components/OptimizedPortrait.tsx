@@ -11,14 +11,16 @@ interface OptimizedPortraitProps {
   loading?: "eager" | "lazy";
   /** fetchPriority hint for LCP images */
   fetchPriority?: "high" | "low" | "auto";
+  /** Public asset base name; variants live at /{basename}-{w}.{avif,webp,jpg} */
+  basename?: string;
 }
 
-// Source files live in /public as abrar-fahim-{w}.{avif,webp,jpg}
+// Source files live in /public as {basename}-{w}.{avif,webp,jpg}
 // Available widths:
 const WIDTHS = [240, 320, 480, 640, 800, 960];
 
-function buildSrcSet(ext: string) {
-  return WIDTHS.map((w) => `/abrar-fahim-${w}.${ext} ${w}w`).join(", ");
+function buildSrcSet(basename: string, ext: string) {
+  return WIDTHS.map((w) => `/${basename}-${w}.${ext} ${w}w`).join(", ");
 }
 
 export function OptimizedPortrait({
@@ -29,14 +31,15 @@ export function OptimizedPortrait({
   sizes = "(min-width: 1024px) 320px, 100vw",
   loading = "lazy",
   fetchPriority = "auto",
+  basename = "abrar-fahim",
 }: OptimizedPortraitProps) {
   return (
     <picture>
-      <source type="image/avif" srcSet={buildSrcSet("avif")} sizes={sizes} />
-      <source type="image/webp" srcSet={buildSrcSet("webp")} sizes={sizes} />
+      <source type="image/avif" srcSet={buildSrcSet(basename, "avif")} sizes={sizes} />
+      <source type="image/webp" srcSet={buildSrcSet(basename, "webp")} sizes={sizes} />
       <img
-        src="/abrar-fahim-640.jpg"
-        srcSet="/abrar-fahim-640.jpg 640w, /abrar-fahim-800.jpg 800w"
+        src={`/${basename}-640.jpg`}
+        srcSet={`/${basename}-640.jpg 640w, /${basename}-800.jpg 800w`}
         sizes={sizes}
         alt={alt}
         width={width}
